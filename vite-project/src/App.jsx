@@ -1,7 +1,7 @@
 
 import LoginForm from "./components/LoginForm"
 import NavBar from "./components/NavBar"
-import SignUpForm from "./components/signUpForm"
+import SignUpForm from "./components/SignUpForm"
 
 
 
@@ -14,6 +14,7 @@ function App() {
     
     <SignUpForm/>
     <LoginForm/>
+    <NavBar/>
     </>
   )
 }
