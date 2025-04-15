@@ -33,7 +33,7 @@ export const input = [
   },
   {
     label: "Téléphone",
-    type: "text",
+    type: "number",
     for: "phone",
     placeholder: "Entrez votre lieu numero de téléphone",
     id: "phone",
@@ -51,10 +51,10 @@ export const input = [
   {
     label: "Confirmer mot de passe",
     type: "password",
-    for: "cPassword",
+    for: "repeatPassword",
     placeholder: "Confirmer votre mot de passe",
-    id: "cPassword",
-    name: "cPassword",
+    id: "repeatPassword",
+    name: "repeatPassword",
   },
 ];
 

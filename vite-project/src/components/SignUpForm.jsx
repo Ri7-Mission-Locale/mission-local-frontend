@@ -14,14 +14,10 @@ export default function SignUpForm() {
     lastName: "",
     firstName: "",
     email: "",
-    adress: "",
-    city: "",
     birthDate: "",
-    birthPlace: "",
     phone: "",
-    socialNumber: "",
     password: "",
-    cPassword: "",
+    repeatPassword: "",
   });
 
   const handleChange = (e) => {
@@ -82,12 +78,14 @@ export default function SignUpForm() {
             inactiveTextColor: "#757575",
           }}
         />
-        <SignUpFormTitle label={"INSCRIPTION"} onClick={previousStep} step={signUpStep}/>
+        <SignUpFormTitle
+          label={"INSCRIPTION"}
+          onClick={previousStep}
+          step={signUpStep}
+        />
         {signUpStep === 0 && listItems}
-        {signUpStep === 1 && <DownloadButton/>}
+        {signUpStep === 1 && <DownloadButton />}
         {signUpStep === 1 && InputFileList}
-
-
 
         <div className="flex flex-col items-center gap-5">
           <Button

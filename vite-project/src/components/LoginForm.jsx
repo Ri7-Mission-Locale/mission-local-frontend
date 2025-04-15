@@ -11,10 +11,12 @@ export default function LoginForm() {
         <Input
           htmlFor={"email"}
           label={"Email"}
+          name ={"email"}
           placeholder={"Entrez votre mail"}
         />
         <Input
           htmlFor={"password"}
+          name={'password'}
           label={"Mot de passe"}
           placeholder={"Entrez votre mot de passe"}
         />
