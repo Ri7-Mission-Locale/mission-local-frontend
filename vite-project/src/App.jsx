@@ -1,22 +1,14 @@
-
-import LoginForm from "./components/LoginForm"
-import NavBar from "./components/NavBar"
-import SignUpForm from "./components/SignUpForm"
-
-
-
-
+import LoginForm from "./components/LoginForm";
+import NavBar from "./components/NavBar";
+import SignUpForm from "./components/SignUpForm";
 
 function App() {
- return (
+  return (
     <>
-     
-    
-    <SignUpForm/>
-    <LoginForm/>
-    <NavBar/>
+      <SignUpForm />
+      <LoginForm />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

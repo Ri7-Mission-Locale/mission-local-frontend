@@ -5,6 +5,7 @@ import SignUpFormTitle from "./SignUpFormTitle";
 import Button from "./Button";
 import { Stepper } from "react-form-stepper";
 import { useState } from "react";
+import DownloadButton from "./DownloadButton";
 
 export default function SignUpForm() {
   const [signUpStep, setsignUpStep] = useState(0);
@@ -13,12 +14,12 @@ export default function SignUpForm() {
     lastName: "",
     firstName: "",
     email: "",
-    adress:"",
-    city:"",
+    adress: "",
+    city: "",
     birthDate: "",
-    birthPlace:"",
-    phone:"",
-    socialNumber:"",
+    birthPlace: "",
+    phone: "",
+    socialNumber: "",
     password: "",
     cPassword: "",
   });
@@ -43,25 +44,18 @@ export default function SignUpForm() {
     if (signUpStep <= 2 && signUpStep > 0) setsignUpStep((prev) => prev - 1);
   }
 
-  const listItems = [];
-  for (let i = 0; i < input.length; i += 2) {
-    listItems.push(
-      <div key={i} className="flex gap-4">
-        {input.slice(i, i + 2).map((el) => (
-          <Input
-            key={el.id}
-            id={el.id}
-            label={el.label}
-            type={el.type}
-            placeholder={el.placeholder}
-            htmlFor={el.for}
-            name={el.name}
-            handleChange={handleChange}
-          />
-        ))}
-      </div>
-    );
-  }
+  const listItems = input.map((el) => (
+    <Input
+      key={el.id}
+      id={el.id}
+      label={el.label}
+      type={el.type}
+      placeholder={el.placeholder}
+      htmlFor={el.for}
+      name={el.name}
+      handleChange={handleChange}
+    />
+  ));
 
   const InputFileList = inputFile.map((el) => (
     <FileInput label={el.label} placeholder={el.placeholder} id={el.id} />
@@ -76,7 +70,7 @@ export default function SignUpForm() {
         <Stepper
           steps={[
             { label: "Informations" },
-            { label: "Documents" },
+            { label: "Document" },
             { label: "Prendre RDV" },
           ]}
           activeStep={signUpStep}
@@ -88,9 +82,12 @@ export default function SignUpForm() {
             inactiveTextColor: "#757575",
           }}
         />
-        <SignUpFormTitle label={"INSCRIPTION"} onClick={previousStep} />
+        <SignUpFormTitle label={"INSCRIPTION"} onClick={previousStep} step={signUpStep}/>
         {signUpStep === 0 && listItems}
+        {signUpStep === 1 && <DownloadButton/>}
         {signUpStep === 1 && InputFileList}
+
+
 
         <div className="flex flex-col items-center gap-5">
           <Button
@@ -100,9 +97,9 @@ export default function SignUpForm() {
             onClick={signUpStep < 2 ? nextStep : undefined}
             type={signUpStep < 2 ? "button" : "submit"}
           />
-          
+
           {signUpStep === 0 && (
-            <Button label={"Déjà inscrit ? "} bgColor="bg-amber-100" />
+            <Button label={"Déjà inscrit ? "} bgColor="bg-orange-100" />
           )}
         </div>
       </form>
