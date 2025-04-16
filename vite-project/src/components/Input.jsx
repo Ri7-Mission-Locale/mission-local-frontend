@@ -21,3 +21,6 @@ export default function Input({htmlFor,label,id,type,placeholder,name,handleChan
     </>
   );
 }
+
+
+
