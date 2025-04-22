@@ -1,13 +1,13 @@
-import FileInput from "./FileInput";
-import Input from "./Input";
+import FileInput from "../components/FileInput";
+import Input from "../components/Input";
 import { input, inputFile } from "../data/signUpData";
-import SignUpFormTitle from "./SignUpFormTitle";
-import Button from "./Button";
+import SignUpFormTitle from "../components/SignUpFormTitle";
+import Button from "../components/Button";
 import { Stepper } from "react-form-stepper";
 import { useRef, useState } from "react";
-import DownloadButton from "./DownloadButton";
+import DownloadButton from "../components/DownloadButton";
 import { useForm } from "react-hook-form";
-import AgendaSelector from "./AgendaSelector";
+import AgendaSelector from "../components/AgendaSelector";
 
 export default function SignUpForm() {
   const [signUpStep, setsignUpStep] = useState(0);
@@ -119,8 +119,8 @@ export default function SignUpForm() {
             attendees={[
               {
                 emailAddress: {
-                  address:   getValues("email"),
-                  name: `${  getValues('firstName')} ${  getValues('lastName')}`,
+                  address: getValues("email"),
+                  name: `${getValues('firstName')} ${getValues('lastName')}`,
                 },
                 type: "required",
               },

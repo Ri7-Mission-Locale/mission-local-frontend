@@ -1,6 +1,6 @@
-import Button from "./Button";
-import Input from "./Input";
-import SignUpFormTitle from "./SignUpFormTitle";
+import Button from "../components/Button";
+import Input from "../components/Input";
+import SignUpFormTitle from "../components/SignUpFormTitle";
 
 export default function LoginForm() {
   return (
@@ -11,7 +11,7 @@ export default function LoginForm() {
         <Input
           htmlFor={"email"}
           label={"Email"}
-          name ={"email"}
+          name={"email"}
           placeholder={"Entrez votre mail"}
         />
         <Input
