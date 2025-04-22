@@ -11,15 +11,17 @@ export default function LoginForm() {
         <Input
           htmlFor={"email"}
           label={"Email"}
+          name ={"email"}
           placeholder={"Entrez votre mail"}
         />
         <Input
           htmlFor={"password"}
+          name={'password'}
           label={"Mot de passe"}
           placeholder={"Entrez votre mot de passe"}
         />
         <Button label="Connexion" bgColor="bg-cyan-500" color="text-white" />
-        <Button label="S'inscrire" bgColor="bg-amber-100" color="text-black" />
+        <Button label="S'inscrire" bgColor="bg-orange-100" color="text-black" />
       </form>
     </>
   );
