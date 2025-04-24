@@ -1,11 +1,11 @@
-import Button from "../components/Button";
-import Input from "../components/Input";
-import SignUpFormTitle from "../components/SignUpFormTitle";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import SignUpFormTitle from "../../components/SignUpFormTitle";
 
-export default function LoginForm() {
+export default function LoginPage() {
   return (
     <>
-      <form className="gap-4 flex flex-col w-4/5 mt-10 mx-auto  border border-gray-300 p-8 rounded-lg">
+      <form className="gap-4 flex flex-col w-4/5 mt-10 mx-auto border border-gray-300 p-8 rounded-lg">
         <SignUpFormTitle label={"CONNEXION"} />
 
         <Input

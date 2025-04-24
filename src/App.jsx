@@ -1,11 +1,13 @@
-import LoginForm from "./pages/LoginForm";
-import SignUpForm from "./pages/SignUpForm";
+import LoginPage from "./pages/authentication/LoginPage";
+import SignUpPage from "./pages/authentication/SignUpPage";
+import Navbar from "./partials/Navbar";
 
 function App() {
   return (
     <>
-      <SignUpForm />
-      <LoginForm />
+      <SignUpPage />
+      <LoginPage />
+      <Navbar />
     </>
   );
 }

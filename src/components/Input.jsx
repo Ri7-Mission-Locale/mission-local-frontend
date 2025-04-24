@@ -1,7 +1,7 @@
-export default function Input({htmlFor,label,id,type,placeholder,name,handleChange,...rest}) {
+export default function Input({ htmlFor, label, id, type, placeholder, name, handleChange, className, ...rest }) {
   return (
     <>
-      <div className="">
+      <div className={className}>
         <label
           htmlFor={htmlFor}
           className="block mb-2 text-sm font-medium text-gray-900 "
@@ -9,10 +9,10 @@ export default function Input({htmlFor,label,id,type,placeholder,name,handleChan
           {label}
         </label>
         <input name={name}
-        id={id}
+          id={id}
           type={type}
           className="bg-gray-50 border font-thin
- border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5   "
+ border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 "
           placeholder={placeholder}
           required
           onChange={handleChange}

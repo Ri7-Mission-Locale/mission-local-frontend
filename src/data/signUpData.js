@@ -7,6 +7,7 @@ export const input = [
     id: "lastName",
     name: "lastName",
     rules: { required: "Le nom est obligatoire" },
+    classes: "col-start-1"
   },
   {
     label: "Prénom",
@@ -16,6 +17,7 @@ export const input = [
     id: "firstName",
     name: "firstName",
     rules: { required: "Le prénom est obligatoire" },
+    classes: "col-start-2"
   },
   {
     label: "Adresse mail",
@@ -25,6 +27,7 @@ export const input = [
     id: "email",
     name: "email",
     rules: { required: "L'adresse mail est obligatoire" },
+    classes: "col-span-1"
   },
   {
     label: "Date de naissance",
@@ -33,6 +36,7 @@ export const input = [
 
     id: "birthDate",
     name: "birthDate",
+    classes: "col-start-1",
     rules: {
       required: "La date de naissance est obligatoire",
       validate: (value) => {
@@ -62,6 +66,7 @@ export const input = [
     placeholder: "Entrez votre numero de téléphone",
     id: "phone",
     name: "phone",
+    classes: "col-start-2",
     rules: {
       required: "Le numéro de téléphone est obligatoire",
       validate: (value) => {
@@ -80,6 +85,7 @@ export const input = [
     id: "password",
     name: "password",
     rules: { required: "Le mot de passe est obligatoire" },
+    classes: "col-span-2",
   },
   {
     label: "Confirmer mot de passe",
@@ -89,6 +95,7 @@ export const input = [
     id: "repeatPassword",
     name: "repeatPassword",
     rules: { required: "Vous devez confirmer le mot de passe" },
+    classes: "col-span-2",
   },
 ];
 
