@@ -1,13 +1,14 @@
 import LoginPage from "./pages/authentication/LoginPage";
 import SignUpPage from "./pages/authentication/SignUpPage";
+import WorkShopDetail from "./pages/workshop/WorkShopDetail";
+import WorkshopList from "./pages/workshop/WorkshopList";
 import Navbar from "./partials/Navbar";
 
 function App() {
   return (
     <>
-      <SignUpPage />
-      <LoginPage />
-      <Navbar />
+
+    <WorkShopDetail/>
     </>
   );
 }
