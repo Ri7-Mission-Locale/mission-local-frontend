@@ -62,7 +62,7 @@ export default function SignUpPage() {
 
     //Génère les inputs du formulaire
     const listItems = input.map((el) => (
-        <div key={el.id} className="flex flex-col ">
+        <div key={el.id} className={"flex flex-col " + el.classes}>
             <Input
                 id={el.id}
                 label={el.label}
@@ -71,7 +71,6 @@ export default function SignUpPage() {
                 htmlFor={el.for}
                 name={el.name}
                 handleChange={handleChange}
-                className={el.classes}
                 {...register(el.name, el.rules)}
             />
             {errors[el.name] && (
@@ -91,7 +90,7 @@ export default function SignUpPage() {
                 onSubmit={handleSubmit(onSubmit)}
                 className=" w-4/5 mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2"
             >
-                <Stepper
+                <Stepper className="md:col-span-2"
                     steps={[
                         { label: "Informations" },
                         { label: "Document" },
@@ -107,6 +106,7 @@ export default function SignUpPage() {
                     }}
                 />
                 <SignUpFormTitle
+                    className="md:col-span-2"
                     label={"INSCRIPTION"}
                     onClick={previousStep}
                     step={signUpStep}
@@ -129,7 +129,7 @@ export default function SignUpPage() {
                     />
                 )}
 
-                <div className="flex flex-col items-center gap-5">
+                <div className="flex flex-col items-center gap-5 col-span-2">
                     <Button
                         bgColor="bg-cyan-500"
                         color="text-white"

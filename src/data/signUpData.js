@@ -27,7 +27,7 @@ export const input = [
     id: "email",
     name: "email",
     rules: { required: "L'adresse mail est obligatoire" },
-    classes: "col-span-1"
+    classes: "col-span-2"
   },
   {
     label: "Date de naissance",

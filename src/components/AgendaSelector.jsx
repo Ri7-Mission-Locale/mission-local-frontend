@@ -30,12 +30,12 @@ function generateMockSlots(data, startHour = 9, interval = 60) {
 }
 
 // Formate les données pour Outlook Calendar
-function buildOutlookEvent(date, time, interval = 60,attendees=[]) {
+function buildOutlookEvent(date, time, interval = 60, attendees = []) {
   const startDateTime = `${date}T${time}`;
-  const end = new Date(`${date}T${time  }`);
+  const end = new Date(`${date}T${time}`);
   end.setMinutes(end.getMinutes() + interval);
   const endDateTime = `${date}T${String(end.getHours()).padStart(2, "0")}:${String(end.getMinutes()).padStart(2, "0")}`;
-console.log(attendees);
+  console.log(attendees);
 
   return {
     subject: "Rendez-vous inscription",
@@ -61,7 +61,7 @@ console.log(attendees);
 
 // ✅ Composant principal avec forwardRef et useImperativeHandle
 const AgendaSelector = forwardRef((props, ref) => {
-    const { attendees = [] } = props; // ← récupère les attendees depuis le parent
+  const { attendees = [] } = props; // ← récupère les attendees depuis le parent
 
   const [selectedSlots, setSelectedSlots] = useState({});
   const [agendaData, setAgendaData] = useState([]);
@@ -70,7 +70,7 @@ const AgendaSelector = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     getEventsToSend() {
       return Object.entries(selectedSlots).map(([date, time]) =>
-        buildOutlookEvent(date, time,60,attendees)
+        buildOutlookEvent(date, time, 60, attendees)
       );
     },
   }));
@@ -150,11 +150,10 @@ const AgendaSelector = forwardRef((props, ref) => {
                 <div
                   key={slot}
                   onClick={() => handleChange(item.date, slot)}
-                  className={`cursor-pointer px-4 py-2 rounded font-bold text-sm ${
-                    selectedSlots[item.date] === slot
+                  className={`cursor-pointer px-4 py-2 rounded font-bold text-sm ${selectedSlots[item.date] === slot
                       ? "bg-cyan-500 text-white border-cyan-500"
                       : "bg-gray-100 hover:bg-gray-200"
-                  }`}
+                    }`}
                 >
                   {slot}
                 </div>
