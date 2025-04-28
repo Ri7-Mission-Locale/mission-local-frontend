@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+
+@layer navbar {
+    .bg-nav {
+        background-image: url('../ressources/navbar/background.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center bottom;
+    }
+}
