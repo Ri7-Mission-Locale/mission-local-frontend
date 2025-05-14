@@ -1,4 +1,4 @@
-export default function Input({ htmlFor, label, id, type, placeholder, name, handleChange, className, ...rest }) {
+export default function Input({ htmlFor, label, id, type, placeholder, name, handleChange, className,value, ...rest }) {
   return (
     <>
       <div className={className}>
@@ -16,6 +16,7 @@ export default function Input({ htmlFor, label, id, type, placeholder, name, han
           placeholder={placeholder}
           required
           onChange={handleChange}
+          value={value}
           {...rest}
         />
       </div>
