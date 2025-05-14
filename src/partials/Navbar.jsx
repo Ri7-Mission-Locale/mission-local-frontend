@@ -29,7 +29,7 @@ const items = [
 
 export default function Navbar() {
     return (
-        <nav className="fixed bottom-3 left-[50%] translate-x-[-50%] mx-auto rounded-xl h-20 max-w-[95%] w-sm bg-nav">
+        <nav className="fixed bottom-3 left-[50%] translate-x-[-50%] mx-auto rounded-xl h-20 max-w-[95%] w-sm bg-nav md:invisible">
             <ul className="flex text-gray-800 justify-around items-center h-full">
                 <li>x</li>
                 <li>x</li>

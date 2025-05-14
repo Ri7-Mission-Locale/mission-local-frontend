@@ -1,9 +1,9 @@
 export default function DownloadButton() {
   return (
     
-      <button class=" w-38 m-auto bg-gray-300 hover:bg-gray-400 text-whitefont-bold py-2 px-4 rounded inline-flex items-center">
+      <button className=" w-38 m-auto bg-gray-300 hover:bg-gray-400 text-whitefont-bold py-2 px-4 rounded inline-flex items-center">
         <svg
-          class="fill-current w-4 h-4 mr-2"
+          className="fill-current w-4 h-4 mr-2"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
         >

@@ -45,8 +45,7 @@ export default function SignUpPage() {
     //Enregistre les modifcations du formulaires
     const handleChange = (e) => {
         setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
+            ...formData, [e.target.name]: e.target.value,
         });
     };
 
