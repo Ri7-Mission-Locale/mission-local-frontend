@@ -26,13 +26,13 @@ export default function WorkShopDetail() {
 
       <div className="w-[80%] m-auto">
         <h2 className="text-2xl font-bold pb-3">Détails</h2>
-        <div className="w-[90%] m-auto">
+        <div>
           <ul >
             <li>Durée : {workshop.duration}h </li>
             <li>Date : {workshop.date} </li>
             <li>Nombre de places :   / {workshop.size}</li>
           </ul>
-          <div className="tags pt-4">
+          <div className="tags pt-4  ">
             {workshop.tag.map((t, index) => (
               <Tag key={index} text={t.tag_name} color={t.color} />
             ))}

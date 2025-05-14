@@ -1,30 +1,21 @@
 import Button from "./Button";
 import Tag from "./tag";
 
-export default function WorkshopCard({
-  title,
-  img,
-  tag,
-  size,
-  description,
-  key,
-}) {
-  return (
-    <>
+
+
+export default function NewsCard( { title,
+    img,
+    tag,
+    description,
+    key} ){
+    return(
+<>
       <article
         key={key}
         className=" rounded-xl w-4/5 m-auto border border-gray-300 flex flex-col gap-5 shadow-gray-400 shadow-md"
       >
         <div className="flex flex-col gap-2">
           <img className="rounded-t-xl" src={img} alt="" />
-          <label for="queue"></label>
-          <progress
-            id="queue"
-            value="50"
-            max="100"
-            className="w-[80%] h-3 rounded-full m-auto overflow-hidden  "
-            style={{ WebkitAppearance: "none", appearance: "none" }}
-          ></progress>
           <div className="tags w-[80%] m-auto ">
             {tag.map((t, index) => (
               <Tag key={index} text={t.tag_name} color={t.color} />
@@ -47,5 +38,5 @@ export default function WorkshopCard({
         </div>
       </article>
     </>
-  );
+    )
 }

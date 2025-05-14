@@ -4,8 +4,8 @@ export const workshopMock = [
       description:
         "Plongez dans un atelier pratique et dynamique conçu pour renforcer vos compétences et découvrir de nouvelles méthodes de travail. Que vous soyez débutant ou en quête de perfectionnement, cet atelier vous offre un cadre bienveillant pour apprendre, échanger et progresser concrètement sur des cas réels. Rejoignez-nous pour une expérience enrichissante, axée sur l’autonomie, la créativité et la montée en compétences !",
       tag: [
-        { tag_name: "#informatique", color: "red" },
-        { tag_name: "#design", color: "green" },
+        { tag_name: "informatique", color: "red" },
+        { tag_name: "design", color: "green" },
       ],
       img: "https://storage.letudiant.fr/mediatheque/letudiant/9/0/2643690-workshop-766x438.jpg",
       size: 10,
@@ -17,8 +17,8 @@ export const workshopMock = [
       description:
         "Apprenez les bases du langage JavaScript à travers des exercices ludiques et progressifs. Cet atelier s’adresse aux débutants souhaitant comprendre les fondamentaux du langage web incontournable.",
       tag: [
-        { tag_name: "#programmation", color: "blue" },
-        { tag_name: "#débutant", color: "gray" },
+        { tag_name: "programmation", color: "blue" },
+        { tag_name: "débutant", color: "gray" },
       ],
       img: "https://storage.letudiant.fr/mediatheque/letudiant/9/0/2643690-workshop-766x438.jpg",
       size: 12,
