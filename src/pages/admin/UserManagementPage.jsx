@@ -30,7 +30,7 @@ export default function UserManagementPage() {
         <>
             <main className="flex items-center justify-center p-5 h-screen">
                 <AloneSection className="min-w-xs">
-                    <TitleWithReturn link={""}>Utilisateurs</TitleWithReturn>
+                    <TitleWithReturn link={"/admin"}>Utilisateurs</TitleWithReturn>
                     <div className="flex gap-2 items-center ">
                         <Button label={"Ajouter"} bgColor="bg-blue-400 w-fit text-white"></Button>
                         <SearchBar name={"test"} label={"test"} className="w-full"></SearchBar>

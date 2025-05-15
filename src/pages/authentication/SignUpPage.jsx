@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import DownloadButton from "../../components/DownloadButton";
 import { useForm } from "react-hook-form";
 import AgendaSelector from "../../components/AgendaSelector";
+import {NavLink} from "react-router";
 
 export default function SignUpPage() {
     const [signUpStep, setsignUpStep] = useState(0);
@@ -87,7 +88,7 @@ export default function SignUpPage() {
         <>
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className=" w-4/5 mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2"
+                className=" w-4/5 m-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2"
             >
                 <Stepper className="md:col-span-2"
                     steps={[
@@ -140,7 +141,7 @@ export default function SignUpPage() {
                     />
 
                     {signUpStep === 0 && (
-                        <Button label={"Déjà inscrit ? "} bgColor="bg-orange-100" />
+                        <NavLink  to={"/signin"} className={`w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 bg-orange-100 text-black text-center`}>Déjà inscrit ?</NavLink>
                     )}
                 </div>
             </form>

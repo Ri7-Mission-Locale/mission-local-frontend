@@ -1,5 +1,7 @@
 import AloneSection from "../../components/AloneSection.jsx";
 import Button from "../../components/Button.jsx";
+import {Link} from "react-router";
+import UserManagementPage from "./UserManagementPage.jsx";
 
 export default function AdminDashboardPage() {
     return (
@@ -7,7 +9,7 @@ export default function AdminDashboardPage() {
             <AloneSection>
                 <h2 className="font-bold text-xl">Panel d'administration:</h2>
                 <article className="flex flex-col gap-3 ">
-                    <Button label={"Utilisateurs"} bgColor="bg-blue-500 hover:bg-blue-700" color="text-white" type="button"/>
+                    <Link to={"/admin/users"} className="bg-blue-500 hover:bg-blue-700 w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white text-center" color="text-white" type="button">Utilisateurs</Link>
                     <Button label={"Un bouton"} bgColor="bg-blue-500 hover:bg-blue-700" color="text-white" type="button"/>
                     <Button label={"Un bouton"} bgColor="bg-blue-500 hover:bg-blue-700" color="text-white" type="button"/>
                     <Button label={"Un bouton"} bgColor="bg-blue-500 hover:bg-blue-700" color="text-white" type="button"/>
