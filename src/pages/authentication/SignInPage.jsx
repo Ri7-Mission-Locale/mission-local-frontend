@@ -5,8 +5,8 @@ import { NavLink } from "react-router";
 
 export default function SignInPage() {
   return (
-      <main className={"h-screen"}>
-        <form className="gap-4 flex flex-col w-4/5 m-auto border border-gray-300 p-8 rounded-lg">
+      <main className={"h-screen flex justify-center items-center"}>
+        <form className="gap-4 flex flex-col w-4/5 border border-gray-300 p-8 rounded-lg">
           <SignUpFormTitle label={"CONNEXION"} />
 
           <Input

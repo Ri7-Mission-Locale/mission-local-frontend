@@ -20,10 +20,10 @@ function App() {
                     <Route path="/admin" element={<AdminDashboardPage />} />
                     <Route path="/admin/users" element={<UserManagementPage />} />
 
-                    {/* Default Route
+                    {/* Default Route */}
                     <Route path="/" element={<Navigate to="/signin" replace />} />
                     <Route path="*" element={<Navigate to="/signin" replace />} />
-                     */}
+
                 </Routes>
             </BrowserRouter>
         </QueryClientProvider>

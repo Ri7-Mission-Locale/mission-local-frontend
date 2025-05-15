@@ -85,10 +85,10 @@ export default function SignUpPage() {
     ));
 
     return (
-        <>
+        <main className="h-screen flex justify-center items-center">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className=" w-4/5 m-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2"
+                className=" w-4/5 border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2"
             >
                 <Stepper className="md:col-span-2"
                     steps={[
@@ -145,6 +145,6 @@ export default function SignUpPage() {
                     )}
                 </div>
             </form>
-        </>
+        </main>
     );
 }
