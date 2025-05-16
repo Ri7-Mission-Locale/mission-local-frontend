@@ -7,8 +7,8 @@ export default function WorkShopDetail() {
   return (
     <article className=" rounded-xl w-4/5 m-auto border border-gray-300 flex flex-col gap-5 shadow-gray-400 shadow-md pt-5">
       <div className="flex flex-col gap-2">
-        <h2 className="font-bold text-4xl">{workshop.title}</h2>
-        <img className="" src={workshop.img} alt="" />
+        <h2 className="font-bold text-4xl text-center">{workshop.title}</h2>
+        <img  className="w-[90%] m-auto" src={workshop.img} alt="" />
         <label htmlFor="queue"></label>
         <progress
           id="queue"
@@ -19,12 +19,12 @@ export default function WorkShopDetail() {
         ></progress>
       </div>
 
-      <div className="w-[80%] m-auto border-b-1 pb-5">
+      <div className="w-[90%] m-auto border-b-1 pb-5">
         <p className="text-2xl font-bold pb-3">A propos de ce cours</p>
         <p>{workshop.description}</p>
       </div>
 
-      <div className="w-[80%] m-auto">
+      <div className="w-[90%] m-auto">
         <h2 className="text-2xl font-bold pb-3">Détails</h2>
         <div>
           <ul >

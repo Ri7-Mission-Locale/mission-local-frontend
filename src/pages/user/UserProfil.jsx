@@ -84,7 +84,7 @@ function handleChange(e){
         />
 
         <div className="bg-white w-[80%] rounded-2xl flex flex-col gap-3 pt-4 pb-4">
-          <FileInput label={"Dossier inscription"} />
+          <FileInput label={"Dossier inscription"} className={'w-[80%] m-auto'} />
         </div>
       </div>
     </article>

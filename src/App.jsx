@@ -12,7 +12,7 @@ import Navbar from "./partials/Navbar";
 function App() {
   return (
     <>
-    <UserProfil/>
+    < UserProfil/>
     </>
   );
 }
