@@ -1,4 +1,4 @@
-export default function SignUpFormTitle({ label,onClick,step }) {
+export default function SignUpFormTitle({ label, onClick, step, className }) {
   return (
     <>
       <div className="flex flex-row items-center m-auto gap-3  justify-center">
@@ -19,7 +19,7 @@ export default function SignUpFormTitle({ label,onClick,step }) {
             d="m15 19-7-7 7-7"
           />
         </svg>}
-       
+
         <h2 className="text-center font-bold text-2xl  ">{label}</h2>
       </div>
     </>

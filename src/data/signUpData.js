@@ -27,7 +27,7 @@ export const input = [
     id: "email",
     name: "email",
     rules: { required: "L'adresse mail est obligatoire" },
-    classes: "col-span-1"
+    classes: "col-span-2"
   },
   {
     label: "Date de naissance",
@@ -41,15 +41,12 @@ export const input = [
       required: "La date de naissance est obligatoire",
       validate: (value) => {
         const birth = new Date(value);
-        if (isNaN(birth)) {
-          return "Date de naissance invalide";
-        }
+        if (isNaN(birth)) return "Date de naissance invalide";
 
         const today = new Date();
         const age = today.getFullYear() - birth.getFullYear();
         const m = today.getMonth() - birth.getMonth();
-        const isBeforeBirthday =
-          m < 0 || (m === 0 && today.getDate() < birth.getDate());
+        const isBeforeBirthday = m < 0 || (m === 0 && today.getDate() < birth.getDate());
         const finalAge = isBeforeBirthday ? age - 1 : age;
 
         return (

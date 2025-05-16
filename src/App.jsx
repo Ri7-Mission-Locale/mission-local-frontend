@@ -1,20 +1,33 @@
-import LoginPage from "./pages/authentication/LoginPage";
-import SignUpPage from "./pages/authentication/SignUpPage";
-import NewsAdd from "./pages/news/NewsAdd";
-import NewsDetail from "./pages/news/NewsDetail";
-import NewsList from "./pages/news/NewsList";
-import UserProfil from "./pages/user/UserProfil";
-import WorkShopAdd from "./pages/workshop/WorkShopAdd";
-import WorkShopDetail from "./pages/workshop/WorkShopDetail";
-import WorkshopList from "./pages/workshop/WorkshopList";
-import Navbar from "./partials/Navbar";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router";
+import UserManagementPage from "./pages/admin/UserManagementPage.jsx";
+import AdminDashboardPage from "./pages/admin/AdminDashboardPage.jsx";
+import SignInPage from "./pages/authentication/SignInPage.jsx";
+import SignUpPage from "./pages/authentication/SignUpPage.jsx";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+
+const client = new QueryClient();
 
 function App() {
-  return (
-    <>
-    < UserProfil/>
-    </>
-  );
+    return (
+        <QueryClientProvider client={client}>
+            <BrowserRouter>
+                <Routes>
+                    {/* Authentication Routes */}
+                    <Route path="/signin" element={<SignInPage />} />
+                    <Route path="/signup" element={<SignUpPage />} />
+
+                    {/* Admin Routes */}
+                    <Route path="/admin" element={<AdminDashboardPage />} />
+                    <Route path="/admin/users" element={<UserManagementPage />} />
+
+                    {/* Default Route */}
+                    <Route path="/" element={<Navigate to="/signin" replace />} />
+                    <Route path="*" element={<Navigate to="/signin" replace />} />
+
+                </Routes>
+            </BrowserRouter>
+        </QueryClientProvider>
+    );
 }
 
 export default App;
