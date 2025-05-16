@@ -3,6 +3,7 @@ import SpanUser from "../../components/users/SpanUser.jsx";
 import TitleWithReturn from "../../components/TitleWithReturn.jsx";
 import SearchBar from "../../components/inputs/Searchbar.jsx";
 import Button from "../../components/Button.jsx";
+import Loader from "../../components/miscs/Loader.jsx";
 
 const users = [
     {
@@ -35,6 +36,7 @@ export default function UserManagementPage() {
                         <Button label={"Ajouter"} bgColor="bg-blue-400 w-fit text-white"></Button>
                         <SearchBar name={"test"} label={"test"} className="w-full"></SearchBar>
                     </div>
+
                     <div className="flex gap-2 items-center ">
                         <select name="role" id="roles">
                             <option value="all">Tout</option>
@@ -42,11 +44,14 @@ export default function UserManagementPage() {
                             <option value="ADVISOR">Conseillé</option>
                             <option value="USER">Utilisateur</option>
                         </select>
+
                         <select name="order" id="order">
                             <option value="asc">Ascendant</option>
                             <option value="desc">Descendant</option>
                         </select>
                     </div>
+
+                    {/*<Loader size="20" weight="8"></Loader>*/}
                     <article className="flex flex-col gap-1 p-3 ">
                         {users.map((user, i) => <SpanUser key={i} user={user}></SpanUser>)}
                     </article>

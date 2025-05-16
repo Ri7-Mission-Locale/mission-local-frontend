@@ -31,7 +31,6 @@ export default function SignUpPage() {
             }
         }
     };
-
     //useState du formulaire
     const [formData, setFormData] = useState({
         lastName: "",
