@@ -1,4 +1,4 @@
-const host = import.meta.env.API_URL;
+const host = import.meta.env.VITE_API_URL;
 let isRefreshing = false;
 let currentRefresh = null;
 
@@ -18,7 +18,8 @@ export async function remove(route, body) {
     return await fetcher(route, "DELETE", body);
 }
 
-async function fetcher(route, method = "GET", body, options) {
+async function fetcher(route, method = "GET", body,  options = {}) {
+
     const token = localStorage.getItem("access_token");
 
     const request = async () => {

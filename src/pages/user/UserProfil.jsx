@@ -26,15 +26,15 @@ function handleChange(e){
   }
 
   return (
-    <article className="border w-[90%] h-160 m-auto rounded-2xl border-gray-300 bg-gray-100 pt-4 md:w-[40%]">
-      <div className="flex flex-col items-center gap-6 ">
+    <article className="border w-[90%] h-160 m-auto rounded-2xl border-gray-300 bg-gray-100 pt-4 md:w-[30%]">
+      <div className="flex flex-col items-center gap-6 m  md:w-[80%] m-auto">
         <h2 className=" text-1xl font-bold ">Mon Profil</h2>
         <img
           className="rounded-full h-22 w-22"
           src="https://www.utopix.com/fr/blog/wp-content/uploads/2024/04/Y2E4OTI3NzQtNmUyOC00YmU2LWE5ZjctODcxY2RlMzg2ZDIy_26dfc43e-31dd-463f-ad04-56f39a430691_profilhomme1-scaled.jpg"
           alt=""
         />
-        <div className="border-2 border-purple-800 rounded-full w-[60%] p-1">
+        <div className="border-2 border-purple-800 rounded-full w-[60%]  md:w-[40%] p-1">
           <h3 className="text-xl font-bold bg-cyan-500 rounded-full text-center p-2">
             {profil.first_name} {profil.last_name}
           </h3>
@@ -46,7 +46,7 @@ function handleChange(e){
               type="date"
               id="birth_date"
               name="birth_date"
-              className="w-[80%] m-auto"
+              className=" m-auto   "
               onChange = {handleChange}
               value = {formData.birth_date}
             />
