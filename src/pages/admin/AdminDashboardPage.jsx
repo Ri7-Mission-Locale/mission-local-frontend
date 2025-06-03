@@ -2,8 +2,12 @@ import AloneSection from "../../components/AloneSection.jsx";
 import Button from "../../components/Button.jsx";
 import {Link} from "react-router";
 import UserManagementPage from "./UserManagementPage.jsx";
+import {useEffect} from "react";
 
 export default function AdminDashboardPage() {
+
+
+
     return (
         <main className="flex justify-center items-center h-screen p-8">
             <AloneSection>

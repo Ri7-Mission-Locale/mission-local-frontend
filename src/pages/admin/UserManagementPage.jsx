@@ -3,7 +3,6 @@ import SpanUser from "../../components/users/SpanUser.jsx";
 import TitleWithReturn from "../../components/TitleWithReturn.jsx";
 import SearchBar from "../../components/inputs/Searchbar.jsx";
 import Button from "../../components/Button.jsx";
-import Loader from "../../components/miscs/Loader.jsx";
 
 const users = [
     {
@@ -27,6 +26,17 @@ const users = [
 ]
 
 export default function UserManagementPage() {
+
+    const handleSearch = (e) => {
+        const value = e.target.value;
+    }
+    const handleRoleSelect = (e) => {
+        const value = e.target.value;
+    }
+    const handleOrderSelect = (e) => {
+        const value = e.target.value;
+    }
+
     return (
         <>
             <main className="flex items-center justify-center p-5 h-screen">
@@ -34,24 +44,24 @@ export default function UserManagementPage() {
                     <TitleWithReturn link={"/admin"}>Utilisateurs</TitleWithReturn>
                     <div className="flex gap-2 items-center ">
                         <Button label={"Ajouter"} bgColor="bg-blue-400 w-fit text-white"></Button>
-                        <SearchBar name={"test"} label={"test"} className="w-full"></SearchBar>
+                        <SearchBar name={"test"} label={"test"} className="w-full" onSearch={handleSearch}></SearchBar>
                     </div>
 
                     <div className="flex gap-2 items-center ">
-                        <select name="role" id="roles">
+                        <select name="role" id="roles" onSelect={handleRoleSelect}>
                             <option value="all">Tout</option>
                             <option value="ADMIN">Admin</option>
                             <option value="ADVISOR">Conseillé</option>
                             <option value="USER">Utilisateur</option>
                         </select>
 
-                        <select name="order" id="order">
+                        <select name="order" id="order" onSelect={handleOrderSelect}>
                             <option value="asc">Ascendant</option>
                             <option value="desc">Descendant</option>
                         </select>
                     </div>
 
-                    {/*<Loader size="20" weight="8"></Loader>*/}
+                    {/* <Loader size="20" weight="8"></Loader> */}
                     <article className="flex flex-col gap-1 p-3 ">
                         {users.map((user, i) => <SpanUser key={i} user={user}></SpanUser>)}
                     </article>

@@ -87,7 +87,7 @@ export default function SignUpPage() {
         <main className="h-screen flex justify-center items-center">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className=" w-4/5 border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2"
+                className=" w-4/5 border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2 max-w-3xl"
             >
                 <Stepper className="md:col-span-2"
                     steps={[
