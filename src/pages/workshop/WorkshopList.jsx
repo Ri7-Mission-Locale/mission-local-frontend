@@ -1,5 +1,5 @@
-import WorkshopCard from "../../components/workshopCard";
-import {workshopMock} from "../../data/workshopMockData";
+import WorkshopCard from "@components/WorkshopCard.jsx";
+import {workshopMock} from "@data/workshopMockData.js";
 
 
 export default function WorkshopList() {

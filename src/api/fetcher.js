@@ -2,39 +2,39 @@ const host = import.meta.env.VITE_API_URL;
 let isRefreshing = false;
 let currentRefresh = null;
 
-export async function get(route, body) {
-    return await fetcher(route, "GET", body);
+export async function get(route, query = null) {
+    return await fetcher(route, "GET", null, query);
 }
-export async function post(route, body) {
-    return await fetcher(route, "POST", body);
+export async function post(route, body, query = null) {
+    return await fetcher(route, "POST", body, query);
 }
-export async function put(route, body) {
-    return await fetcher(route, "PUT", body);
+export async function put(route, body, query = null) {
+    return await fetcher(route, "PUT", body, query);
 }
-export async function patch(route, body) {
-    return await fetcher(route, "PATCH", body);
+export async function patch(route, body, query = null) {
+    return await fetcher(route, "PATCH", body, query);
 }
-export async function remove(route, body) {
-    return await fetcher(route, "DELETE", body);
+export async function remove(route, body, query = null) {
+    return await fetcher(route, "DELETE", body, query);
 }
 
-async function fetcher(route, method = "GET", body,  options = {}) {
-
+async function fetcher(route, method = "GET", body = {}, query = null) {
     const token = localStorage.getItem("access_token");
 
+    const queryParams = query ? `?${buildQuery(query)}` : "";
+
     const request = async () => {
-        return await fetch(`${host}/${route}`, {
+        const options = {
             method,
             credentials: "include",
-            ...options,
             headers: {
-                ...(options.headers || {}),
                 Authorization: token ? `Bearer ${token}` : "",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(body),
-        })
-    }
+        };
+        if (method !== "GET") options.body = JSON.stringify(body);
+        return await fetch(`${host}/${route}${queryParams}`, options);
+    };
 
     if (isRefreshing && currentRefresh) await currentRefresh;
     let response = await request();
@@ -52,6 +52,11 @@ async function fetcher(route, method = "GET", body,  options = {}) {
     const json = await response.json();
     if (!response.ok) throw new Error(json.message || "Erreur serveur");
     return json;
+}
+
+function buildQuery(params) {
+    const filtered = params.filter(([, v]) => v != null && v !== "");
+    return new URLSearchParams(filtered).toString();
 }
 
 async function handleRefresh(token) {
@@ -77,4 +82,3 @@ async function handleRefresh(token) {
         localStorage.removeItem("access_token");
     }
 }
-

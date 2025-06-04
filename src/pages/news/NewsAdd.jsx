@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
-import Button from "../../components/Button";
-import FileInput from "../../components/FileInput";
-import SignUpFormTitle from "../../components/SignUpFormTitle";
-import { newsInput } from "../../data/newAddData";
-import Input from "../../components/Input";
-import { post } from "../../api/fetcher";
+import Button from "@components/Button";
+import FileInput from "@components/FileInput";
+import SignUpFormTitle from "@components/SignUpFormTitle";
+import { newsInput } from "@data/newAddData.js";
+import Input from "@components/Input";
+import { post } from "@api/fetcher.js";
 import { useNavigate } from "react-router";
 
 export default function NewsAdd() {

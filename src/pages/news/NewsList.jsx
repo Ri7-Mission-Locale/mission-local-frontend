@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import NewsCard from "../../components/NewsCard";
-import { get } from "../../api/fetcher";
+import NewsCard from "@components/NewsCard";
+import { get } from "@api/fetcher";
 
 export default function NewsList() {
   const [news, setNews] = useState([]);

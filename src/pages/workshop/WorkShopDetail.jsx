@@ -1,6 +1,6 @@
-import Button from "../../components/Button";
-import Tag from "../../components/tag";
-import { workshopMock } from "../../data/workshopMockData";
+import Button from "@components/Button";
+import Tag from "@components/Tag";
+import { workshopMock } from "@data/workshopMockData.js";
 
 export default function WorkShopDetail() {
   const workshop = workshopMock[0];
