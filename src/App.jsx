@@ -4,6 +4,10 @@ import SignInPage from "@pages/authentication/SignInPage.jsx";
 import SignUpPage from "@pages/authentication/SignUpPage.jsx";
 import AdminDashboardPage from "@pages/admin/AdminDashboardPage.jsx";
 import UserManagementPage from "@pages/admin/UserManagementPage.jsx";
+import UserProfil from "@pages/user/UserProfil.jsx";
+import NewsList from "@pages/news/NewsList.jsx";
+import NewsDetail from "@pages/news/NewsDetail.jsx";
+import NewsAdd from "@pages/news/NewsAdd.jsx";
 
 
 const client = new QueryClient();
