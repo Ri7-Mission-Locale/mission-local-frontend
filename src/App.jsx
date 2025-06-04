@@ -25,9 +25,7 @@ function App() {
                     <Route path="/admin" element={<AdminDashboardPage />} />
                     <Route path="/admin/users" element={<UserManagementPage />} />
 
-                    {/* Default Route TODO home */}
-                    <Route path="/" element={<Navigate to="/signin" replace />} />
-                    <Route path="*" element={<Navigate to="/signin" replace />} />
+
 
                     {/* User Routes */}
                     <Route path="/user/profil" element={<UserProfil/>} />
@@ -36,6 +34,10 @@ function App() {
                     <Route path="/news/list" element={<NewsList/>} />
                     <Route path="/news/detail/:id" element={<NewsDetail/>} />
                     <Route path="/news/add" element={<NewsAdd/>} />
+
+                    {/* Default Route TODO home */}
+                    <Route path="/" element={<Navigate to="/signin" replace />} />
+                    <Route path="*" element={<Navigate to="/signin" replace />} />
 
                 </Routes>
             </BrowserRouter>

@@ -1,7 +1,5 @@
-
 import ButtonLink from "./ButtonLink";
-import Tag from "./tag";
-
+import Tag from "@components/Tag";
 
 export default function NewsCard({ title, img, tag, description , id }) {
   return (
