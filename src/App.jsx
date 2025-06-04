@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router";
-import UserManagementPage from "./pages/admin/UserManagementPage.jsx";
-import AdminDashboardPage from "./pages/admin/AdminDashboardPage.jsx";
-import SignInPage from "./pages/authentication/SignInPage.jsx";
-import SignUpPage from "./pages/authentication/SignUpPage.jsx";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import SignInPage from "@pages/authentication/SignInPage.jsx";
+import SignUpPage from "@pages/authentication/SignUpPage.jsx";
+import AdminDashboardPage from "@pages/admin/AdminDashboardPage.jsx";
+import UserManagementPage from "@pages/admin/UserManagementPage.jsx";
 
 const client = new QueryClient();
 
@@ -20,7 +20,7 @@ function App() {
                     <Route path="/admin" element={<AdminDashboardPage />} />
                     <Route path="/admin/users" element={<UserManagementPage />} />
 
-                    {/* Default Route */}
+                    {/* Default Route TODO home */}
                     <Route path="/" element={<Navigate to="/signin" replace />} />
                     <Route path="*" element={<Navigate to="/signin" replace />} />
 

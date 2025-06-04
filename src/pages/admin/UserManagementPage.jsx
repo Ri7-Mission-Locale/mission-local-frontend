@@ -1,8 +1,8 @@
-import AloneSection from "../../components/AloneSection.jsx";
-import SpanUser from "../../components/users/SpanUser.jsx";
-import TitleWithReturn from "../../components/TitleWithReturn.jsx";
-import SearchBar from "../../components/inputs/Searchbar.jsx";
-import Button from "../../components/Button.jsx";
+import AloneSection from "@components/AloneSection.jsx";
+import Button from "@components/Button.jsx";
+import TitleWithReturn from "@components/TitleWithReturn.jsx";
+import SearchBar from "@components/inputs/Searchbar.jsx";
+import SpanUser from "@components/users/SpanUser.jsx";
 
 const users = [
     {
