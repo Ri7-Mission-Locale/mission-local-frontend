@@ -1,4 +1,4 @@
-const host = import.meta.env.API_URL;
+const host = import.meta.env.VITE_API_URL;
 let isRefreshing = false;
 let currentRefresh = null;
 

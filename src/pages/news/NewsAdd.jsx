@@ -4,9 +4,11 @@ import FileInput from "../../components/FileInput";
 import SignUpFormTitle from "../../components/SignUpFormTitle";
 import { newsInput } from "../../data/newAddData";
 import Input from "../../components/Input";
-import { useState } from "react";
+import { post } from "../../api/fetcher";
+import { useNavigate } from "react-router";
 
 export default function NewsAdd() {
+  const navigate = useNavigate(); //
   const {
     register,
     formState: { errors },
@@ -15,22 +17,20 @@ export default function NewsAdd() {
 
   //A la validation du formulaire , envoi les data du form et les datas de la prise de rdv
   const onSubmit = (data) => {
-    console.log(data);
+    handlePost(data);
   };
 
-  //useState du formulaire
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    imagePath: "",
-  });
+  //Ajoute la news
+  const handlePost = async (formData) => {
+    try {
+      await post(`news`, formData);
+      console.log(formData);
 
-  //Enregistre les modifcations du formulaire
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+      alert("Actualité ajoutée !");
+      navigate("/news/list");
+    } catch (err) {
+      console.log("Erreur lors de l'ajout :", err);
+    }
   };
 
   const inputList = newsInput.map((el) => (
@@ -42,7 +42,6 @@ export default function NewsAdd() {
         placeholder={el.placeholder}
         htmlFor={el.for}
         name={el.name}
-        handleChange={handleChange}
         className={el.classes}
         {...register(el.name, el.rules)}
       />
@@ -56,7 +55,7 @@ export default function NewsAdd() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       action=""
-      className=" w-4/5 mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2"
+      className=" w-4/5 mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:w-[40%]"
     >
       <SignUpFormTitle label={"Ajouter une actualité"} />
       {inputList}
@@ -66,21 +65,29 @@ export default function NewsAdd() {
       <label htmlFor="description">Contenu de l'actualité:</label>
       <textarea
         id="description"
+        {...register("description", { required: "La description est requise" })}
         name="description"
         className="bg-gray-50 border font-thin
  border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 "
         rows="5"
         cols="33"
-        handleChange={handleChange}
         placeholder="Entrez le contenu de l'actualité"
-      >
-      </textarea>
-      
+      ></textarea>
+
+{/*  Permet de simuler une image , à supprimer  */}
+      <input
+        type="hidden"
+        value="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?cs=srgb&dl=pexels-fauxels-3183197.jpg&fm=jpg"
+        {...register("imagePath", { required: true })}
+      />
+{/*  Permet de simuler une image , à supprimer  */}
+
 
       <Button
         bgColor="bg-cyan-500"
-        color="text-white"
+        color="text-white md:w-[40%] m-auto"
         label="Ajouter une actualité"
+        type={"submit"}
       />
     </form>
   );

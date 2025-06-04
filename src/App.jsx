@@ -5,6 +5,7 @@ import SignUpPage from "@pages/authentication/SignUpPage.jsx";
 import AdminDashboardPage from "@pages/admin/AdminDashboardPage.jsx";
 import UserManagementPage from "@pages/admin/UserManagementPage.jsx";
 
+
 const client = new QueryClient();
 
 function App() {
@@ -23,6 +24,14 @@ function App() {
                     {/* Default Route TODO home */}
                     <Route path="/" element={<Navigate to="/signin" replace />} />
                     <Route path="*" element={<Navigate to="/signin" replace />} />
+
+                    {/* User Routes */}
+                    <Route path="/user/profil" element={<UserProfil/>} />
+                    
+                    {/* News Routes */}
+                    <Route path="/news/list" element={<NewsList/>} />
+                    <Route path="/news/detail/:id" element={<NewsDetail/>} />
+                    <Route path="/news/add" element={<NewsAdd/>} />
 
                 </Routes>
             </BrowserRouter>

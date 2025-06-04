@@ -1,5 +1,4 @@
 export default function Button({children, color, onClick, type, className}) {
-
     return (
         <button
             onClick={onClick}
