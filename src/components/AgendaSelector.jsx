@@ -59,21 +59,21 @@ function buildOutlookEvent(date, time, interval = 60, attendees = []) {
   };
 }
 
-// ✅ Composant principal avec forwardRef et useImperativeHandle
-const AgendaSelector = forwardRef((props, ref) => {
-  const { attendees = [] } = props; // ← récupère les attendees depuis le parent
 
-  const [selectedSlots, setSelectedSlots] = useState({});
+  const AgendaSelector = forwardRef((props, ref) => {
+  const { attendees = [] } = props; //  recupere les attendees depuis le parent
+
+const [selectedSlot, setSelectedSlot] = useState(null); // ex: { date: "2019-03-15", time: "12:00" }
   const [agendaData, setAgendaData] = useState([]);
+  
 
   // Permet au parent d'appeler getEventsToSend()
-  useImperativeHandle(ref, () => ({
-    getEventsToSend() {
-      return Object.entries(selectedSlots).map(([date, time]) =>
-        buildOutlookEvent(date, time, 60, attendees)
-      );
-    },
-  }));
+useImperativeHandle(ref, () => ({
+  getEventsToSend() {
+    if (!selectedSlot) return [];
+    return [buildOutlookEvent(selectedSlot.date, selectedSlot.time, 60, attendees)];
+  },
+}));
 
   // Données simulées de la réponse API outlook calendar
   const outlookApiResponse = {
@@ -118,54 +118,53 @@ const AgendaSelector = forwardRef((props, ref) => {
     setAgendaData(formatted);
   }, []);
 
-  const handleChange = (date, slot) => {
-    setSelectedSlots((prev) => {
-      if (prev[date] === slot) {
-        return {
-          ...prev,
-          [date]: undefined,
-        };
-      }
-      return {
-        ...prev,
-        [date]: slot,
-      };
-    });
-  };
+ const handleChange = (date, time) => {
+  if (selectedSlot && selectedSlot.date === date && selectedSlot.time === time) {
+    setSelectedSlot(null); // désélection
+  } else {
+    setSelectedSlot({ date, time });
+  }
+};
 
-  return (
-    <div className="p-4 max-w-2xl mx-auto text-center">
-      <h2 className="text-xl font-bold mb-6">Prise de rendez-vous</h2>
-      {agendaData.map((item) => (
-        <div
-          key={`${item.user}-${item.date}`}
-          className="border rounded text-center m-auto p-4 mb-6 shadow-sm w-[80%] border-gray-300"
-        >
-          <div className="font-semibold mb-2">
-            {new Date(item.date).toLocaleDateString()}
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            {item.availableSlots.length > 0 ? (
-              item.availableSlots.map((slot) => (
+ return (
+  <div className="p-4 max-w-2xl mx-auto text-center md:col-span-2">
+    <h2 className="text-xl font-bold mb-6">Prise de rendez-vous</h2>
+    {agendaData.map((item) => (
+      <div
+        key={`${item.user}-${item.date}`}
+        className="border rounded text-center m-auto p-4 mb-6 shadow-sm w-[80%] border-gray-300"
+      >
+        <div className="font-semibold mb-2">
+          {new Date(item.date).toLocaleDateString()}
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          {item.availableSlots.length > 0 ? (
+            item.availableSlots.map((slot) => {
+              const isSelected =
+                selectedSlot?.date === item.date && selectedSlot?.time === slot;
+
+              return (
                 <div
                   key={slot}
                   onClick={() => handleChange(item.date, slot)}
-                  className={`cursor-pointer px-4 py-2 rounded font-bold text-sm ${selectedSlots[item.date] === slot
+                  className={`cursor-pointer px-4 py-2 rounded font-bold text-sm ${
+                    isSelected
                       ? "bg-cyan-500 text-white border-cyan-500"
                       : "bg-gray-100 hover:bg-gray-200"
-                    }`}
+                  }`}
                 >
                   {slot}
                 </div>
-              ))
-            ) : (
-              <p className="text-red-500">Aucun créneau disponible</p>
-            )}
-          </div>
+              );
+            })
+          ) : (
+            <p className="text-red-500">Aucun créneau disponible</p>
+          )}
         </div>
-      ))}
-    </div>
-  );
+      </div>
+    ))}
+  </div>
+);
 });
 
 export default AgendaSelector;

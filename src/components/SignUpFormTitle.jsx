@@ -1,7 +1,7 @@
 export default function SignUpFormTitle({ label, onClick, step, className }) {
   return (
     <>
-      <div className="flex flex-row items-center m-auto gap-3  justify-center">
+      <div className={`flex flex-row items-center m-auto gap-3  justify-center ${className}`} >
         {step > 0 &&  <svg onClick={onClick}
           className="w-6 h-6 text-gray-800 "
           aria-hidden="true"

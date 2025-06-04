@@ -25,8 +25,6 @@ function App() {
                     <Route path="/admin" element={<AdminDashboardPage />} />
                     <Route path="/admin/users" element={<UserManagementPage />} />
 
-
-
                     {/* User Routes */}
                     <Route path="/user/profil" element={<UserProfil/>} />
                     
