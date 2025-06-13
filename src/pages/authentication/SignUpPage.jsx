@@ -1,8 +1,8 @@
 import { Stepper } from "react-form-stepper";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import {NavLink} from "react-router";
-import {input, inputFile} from "@data/signUpData.js";
+import { NavLink } from "react-router";
+import { input, inputFile } from "@data/signUpData.js";
 import Input from "@components/Input.jsx";
 import FileInput from "@components/FileInput.jsx";
 import SignUpFormTitle from "@components/SignUpFormTitle.jsx";
@@ -62,6 +62,7 @@ export default function SignUpPage() {
     //Génère les inputs du formulaire
     const listItems = input.map((el) => (
         <div key={el.id} className={"flex flex-col " + el.classes}>
+
             <Input
                 id={el.id}
                 label={el.label}
@@ -72,9 +73,8 @@ export default function SignUpPage() {
                 handleChange={handleChange}
                 {...register(el.name, el.rules)}
             />
-            {errors[el.name] && (
-                <p className="text-red-500 text-sm">{errors[el.name].message}</p>
-            )}
+
+            {errors[el.name] && (<p className="text-red-500 text-sm">{errors[el.name].message}</p>)}
         </div>
     ));
 
@@ -87,8 +87,7 @@ export default function SignUpPage() {
         <main className="h-screen flex justify-center items-center">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className=" w-4/5 border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2 max-w-3xl"
-            >
+                className=" w-4/5 border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2 max-w-3xl">
                 <Stepper className="md:col-span-2"
                     steps={[
                         { label: "Informations" },
@@ -138,7 +137,7 @@ export default function SignUpPage() {
                     >{signUpStep < 2 ? "Suivant" : "Prendre RDV"}</Button>
 
                     {signUpStep === 0 && (
-                        <NavLink  to={"/signin"} className={`w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 bg-orange-100 text-black text-center`}>Déjà inscrit ?</NavLink>
+                        <NavLink to={"/signin"} className={`w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 bg-orange-100 text-black text-center`}>Déjà inscrit ?</NavLink>
                     )}
                 </div>
             </form>

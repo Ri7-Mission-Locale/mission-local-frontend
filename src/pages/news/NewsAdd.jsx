@@ -67,20 +67,19 @@ export default function NewsAdd() {
         id="description"
         {...register("description", { required: "La description est requise" })}
         name="description"
-        className="bg-gray-50 border font-thin
- border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 "
+        className="bg-gray-50 border font-thin border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5"
         rows="5"
         cols="33"
         placeholder="Entrez le contenu de l'actualité"
       ></textarea>
 
-{/*  Permet de simuler une image , à supprimer  */}
+      {/*  Permet de simuler une image , à supprimer  */}
       <input
         type="hidden"
         value="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?cs=srgb&dl=pexels-fauxels-3183197.jpg&fm=jpg"
         {...register("imagePath", { required: true })}
       />
-{/*  Permet de simuler une image , à supprimer  */}
+      {/*  Permet de simuler une image , à supprimer  */}
 
 
       <Button
