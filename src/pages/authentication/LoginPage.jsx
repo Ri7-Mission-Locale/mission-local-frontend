@@ -32,7 +32,7 @@ export default function LoginPage() {
             <AloneSection className={"w-2xl max-w-screen"}>
                 <TitleWithReturn link={"/"} className={"p-8"}>Connexion</TitleWithReturn>
                 <form onSubmit={handleSubmit(onSubmit)} className={"flex flex-col justify-between h-100"}>
-                    <div className="flex flex-col gap-3 my-auto p-8">
+                    <div className="flex flex-col gap-3 my-auto p-3 md:p-8">
                         {signupFields.map(field => (
                             <div className={"flex flex-col"} key={field.name}>
                                 <Input type={field.type} className={field.className} label={field.label} {...register(field.name, field.rules)} />
@@ -40,7 +40,7 @@ export default function LoginPage() {
                             </div>
                         ))}
                     </div>
-                    <div className="flex flex-col gap-3 p-8">
+                    <div className="flex flex-col gap-3 p-3 md:p-8">
                         { serverError && <p className={"text-red-500"}>{serverError}</p> }
                         <Button className="bg-cyan-500 text-white">Se connecter</Button>
                         <NavLink to={"/register"} label="S'inscrire"

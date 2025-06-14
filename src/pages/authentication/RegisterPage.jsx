@@ -78,7 +78,7 @@ export default function RegisterPage() {
                       className={"flex flex-col justify-between gap-5 overflow-hidden"}>
                     <div className="flex w-[300%] transition-transform duration-500 ease-in-out"
                          style={{transform: `translateX(-${step * 33.33}%)`}}>
-                        <div className="flex flex-col gap-3 md:grid md:grid-cols-2 w-full p-5">
+                        <div className="flex flex-col gap-3 md:grid md:grid-cols-2 w-full p-3 md:p-8">
                             {registerFields.map(field => (
                                 <div className={field.className} key={field.name}>
                                     <Input type={field.type}
@@ -88,13 +88,13 @@ export default function RegisterPage() {
                                 </div>
                             ))}
                         </div>
-                        <div className="flex flex-col gap-5 w-full p-5 justify-center items-center">
+                        <div className="flex flex-col gap-5 w-full p-3 md:p-8 justify-center items-center">
                             <DownloadButton/>
                             {inputFile.map((el) => (
                                 <FileInput key={el.id} label={el.label} placeholder={el.placeholder} id={el.id}/>
                             ))}
                         </div>
-                        <div className="flex gap-3 w-full p-5 justify-center items-center">
+                        <div className="flex gap-3 w-full p-3 md:p-8 justify-center items-center">
                             <AgendaSelector
 
                                 ref={agendaRef}
