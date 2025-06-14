@@ -3,7 +3,7 @@ import Button from "@components/Button";
 import Tag from "@components/Tag";
 import { get, remove, patch } from "@api/fetcher";
 import { useNavigate, useParams } from "react-router";
-import Input from "@components/Input";
+import Input from "@components/inputs/Input.jsx";
 
 export default function NewsDetail() {
   const navigate = useNavigate();

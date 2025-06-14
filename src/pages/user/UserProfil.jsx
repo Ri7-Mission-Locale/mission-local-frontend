@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { userProfilData } from "@data/userProfilMockData.js";
-import Input from "@components/Input.jsx";
+import Input from "@components/inputs/Input.jsx";
 import Button from "@components/Button.jsx";
-import FileInput from "@components/FileInput.jsx";
+import FileInput from "@components/inputs/FileInput.jsx";
 
 export default function UserProfil() {
   const profil = userProfilData;

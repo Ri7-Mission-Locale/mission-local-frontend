@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import Button from "@components/Button";
-import FileInput from "@components/FileInput";
+import FileInput from "@components/inputs/FileInput.jsx";
 import SignUpFormTitle from "@components/SignUpFormTitle";
 import { newsInput } from "@data/newAddData.js";
-import Input from "@components/Input";
+import Input from "@components/inputs/Input.jsx";
 import { post } from "@api/fetcher.js";
 import { useNavigate } from "react-router";
 

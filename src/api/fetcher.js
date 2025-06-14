@@ -49,9 +49,7 @@ async function fetcher(route, method = "GET", body = {}, query = null) {
         currentRefresh = null;
         response = await request();
     }
-    const json = await response.json();
-    if (!response.ok) throw new Error(json.message || "Erreur serveur");
-    return json;
+    return await response.json();
 }
 
 function buildQuery(params) {

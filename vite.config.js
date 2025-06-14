@@ -13,7 +13,9 @@ export default defineConfig({
 			"@data": new URL("./src/data", import.meta.url).pathname,
 			"@assets": new URL("./src/assets", import.meta.url).pathname,
 			"@pages": new URL("./src/pages", import.meta.url).pathname,
-			"@partials": new URL("./src/partials", import.meta.url).pathname
+			"@partials": new URL("./src/partials", import.meta.url).pathname,
+			"@layouts": new URL("./src/layouts", import.meta.url).pathname,
+			"@forms": new URL("./src/data/forms", import.meta.url).pathname,
 		}
 	}
 })

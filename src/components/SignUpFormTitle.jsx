@@ -1,7 +1,7 @@
 export default function SignUpFormTitle({ label, onClick, step, className }) {
   return (
     <>
-      <div className="flex flex-row items-center m-auto gap-3  justify-center">
+      <div className={"flex flex-row items-center m-auto gap-3 justify-center " + className}>
         {step > 0 &&  <svg onClick={onClick}
           className="w-6 h-6 text-gray-800 "
           aria-hidden="true"
@@ -13,14 +13,14 @@ export default function SignUpFormTitle({ label, onClick, step, className }) {
         >
           <path
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="m15 19-7-7 7-7"
           />
         </svg>}
 
-        <h2 className="text-center font-bold text-2xl  ">{label}</h2>
+        <h2 className="text-center font-bold text-2xl">{label}</h2>
       </div>
     </>
   );
