@@ -19,7 +19,7 @@ export async function remove(route, body, query = null) {
 }
 
 async function fetcher(route, method = "GET", body = {}, query = null) {
-    const token = localStorage.getItem("access_token");
+    const token = sessionStorage.getItem("access_token");
 
     const queryParams = query ? `?${buildQuery(query)}` : "";
 
@@ -72,11 +72,11 @@ async function handleRefresh(token) {
         const data = await res.json();
         if (!data || !data.token) throw new Error(res);
 
-        localStorage.setItem("access_token", data.token);
+        sessionStorage.setItem("access_token", data.token);
         return data;
     } catch (err) {
         console.error("Error during refresh session: ", err);
         //auth.logout();
-        localStorage.removeItem("access_token");
+        sessionStorage.removeItem("access_token");
     }
 }

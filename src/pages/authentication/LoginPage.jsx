@@ -1,13 +1,13 @@
 import AloneSection from "@partials/AloneSection.jsx";
-import {useForm} from "react-hook-form";
-import {loginValidator, signupFields} from "@forms/loginValidator.js";
+import { useForm } from "react-hook-form";
+import { loginValidator, signupFields } from "@forms/loginValidator.js";
 import Input from "@components/inputs/Input.jsx";
 import Button from "@components/Button.jsx";
-import {NavLink} from "react-router";
-import {yupResolver} from "@hookform/resolvers/yup";
+import { NavLink } from "react-router";
+import { yupResolver } from "@hookform/resolvers/yup";
 import TitleWithReturn from "@components/TitleWithReturn.jsx";
-import {post} from "@api/fetcher.js";
-import {useState} from "react";
+import { post } from "@api/fetcher.js";
+import { useState } from "react";
 
 export default function LoginPage() {
     const [serverError, setServerError] = useState(null);
@@ -23,7 +23,11 @@ export default function LoginPage() {
 
     const onSubmit = async (data) => {
         const res = await post("auth/login", data);
-        if (!res.ok) setServerError(res.message)
+        if (res.error) {
+            setServerError(res.message);
+        } else {
+            sessionStorage.setItem("access_token", res.token)
+        }
         reset();
     }
 
@@ -41,10 +45,10 @@ export default function LoginPage() {
                         ))}
                     </div>
                     <div className="flex flex-col gap-3 p-3 md:p-8">
-                        { serverError && <p className={"text-red-500"}>{serverError}</p> }
+                        {serverError && <p className={"text-red-500"}>{serverError}</p>}
                         <Button className="bg-cyan-500 text-white">Se connecter</Button>
                         <NavLink to={"/register"} label="S'inscrire"
-                                 className={`w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 bg-orange-100 text-black text-center`}>Pas
+                            className={`w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 bg-orange-100 text-black text-center`}>Pas
                             encore inscrit ?</NavLink>
                     </div>
                 </form>
