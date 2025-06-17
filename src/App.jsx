@@ -22,7 +22,7 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
 
-                    <ProtectedRoute>
+                    <Route element={<ProtectedRoute />}>
                         {/* Admin Routes */}
                         <Route path="/admin" element={<AdminDashboardPage />} />
                         <Route path="/admin/users" element={<UserManagementPage />} />
@@ -34,7 +34,7 @@ function App() {
                         <Route path="/news/list" element={<NewsList />} />
                         <Route path="/news/detail/:id" element={<NewsDetail />} />
                         <Route path="/news/add" element={<NewsAdd />} />
-                    </ProtectedRoute>
+                    </Route>
 
                     {/* Default Route TODO home */}
                     <Route path="/" element={<Navigate to="/login" replace />} />
