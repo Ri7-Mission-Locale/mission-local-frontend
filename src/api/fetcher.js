@@ -71,12 +71,12 @@ async function handleRefresh(token) {
 
         const data = await res.json();
         if (!data || !data.token) throw new Error(res);
+        
 
         sessionStorage.setItem("access_token", data.token);
         return data;
     } catch (err) {
         console.error("Error during refresh session: ", err);
-        //auth.logout();
         sessionStorage.removeItem("access_token");
     }
 }

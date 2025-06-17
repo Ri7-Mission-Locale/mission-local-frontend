@@ -83,11 +83,8 @@ export default function NewsAdd() {
 
 
       <Button
-        bgColor="bg-cyan-500"
-        color="text-white md:w-[40%] m-auto"
-        label="Ajouter une actualité"
-        type={"submit"}
-      />
+        className="bg-cyan-500 text-white md:w-[40%] m-auto"
+        type={"submit"}>Ajouter une actualité</Button>
     </form>
   );
 }

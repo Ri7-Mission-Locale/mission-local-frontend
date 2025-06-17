@@ -14,9 +14,9 @@ export default function UserProfil() {
   });
 
 
-function handleChange(e){
+  function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
-}
+  }
 
   function handleClick() {
     if (isEditing) {
@@ -47,8 +47,8 @@ function handleChange(e){
               id="birth_date"
               name="birth_date"
               className=" m-auto   "
-              onChange = {handleChange}
-              value = {formData.birth_date}
+              onChange={handleChange}
+              value={formData.birth_date}
             />
           ) : (
             <p
@@ -66,7 +66,7 @@ function handleChange(e){
               name="phone"
               className="w-[80%] m-auto"
               value={formData.phone}
-              onChange = {handleChange}
+              onChange={handleChange}
             />
           ) : (
             <p className="bg-gray-100 rounded-full w-[85%] m-auto ps-2">
@@ -78,10 +78,9 @@ function handleChange(e){
         <Button
           bgColor="bg-cyan-500"
           color="text-white"
-          label={isEditing ? "Valider" : "Modifier"}
           type={"button"}
           onClick={handleClick}
-        />
+        >{isEditing ? "Valider" : "Modifier"}</Button>
 
         <div className="bg-white w-[80%] rounded-2xl flex flex-col gap-3 pt-4 pb-4">
           <FileInput label={"Dossier inscription"} className={'w-[80%] m-auto'} />

@@ -8,7 +8,6 @@ import NewsDetail from "@pages/news/NewsDetail.jsx";
 import NewsAdd from "@pages/news/NewsAdd.jsx";
 import LoginPage from "@pages/authentication/LoginPage.jsx";
 import RegisterPage from "@pages/authentication/RegisterPage.jsx";
-import ProtectedRoute from "./layouts/ProtectedRoute";
 
 const client = new QueryClient();
 
@@ -22,19 +21,19 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
 
-                    <Route element={<ProtectedRoute />}>
-                        {/* Admin Routes */}
-                        <Route path="/admin" element={<AdminDashboardPage />} />
-                        <Route path="/admin/users" element={<UserManagementPage />} />
 
-                        {/* User Routes */}
-                        <Route path="/user/profil" element={<UserProfil />} />
+                    {/* Admin Routes */}
+                    <Route path="/admin" element={<AdminDashboardPage />} />
+                    <Route path="/admin/users" element={<UserManagementPage />} />
 
-                        {/* News Routes */}
-                        <Route path="/news/list" element={<NewsList />} />
-                        <Route path="/news/detail/:id" element={<NewsDetail />} />
-                        <Route path="/news/add" element={<NewsAdd />} />
-                    </Route>
+                    {/* User Routes */}
+                    <Route path="/user/profil" element={<UserProfil />} />
+
+                    {/* News Routes */}
+                    <Route path="/news/list" element={<NewsList />} />
+                    <Route path="/news/detail/:id" element={<NewsDetail />} />
+                    <Route path="/news/add" element={<NewsAdd />} />
+
 
                     {/* Default Route TODO home */}
                     <Route path="/" element={<Navigate to="/login" replace />} />
