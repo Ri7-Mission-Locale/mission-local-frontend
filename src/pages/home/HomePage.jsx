@@ -1,13 +1,16 @@
-import Agenda from "@components/Agenda"
+import NewsCarousel from "../../components/NewsCarousel";
+import WorkshopCarousel from "../../components/WorkshopCarousel";
 
 export default function HomePage() {
-    return (
-        <>
-            <h1>Welcome to Mission Local!</h1>
-            
-            <section>
-           		<Agenda />
-            </section>
-        </>
-    )
+  return (
+    <>
+      <section>
+        <NewsCarousel />
+      </section>
+      <section className="pt-20">
+        <h2 className="text-center font-bold text-2xl">ATELIERS</h2>
+        <WorkshopCarousel/>
+      </section>
+    </>
+  );
 }
