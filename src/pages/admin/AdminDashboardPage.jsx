@@ -1,5 +1,6 @@
-import { Link } from "react-router";
-import AloneSection from "@components/AloneSection.jsx";
+
+import {Link} from "react-router";
+import AloneSection from "@partials/AloneSection.jsx";
 import Button from "@components/Button.jsx";
 import { FiUser } from "react-icons/fi";
 

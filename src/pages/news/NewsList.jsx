@@ -17,22 +17,20 @@ export default function NewsList() {
     fetchNews();
   }, []);
 
-  const listNews = news.map((el) => (
-    <NewsCard
-      key={el.id}
-      tag={el.tag}
-      title={el.title}
-      img={el.imagePath}
-      description={el.description}
-      id={el.news_id}
-    />
-  ));
-
   return (
     <>
       <section className=" flex flex-col gap-10 md:w-[50%] m-auto">
         <h2 className="mx-auto font-extrabold text-3xl">Actualités</h2>
-        {listNews}
+        {news.map((el, i) => (
+          <NewsCard
+            key={i}
+            tag={el.tag}
+            title={el.title}
+            img={el.imagePath}
+            description={el.description}
+            id={el.news_id}
+          />
+        ))}
       </section>
     </>
   );

@@ -126,45 +126,44 @@ useImperativeHandle(ref, () => ({
   }
 };
 
- return (
-  <div className="p-4 max-w-2xl mx-auto text-center md:col-span-2">
-    <h2 className="text-xl font-bold mb-6">Prise de rendez-vous</h2>
-    {agendaData.map((item) => (
-      <div
-        key={`${item.user}-${item.date}`}
-        className="border rounded text-center m-auto p-4 mb-6 shadow-sm w-[80%] border-gray-300"
-      >
-        <div className="font-semibold mb-2">
-          {new Date(item.date).toLocaleDateString()}
-        </div>
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          {item.availableSlots.length > 0 ? (
-            item.availableSlots.map((slot) => {
-              const isSelected =
-                selectedSlot?.date === item.date && selectedSlot?.time === slot;
 
-              return (
-                <div
-                  key={slot}
-                  onClick={() => handleChange(item.date, slot)}
-                  className={`cursor-pointer px-4 py-2 rounded font-bold text-sm ${
-                    isSelected
-                      ? "bg-cyan-500 text-white border-cyan-500"
-                      : "bg-gray-100 hover:bg-gray-200"
-                  }`}
-                >
-                  {slot}
-                </div>
-              );
-            })
-          ) : (
-            <p className="text-red-500">Aucun créneau disponible</p>
-          )}
-        </div>
+  return (
+    <div className="flex flex-col gap-3 w-full h-fit">
+      <h2 className="text-xl font-bold ">Prise de rendez-vous</h2>
+      <div className="flex flex-col gap-3 md:flex-row">
+        {agendaData.map((item) => (
+            <div
+                key={`${item.user}-${item.date}`}
+                className="border rounded text-center p-4 shadow-sm border-gray-300 w-full"
+            >
+              <div className="font-semibold mb-2">
+                {new Date(item.date).toLocaleDateString()}
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                {item.availableSlots.length > 0 ? (
+                    item.availableSlots.map((slot) => (
+                        <div
+                            key={slot}
+                            onClick={() => handleChange(item.date, slot)}
+                            className={`cursor-pointer px-4 py-2 rounded font-bold text-sm ${selectedSlots[item.date] === slot
+                                ? "bg-cyan-500 text-white border-cyan-500"
+                                : "bg-gray-100 hover:bg-gray-200"
+                            }`}
+                        >
+                          {slot}
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-red-500">Aucun créneau disponible</p>
+                )}
+              </div>
+            </div>
+        ))}
       </div>
-    ))}
-  </div>
-);
+
+    </div>
+  );
+
 });
 
 export default AgendaSelector;
