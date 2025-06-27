@@ -32,11 +32,11 @@ export default function LoginPage() {
     }
 
     return (
-        <main className={"h-screen flex justify-center items-center p-3"}>
+        <main className={"h-screen flex justify-center items-center p-3 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=3871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]"}>
             <AloneSection className={"w-2xl max-w-screen"}>
-                <TitleWithReturn link={"/"} className={"p-8"}>Connexion</TitleWithReturn>
+                <TitleWithReturn link={"/"} className={"p-5"}>Connexion</TitleWithReturn>
                 <form onSubmit={handleSubmit(onSubmit)} className={"flex flex-col justify-between h-100"}>
-                    <div className="flex flex-col gap-3 my-auto p-3 md:p-8">
+                    <div className="flex flex-col gap-3  p-3 md:p-8">
                         {signupFields.map(field => (
                             <div className={"flex flex-col"} key={field.name}>
                                 <Input type={field.type} className={field.className} label={field.label} {...register(field.name, field.rules)} />
