@@ -9,6 +9,7 @@ export default defineConfig({
 		alias: {
 			"@": new URL("./src", import.meta.url).pathname,
 			"@api": new URL("./src/api", import.meta.url).pathname,
+			"@services": new URL("./src/services", import.meta.url).pathname,
 			"@components": new URL("./src/components", import.meta.url).pathname,
 			"@data": new URL("./src/data", import.meta.url).pathname,
 			"@assets": new URL("./src/assets", import.meta.url).pathname,

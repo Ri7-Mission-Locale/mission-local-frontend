@@ -3,6 +3,7 @@ import Button from "@components/Button.jsx";
 import TitleWithReturn from "@components/TitleWithReturn.jsx";
 import SearchBar from "@components/inputs/Searchbar.jsx";
 import SpanUser from "@components/users/SpanUser.jsx";
+import { useEffect } from "react";
 
 const users = [
     {
@@ -36,6 +37,10 @@ export default function UserManagementPage() {
     const handleOrderSelect = (e) => {
         const value = e.target.value;
     }
+    
+  useEffect(() => {
+      
+  });
 
     return (
         <>

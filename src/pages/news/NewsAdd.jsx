@@ -8,7 +8,7 @@ import { post } from "@api/fetcher.js";
 import { useNavigate } from "react-router";
 
 export default function NewsAdd() {
-  const navigate = useNavigate(); //
+  const navigate = useNavigate(); 
   const {
     register,
     formState: { errors },
