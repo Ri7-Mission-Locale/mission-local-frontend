@@ -4,6 +4,7 @@ import AdminDashboardPage from "@pages/admin/AdminDashboardPage.jsx";
 import UserManagementPage from "@pages/admin/UserManagementPage.jsx";
 import UserProfil from "@pages/user/UserProfil.jsx";
 import NewsList from "@pages/news/NewsList.jsx";
+import WorkShopList from "@pages/workshop/WorkShopList.jsx"
 import NewsDetail from "@pages/news/NewsDetail.jsx";
 import NewsAdd from "@pages/news/NewsAdd.jsx";
 import LoginPage from "@pages/authentication/LoginPage.jsx";
@@ -24,6 +25,7 @@ function App() {
 					<Route path="/login" element={<LoginPage />} />
 					<Route path="/register" element={<RegisterPage />} />
 
+
 					{/* Admin Routes */}
 					<Route path="/admin" element={<AdminDashboardPage />} />
 					<Route
@@ -38,6 +40,11 @@ function App() {
 					<Route path="/news/list" element={<NewsList />} />
 					<Route path="/news/detail/:id" element={<NewsDetail />} />
 					<Route path="/news/add" element={<NewsAdd />} />
+
+						{/* Workshop Routes */}
+					<Route path="/workshop/list" element={<WorkShopList />} />
+					<Route path="/workshop/detail/:id" element={<NewsDetail />} />
+					<Route path="/workshop/add" element={<NewsAdd />} />
 				</Routes>
 			</BrowserRouter>
 		</QueryClientProvider>
