@@ -82,7 +82,7 @@ export const input = [
     id: "password",
     name: "password",
     rules: { required: "Le mot de passe est obligatoire" },
-    classes: "col-span-2",
+    classes: "col-start-1",
   },
   {
     label: "Confirmer mot de passe",
@@ -92,7 +92,7 @@ export const input = [
     id: "repeatPassword",
     name: "repeatPassword",
     rules: { required: "Vous devez confirmer le mot de passe" },
-    classes: "col-span-2",
+    classes: "col-start-2",
   },
 ];
 
@@ -102,5 +102,7 @@ export const inputFile = [
     for: "signUpForm",
     placeholder: "Ajouter votre CNI",
     id: "signUpForm",
+   
+   
   },
 ];
