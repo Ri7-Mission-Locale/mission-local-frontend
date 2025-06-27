@@ -1,5 +1,5 @@
 import Button from "./Button";
-import Tag from "./tag";
+import Tag from "./Tag";
 
 export default function WorkshopCard({
   title,

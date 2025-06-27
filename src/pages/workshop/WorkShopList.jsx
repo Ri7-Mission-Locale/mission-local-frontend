@@ -1,8 +1,8 @@
 import WorkshopCard from "@components/WorkshopCard.jsx";
-import {workshopMock} from "@data/workshopMockData.js";
+import { workshopMock } from "@data/workshopMockData.js";
 
 
-export default function WorkshopList() {
+export default function WorkShopList() {
   const listWorkshop = workshopMock.map((el) => (
     <WorkshopCard
       key={el.id}
