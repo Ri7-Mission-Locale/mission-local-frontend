@@ -26,7 +26,7 @@ export default function WorkshopCarousel() {
     return (
       <article className="p-3 flex flex-col gap-3  ">
         <img
-          className="m-auto rounded-2xl w-[430px] h-[285px] md:w-[800px] md:h-[532px] "
+          className="m-auto rounded-2xl w-[430px] h-[285px] md:w-[800px] md:h-[400px] "
           src={el.img}
           alt="workshop picture"
         />{" "}

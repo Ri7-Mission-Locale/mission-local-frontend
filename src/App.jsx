@@ -5,8 +5,6 @@ import UserManagementPage from "@pages/admin/UserManagementPage.jsx";
 import UserProfil from "@pages/user/UserProfil.jsx";
 import NewsList from "@pages/news/NewsList.jsx";
 import WorkShopList from "@pages/workshop/WorkShopList.jsx"
-
-
 import NewsDetail from "@pages/news/NewsDetail.jsx";
 import NewsAdd from "@pages/news/NewsAdd.jsx";
 import LoginPage from "@pages/authentication/LoginPage.jsx";
