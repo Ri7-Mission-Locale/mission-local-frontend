@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import Input from "@components/Input";
+import Input from "@components/inputs/Input.jsx";
 import { workshopInput } from "@data/workShopAddData.js";
 import Button from "@components/Button";
 import SignUpFormTitle from "@components/SignUpFormTitle";
-import FileInput from "@components/FileInput";
+import FileInput from "@components/inputs/FileInput.jsx";
 
 export default function WorkShopAdd() {
   const {

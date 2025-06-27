@@ -3,7 +3,7 @@ import Button from "@components/Button";
 import Tag from "@components/Tag";
 import { get, remove, patch } from "@api/fetcher";
 import { useNavigate, useParams } from "react-router";
-import Input from "@components/Input";
+import Input from "@components/inputs/Input.jsx";
 
 export default function NewsDetail() {
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ export default function NewsDetail() {
   //Modifie la news
   const handlePatch = async () => {
     try {
-      await patch(`news/${id}`,formData);
+      await patch(`news/${id}`, formData);
       alert("Actualité mise à jour !");
     } catch (err) {
       console.log("Erreur lors de la mise à jour :", err);
@@ -74,18 +74,18 @@ export default function NewsDetail() {
     <article className=" rounded-xl w-4/5 m-auto border border-gray-300 flex flex-col gap-5 shadow-gray-400 shadow-md pt-5 md:w-[50%]">
       <div className="flex flex-col gap-2 w-[80%] m-auto ">
 
-           {isEditing ? (
-        <Input
-        type = "text"
-        id ="title"
-        name ="title"
-        value = {formData.title}
-        onChange = {handleChange}
-         />
-      ) : (
-               <h2 className="font-bold text-4xl">{news.title}</h2>
+        {isEditing ? (
+          <Input
+            type="text"
+            id="title"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+          />
+        ) : (
+          <h2 className="font-bold text-4xl">{news.title}</h2>
 
-      )}
+        )}
 
         <img className="" src={news.imagePath} alt="" />
         {Array.isArray(news.tag) && news.tag.length > 0 && (
@@ -99,12 +99,12 @@ export default function NewsDetail() {
 
       {isEditing ? (
         <Input
-        type = "text"
-        id ="description"
-        name ="description"
-        value = {formData.description}
-        onChange = {handleChange}
-         />
+          type="text"
+          id="description"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+        />
       ) : (
         <div className="w-[80%] m-auto  border-b-1  pb-5">
           <p>{news.description}</p>
@@ -115,18 +115,17 @@ export default function NewsDetail() {
 
       <div className="m-auto flex gap-10 pb-5">
         <Button
-          label={isEditing ? "Valider" : "Modifier"}
           className={
             isEditing ? "bg-green-500 text-white" : "bg-orange-500 text-white"
           }
           onClick={handleClick}
-        />
+        >{isEditing ? "Valider" : "Modifier"}</Button>
 
         <Button
-          label={"Supprimer"}
+
           className={"bg-red-500 text-white"}
           onClick={handleDelete}
-        />
+        >Supprimer</Button>
       </div>
     </article>
   );
