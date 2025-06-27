@@ -1,9 +1,9 @@
 import { post } from "@api/fetcher.js";
 import Input from "@components/inputs/Input.jsx";
 import Button from "@components/Button.jsx";
-import { Navigate, NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { registerFields, registerValidator } from "@forms/registerValidator.js";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AloneSection from "@partials/AloneSection.jsx";
@@ -13,14 +13,17 @@ import TitleWithReturn from "@components/TitleWithReturn.jsx";
 import DownloadButton from "@components/DownloadButton.jsx";
 import { inputFile } from "@data/signUpData.js";
 import FileInput from "@components/inputs/FileInput.jsx";
-import AgendaSelector from "@components/AgendaSelector.jsx";
+import Agenda from "@components/agenda/Agenda.jsx";
 
 export default function RegisterPage() {
     const [step, setStep] = useState(0);
     const [serverError, setServerError] = useState(null);
-    const agendaRef = useRef(null);
     let navigate = useNavigate();
 
+    const [selectedDate, setSelectedDate] = useState(null);
+    const handleSelect = (date) => {
+        setSelectedDate(date);
+    }
     const {
         register,
         getValues,
@@ -106,19 +109,10 @@ export default function RegisterPage() {
                         </div>
                         <div className="flex gap-3 w-full p-3 md:p-8 justify-center items-center">
 
-                            {/* TODO CLEANUP AGENDA */}
-                            <AgendaSelector
-                                ref={agendaRef}
-                                attendees={[
-                                    {
-                                        emailAddress: {
-                                            address: getValues("email"),
-                                            name: `${getValues('first_name')} ${getValues('last_name')}`,
-                                        },
-                                        type: "required",
-                                    },
-                                ]}
-                            />
+                            <Agenda onSelect={handleSelect} />
+                            {selectedDate && (
+                                <AgendaHours date={selectedDate} />
+                            )}
                         </div>
                     </div>
                     <div className="flex flex-col gap-3 px-5">
