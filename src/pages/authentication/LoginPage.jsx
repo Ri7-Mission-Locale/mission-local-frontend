@@ -32,7 +32,7 @@ export default function LoginPage() {
     }
 
     return (
-        <main className={"h-screen flex justify-center items-center p-3 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=3871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]"}>
+        <main className={"h-screen flex justify-center items-center p-3 bg-cover bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=3871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]"}>
             <AloneSection className={"w-2xl max-w-screen"}>
                 <TitleWithReturn link={"/"} className={"p-5"}>Connexion</TitleWithReturn>
                 <form onSubmit={handleSubmit(onSubmit)} className={"flex flex-col justify-between h-100"}>
