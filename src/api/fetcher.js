@@ -20,8 +20,8 @@ export async function remove(route, body, query = null) {
 
 async function fetcher(route, method = "GET", body = {}, query = null) {
     const token = sessionStorage.getItem("access_token");
-
     const queryParams = query ? `?${buildQuery(query)}` : "";
+    const isFormData = body instanceof FormData;
 
     const request = async () => {
         const options = {
@@ -29,7 +29,7 @@ async function fetcher(route, method = "GET", body = {}, query = null) {
             credentials: "include",
             headers: {
                 Authorization: token ? `Bearer ${token}` : "",
-                "Content-Type": "application/json",
+                ...(isFormData ? {} : { "Content-Type": "application/json" }),
             },
         };
         if (method !== "GET") options.body = JSON.stringify(body);
@@ -71,7 +71,7 @@ async function handleRefresh(token) {
 
         const data = await res.json();
         if (!data || !data.token) throw new Error(res);
-        
+
 
         sessionStorage.setItem("access_token", data.token);
         return data;

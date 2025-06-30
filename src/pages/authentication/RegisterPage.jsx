@@ -1,4 +1,4 @@
-import { post } from "@api/fetcher.js";
+
 import Input from "@components/inputs/Input.jsx";
 import Button from "@components/Button.jsx";
 import { NavLink, useNavigate } from "react-router";
@@ -12,19 +12,26 @@ import DownloadButton from "@components/DownloadButton.jsx";
 import FileInput from "@components/inputs/FileInput.jsx";
 import Agenda from "@components/agenda/Agenda.jsx";
 import AgendaHours from "@components/agenda/AgendaHours.jsx";
+import { date } from "yup";
 
 const defaultFormData = Object.fromEntries(
     registerFields.map((field) => [field.name, ""])
 );
 
 export default function RegisterPage() {
+    const navigate = useNavigate();
     const [step, setStep] = useState(0);
     const [serverError, setServerError] = useState(null);
-    const navigate = useNavigate();
 
+
+    const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
-    const handleSelect = (date) => {
+    const [selectedHour, setSelectedHour] = useState(null);
+    const handleSelectDate = (date) => {
         setSelectedDate(date);
+    }
+    const handleSelectHour = (hour) => {
+        setSelectedHour(hour);
     }
 
     const [formData, setFormData] = useState(defaultFormData);
@@ -62,13 +69,27 @@ export default function RegisterPage() {
     }
 
     const clearDate = () => {
+        setSelectedHour(null);
         setSelectedDate(null);
     }
 
     const submit = async (data) => {
-        console.log(data);
-        /*
-        const res = await post("auth/register", data);
+        let sendedDate = null;
+        if (selectedDate && selectedHour) {
+            const [hours, minutes] = selectedHour.split(":");
+            sendedDate = new Date(selectedDate);
+            sendedDate.setHours(Number(hours), Number(minutes), 0, 0);
+        }
+
+        const formDataToSend = new FormData();
+        Object.entries(data).forEach(([key, value]) => formDataToSend.append(key, value));
+        formDataToSend.append("date", sendedDate ? sendedDate.toISOString() : "");
+
+        selectedFiles.forEach((file, idx) => {
+            if (file) formDataToSend.append(`file${idx}`, file);
+        });
+
+        const res = await post("auth/register", formDataToSend);
         if (res.error) {
             setServerError(res.message);
         }
@@ -78,7 +99,6 @@ export default function RegisterPage() {
             setFormErrors({});
             navigate("/login");
         }
-        */
     }
 
     return (
@@ -138,17 +158,27 @@ export default function RegisterPage() {
 
                         <div className="flex flex-col gap-5 w-full p-3 md:p-8 justify-center items-center">
                             <DownloadButton link={"http://127.0.0.1:3000/dossier_inscription.pdf"} />
-                            {inputFileFields.map((el) => (
-                                <FileInput key={el.id} label={el.label} placeholder={el.placeholder} id={el.id} />
+                            {inputFileFields.map((el, i) => (
+                                <FileInput
+                                    key={el.id}
+                                    label={el.label}
+                                    placeholder={el.placeholder}
+                                    id={el.id}
+                                    onChange={e => {
+                                        const files = [...selectedFiles];
+                                        files[i] = e.target.files[0] || null;
+                                        setSelectedFiles(files);
+                                    }}
+                                />
                             ))}
                         </div>
 
 
 
                         <div className="flex gap-3 w-full p-3 md:p-8 justify-center items-center">
-                            <Agenda onSelect={handleSelect} />
+                            <Agenda onSelect={handleSelectDate} selectedDate={selectedDate} />
                             {selectedDate && (
-                                <AgendaHours date={selectedDate} />
+                                <AgendaHours date={selectedDate} onSelect={handleSelectHour} />
                             )}
                             <button type="button" onClick={clearDate}>Annuler</button>
                         </div>

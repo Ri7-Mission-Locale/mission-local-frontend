@@ -1,5 +1,5 @@
 
-export default function AgendaHours({ date, onChange }) {
+export default function AgendaHours({ date, onSelect }) {
     const hours = [
         {
             hour: "9:00",
@@ -37,7 +37,7 @@ export default function AgendaHours({ date, onChange }) {
             <div className="flex flex-col gap-1">
                 {hours.map((value) => (
                     <label key={value.hour} htmlFor={value.hour} className="cursor-pointer max-w-15">
-                        <input type="radio" className="hidden peer" id={value.hour} name={date.toISOString()} onSelect={() => onChange(value.hour)} />
+                        <input type="radio" className="hidden peer" id={value.hour} name={date.toISOString()} onChange={() => onSelect(value.hour)} />
                         <span className="flex items-center bg-gray-300 text-white p-1 rounded-sm peer-checked:bg-blue-500 w-full select-none">{value.hour}</span>
                     </label>
                 ))}
