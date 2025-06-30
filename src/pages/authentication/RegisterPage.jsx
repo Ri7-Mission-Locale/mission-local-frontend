@@ -12,7 +12,7 @@ import DownloadButton from "@components/DownloadButton.jsx";
 import FileInput from "@components/inputs/FileInput.jsx";
 import Agenda from "@components/agenda/Agenda.jsx";
 import AgendaHours from "@components/agenda/AgendaHours.jsx";
-import { date } from "yup";
+import { post } from "@api/fetcher.js";
 
 const defaultFormData = Object.fromEntries(
     registerFields.map((field) => [field.name, ""])
@@ -84,10 +84,6 @@ export default function RegisterPage() {
         const formDataToSend = new FormData();
         Object.entries(data).forEach(([key, value]) => formDataToSend.append(key, value));
         formDataToSend.append("date", sendedDate ? sendedDate.toISOString() : "");
-
-        selectedFiles.forEach((file, idx) => {
-            if (file) formDataToSend.append(`file${idx}`, file);
-        });
 
         const res = await post("auth/register", formDataToSend);
         if (res.error) {
