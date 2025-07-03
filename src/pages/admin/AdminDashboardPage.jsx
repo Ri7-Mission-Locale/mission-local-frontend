@@ -1,5 +1,5 @@
 
-import {Link} from "react-router";
+import { Link } from "react-router";
 import AloneSection from "@partials/AloneSection.jsx";
 import Button from "@components/Button.jsx";
 import { FiUser } from "react-icons/fi";
@@ -13,7 +13,7 @@ export default function AdminDashboardPage() {
 
           <Link
             to={"/admin/users"}
-            className="bg-blue-500 hover:bg-blue-700 w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white text-center"
+            className="flex items-center gap-3 bg-blue-500 hover:bg-blue-700 w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white text-center"
             color="text-white"
             type="button"
           >

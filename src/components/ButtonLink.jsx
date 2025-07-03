@@ -1,7 +1,5 @@
 import { Link } from "react-router";
 
-
-
 export default function ButtonLink({ label, bgColor, color, className, to }) {
   return (
     <Link

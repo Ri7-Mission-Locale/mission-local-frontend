@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const host = import.meta.env.VITE_API_URL;
 let isRefreshing = false;
 let currentRefresh = null;
@@ -29,10 +31,14 @@ async function fetcher(route, method = "GET", body = {}, query = null) {
             credentials: "include",
             headers: {
                 Authorization: token ? `Bearer ${token}` : "",
-                ...(isFormData ? {} : { "Content-Type": "application/json" }),
+               /* ...(isFormData ? { "Content-Type": "multipart/form-data" } : { "Content-Type": "application/json" }),*/
             },
         };
-        if (method !== "GET") options.body = JSON.stringify(body);
+        if (method !== "GET" && body) {
+            options.body = body;
+        }
+        console.log(options);
+
         return await fetch(`${host}/${route}${queryParams}`, options);
     };
 
@@ -80,3 +86,14 @@ async function handleRefresh(token) {
         sessionStorage.removeItem("access_token");
     }
 }
+
+const api = axios.create({ baseURL: host });
+
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('access_token');
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  }, (error) => Promise.reject(error),
+);
+
+export default api;

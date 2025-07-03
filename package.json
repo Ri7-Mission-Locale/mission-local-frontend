@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:host": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -13,6 +14,7 @@
     "@hookform/resolvers": "^5.1.1",
     "@tailwindcss/vite": "^4.1.4",
     "@tanstack/react-query": "^5.76.1",
+    "axios": "^1.10.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-form-stepper": "^2.0.3",

@@ -1,4 +1,3 @@
-
 import Input from "@components/inputs/Input.jsx";
 import Button from "@components/Button.jsx";
 import { NavLink, useNavigate } from "react-router";
@@ -12,7 +11,7 @@ import DownloadButton from "@components/DownloadButton.jsx";
 import FileInput from "@components/inputs/FileInput.jsx";
 import Agenda from "@components/agenda/Agenda.jsx";
 import AgendaHours from "@components/agenda/AgendaHours.jsx";
-import { post } from "@api/fetcher.js";
+import api from "../../api/fetcher";
 
 const defaultFormData = Object.fromEntries(
     registerFields.map((field) => [field.name, ""])
@@ -23,20 +22,19 @@ export default function RegisterPage() {
     const [step, setStep] = useState(0);
     const [serverError, setServerError] = useState(null);
 
-
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedHour, setSelectedHour] = useState(null);
     const handleSelectDate = (date) => {
         setSelectedDate(date);
     }
+
     const handleSelectHour = (hour) => {
         setSelectedHour(hour);
     }
 
     const [formData, setFormData] = useState(defaultFormData);
     const [formErrors, setFormErrors] = useState({});
-
     const handleSubmit = (e) => {
         e.preventDefault();
         nextStep(formData);
@@ -80,26 +78,29 @@ export default function RegisterPage() {
             sendedDate = new Date(selectedDate);
             sendedDate.setHours(Number(hours), Number(minutes), 0, 0);
         }
-
+        if (sendedDate) data.date = sendedDate.toISOString();
         const formDataToSend = new FormData();
-        Object.entries(data).forEach(([key, value]) => formDataToSend.append(key, value));
-        formDataToSend.append("date", sendedDate ? sendedDate.toISOString() : "");
 
-        const res = await post("auth/register", formDataToSend);
-        if (res.error) {
-            setServerError(res.message);
-        }
-        else {
-            setServerError(null);
-            setFormData(defaultFormData);
-            setFormErrors({});
-            navigate("/login");
-        }
+        formDataToSend.append("data", JSON.stringify(data));
+        formDataToSend.append("file", selectedFiles[0] || undefined);
+
+        console.log(formDataToSend);
+
+        api.post("/auth/register", formDataToSend)
+            .then(() => {
+                setServerError(null);
+                setFormData(defaultFormData);
+                setFormErrors({});
+                navigate("/login");
+            })
+            .catch((err) => {
+                setServerError(err.response.data.message || "Une erreur est survenue lors de l'inscription.");
+            });
     }
 
     return (
-        <main className={"h-screen flex justify-center items-center md:p-3 overflow-hidden bg-cover bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=3871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]"}>
-            <AloneSection className={"w-2xl max-w-screen py-8"}>
+        <main className={"h-dvh flex justify-center items-center md:p-3 bg-cover bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=3871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]"}>
+            <AloneSection className={"w-2xl max-w-screen max-h-dvh py-8 overflow-hidden"}>
                 <Stepper
                     steps={[
                         { label: "Informations" },
@@ -126,7 +127,7 @@ export default function RegisterPage() {
                     :
                     (<TitleWithReturn link={"/"} className="px-8">Inscription</TitleWithReturn>)
                 }
-                <form onSubmit={handleSubmit} className={"flex flex-col justify-between gap-5 overflow-hidden"}>
+                <form onSubmit={handleSubmit} className={"flex flex-col justify-between gap-5 overflow-y-scroll overflow-x-hidden"}>
                     <div className="flex w-[300%] transition-transform duration-500 ease-in-out"
                         style={{ transform: `translateX(-${step * 33.33}%)` }}>
 
@@ -171,10 +172,10 @@ export default function RegisterPage() {
 
 
 
-                        <div className="flex gap-3 w-full p-3 md:p-8 justify-center items-center">
+                        <div className="flex flex-col md:flex-row w-full p-3 md:p-8 justify-center">
                             <Agenda onSelect={handleSelectDate} selectedDate={selectedDate} />
                             {selectedDate && (
-                                <AgendaHours date={selectedDate} onSelect={handleSelectHour} />
+                                <AgendaHours date={selectedDate} onSelect={handleSelectHour} className="mx-auto md:m-0" />
                             )}
                             <button type="button" onClick={clearDate}>Annuler</button>
                         </div>

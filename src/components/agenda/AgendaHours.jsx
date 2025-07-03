@@ -1,5 +1,5 @@
 
-export default function AgendaHours({ date, onSelect }) {
+export default function AgendaHours({ date, onSelect, className }) {
     const hours = [
         {
             hour: "9:00",
@@ -32,7 +32,7 @@ export default function AgendaHours({ date, onSelect }) {
     ];
 
     return (
-        <div className="relative z-10">
+        <div className={`relative z-10 ${className}`}>
             <p>Horraires:</p>
             <div className="flex flex-col gap-1">
                 {hours.map((value) => (
