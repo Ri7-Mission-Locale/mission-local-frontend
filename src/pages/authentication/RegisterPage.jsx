@@ -21,10 +21,13 @@ export default function RegisterPage() {
     const navigate = useNavigate();
     const [step, setStep] = useState(0);
     const [serverError, setServerError] = useState(null);
-
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
+    const [hours, setHours] = useState([]);
     const [selectedHour, setSelectedHour] = useState(null);
+    const [formData, setFormData] = useState(defaultFormData);
+    const [formErrors, setFormErrors] = useState({});
+
     const handleSelectDate = (date) => {
         setSelectedDate(date);
     }
@@ -33,29 +36,32 @@ export default function RegisterPage() {
         setSelectedHour(hour);
     }
 
-    const [formData, setFormData] = useState(defaultFormData);
-    const [formErrors, setFormErrors] = useState({});
     const handleSubmit = (e) => {
         e.preventDefault();
         nextStep(formData);
     }
-
 
     useEffect(() => {
         if (!selectedDate) return;
 
         api.get("/free-appointments", {
             params: {
-                start: selectedDate.toISOString(),
+                start: selectedDate.toISOString().split("T")[0],
                 end: new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).toISOString(),
                 duration: 60
             }
         }).then((response) => {
-            console.log(response);
+            //console.log(selectedDate);
 
+            const grouped = response.data.data.reduce((acc, slot) => {
+                if (!acc[slot.date]) acc[slot.date] = [];
+                acc[slot.date].push(slot.hour);
+                return acc;
+            }, {});
+            setHours(grouped[selectedDate.toISOString().split('T')[0]] || []);
+            //console.log(grouped);
         })
     }, [selectedDate])
-
 
 
     const nextStep = async () => {
@@ -188,12 +194,10 @@ export default function RegisterPage() {
                             ))}
                         </div>
 
-
-
                         <div className="flex flex-col md:flex-row w-full p-3 md:p-8 justify-center">
-                            <Agenda onSelect={handleSelectDate} selectedDate={selectedDate} />
+                            <Agenda onSelect={handleSelectDate} selectedDate={selectedDate} onSelectMonth={() => { }} />
                             {selectedDate && (
-                                <AgendaHours date={selectedDate} onSelect={handleSelectHour} className="mx-auto md:m-0" />
+                                <AgendaHours date={selectedDate} onSelect={handleSelectHour} className="mx-auto md:m-0" hours={hours} />
                             )}
                             <button type="button" onClick={clearDate}>Annuler</button>
                         </div>
