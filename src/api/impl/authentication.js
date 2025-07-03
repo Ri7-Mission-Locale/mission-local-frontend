@@ -1,28 +1,30 @@
-import {get, post} from "../fetcher.js";
+import api from "../fetcher.js";
 
 
 // Process user creating account
 export async function processRegister(data) {
     // TODO data validation
-    return !!await post("auth/register", data);
-
+    return !!await api.post("auth/register", data);
 }
 
 // Process user authenticate
 export async function processLogin(data) {
-    // TODO data validation ?
-    const res = await post("auth/login", data);
-    const token = res.token;
-    if (token) {
-        localStorage.setItem("access_token", token);
-        return true;
+    try {
+        const res = await api.post('/auth/login', data);
+        return res.data;
+    } catch (e) {
+        console.error("Error during login process:", e);
+        if (e.response.data.error.error) {
+            return e.response.data.error.error;
+        }
+        return e;
+
     }
-    return false;
 }
 
 // Process user disconnection
 export async function processLogout() {
-    const res = await get("auth/logout");
+    const res = await api.get("auth/logout");
     if (res.status === 200) {
         localStorage.removeItem("access_token");
         return true
@@ -32,7 +34,7 @@ export async function processLogout() {
 
 // Process user disconnection from all devices
 export async function processForceLogout() {
-    const res = await get("auth/force-logout");
+    const res = await  api.get("auth/force-logout");
     if (res.status === 200) {
         localStorage.removeItem("access_token");
         return true

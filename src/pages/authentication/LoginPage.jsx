@@ -6,14 +6,15 @@ import Button from "@components/Button.jsx";
 import { NavLink } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TitleWithReturn from "@components/TitleWithReturn.jsx";
-import { post } from "@api/fetcher.js";
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { processLogin } from "../../api/impl/authentication";
 
 export default function LoginPage() {
     const [serverError, setServerError] = useState(null);
 
     const {
-        register,
+        register: login,
         handleSubmit,
         formState: { errors },
         reset
@@ -21,14 +22,29 @@ export default function LoginPage() {
         resolver: yupResolver(loginValidator),
     });
 
-    const onSubmit = async (data) => {
-        const res = await post("auth/login", data);
-        if (res.error) {
-            setServerError(res.message);
-        } else {
-            sessionStorage.setItem("access_token", res.token)
+    const mutation = useMutation({
+        mutationFn: (d) => {
+            console.log(d);
+
+            return processLogin(d);
+        },
+        onSuccess: (data) => {
+            console.log(data);
+
+            sessionStorage.setItem("access_token", data.token);
+            sessionStorage.setItem("role", data.role);
+            reset();
+        },
+        onError: (error) => {
+            console.log(error);
+
+            setServerError(error);
         }
-        reset();
+    });
+
+    const onSubmit = async (data) => {
+        console.log(data);
+        mutation.mutate({ ...data });
     }
 
     return (
@@ -39,7 +55,7 @@ export default function LoginPage() {
                     <div className="flex flex-col gap-3  p-3 md:p-8">
                         {signupFields.map(field => (
                             <div className={"flex flex-col"} key={field.name}>
-                                <Input type={field.type} className={field.className} label={field.label} {...register(field.name, field.rules)} />
+                                <Input type={field.type} className={field.className} label={field.label} {...login(field.name, field.rules)} />
                                 {errors[field.name] && (<p className="text-red-500 text-sm ml-1">{errors[field.name].message}</p>)}
                             </div>
                         ))}

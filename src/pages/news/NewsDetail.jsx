@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "@components/Button";
 import Tag from "@components/Tag";
-import { get, remove, patch } from "@api/fetcher";
+import api from "@api/fetcher";
 import { useNavigate, useParams } from "react-router";
 import Input from "@components/inputs/Input.jsx";
 
@@ -17,7 +17,7 @@ export default function NewsDetail() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const data = await get(`news/${id}`);
+        const data = await api.get(`news/${id}`);
         setNews(data);
         setFormData({
           title: data.title,
@@ -35,7 +35,7 @@ export default function NewsDetail() {
   //// Supprime la news selectionné
   const handleDelete = async () => {
     try {
-      await remove(`news/${id}`);
+      await api.remove(`news/${id}`);
       alert("Actualité supprimée !");
       navigate("/news/list");
     } catch (err) {
@@ -47,7 +47,7 @@ export default function NewsDetail() {
   //Modifie la news
   const handlePatch = async () => {
     try {
-      await patch(`news/${id}`, formData);
+      await api.patch(`news/${id}`, formData);
       alert("Actualité mise à jour !");
     } catch (err) {
       console.log("Erreur lors de la mise à jour :", err);

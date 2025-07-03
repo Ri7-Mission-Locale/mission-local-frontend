@@ -4,11 +4,11 @@ import FileInput from "@components/inputs/FileInput.jsx";
 import SignUpFormTitle from "@components/SignUpFormTitle";
 import { newsInput } from "@data/newAddData.js";
 import Input from "@components/inputs/Input.jsx";
-import { post } from "@api/fetcher.js";
+import api from "@api/fetcher.js";
 import { useNavigate } from "react-router";
 
 export default function NewsAdd() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -23,7 +23,7 @@ export default function NewsAdd() {
   //Ajoute la news
   const handlePost = async (formData) => {
     try {
-      await post(`news`, formData);
+      await api.post(`news`, formData);
       console.log(formData);
 
       alert("Actualité ajoutée !");

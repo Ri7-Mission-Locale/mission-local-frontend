@@ -2,7 +2,7 @@ import Input from "@components/inputs/Input.jsx";
 import Button from "@components/Button.jsx";
 import { NavLink, useNavigate } from "react-router";
 import { registerFields, registerValidator, inputFileFields } from "@forms/registerValidator.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AloneSection from "@partials/AloneSection.jsx";
 import { Stepper } from "react-form-stepper";
 import SignUpFormTitle from "@components/SignUpFormTitle.jsx";
@@ -39,6 +39,24 @@ export default function RegisterPage() {
         e.preventDefault();
         nextStep(formData);
     }
+
+
+    useEffect(() => {
+        if (!selectedDate) return;
+
+        api.get("/free-appointments", {
+            params: {
+                start: selectedDate.toISOString(),
+                end: new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).toISOString(),
+                duration: 60
+            }
+        }).then((response) => {
+            console.log(response);
+
+        })
+    }, [selectedDate])
+
+
 
     const nextStep = async () => {
         const validator = registerValidator[step];
@@ -82,7 +100,7 @@ export default function RegisterPage() {
         const formDataToSend = new FormData();
 
         formDataToSend.append("data", JSON.stringify(data));
-        formDataToSend.append("file", selectedFiles[0] || undefined);
+        formDataToSend.append("register_file", selectedFiles[0] || undefined);
 
         console.log(formDataToSend);
 
