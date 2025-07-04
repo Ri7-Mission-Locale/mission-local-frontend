@@ -32,7 +32,6 @@ export default function NewsAdd() {
     fetchTags();
   }, []);
 
-  //A la validation du formulaire , envoi les data du form et les datas de la prise de rdv
   const onSubmit = (data) => {
     const formattedData = {
       ...data,
