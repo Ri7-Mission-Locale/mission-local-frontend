@@ -1,4 +1,4 @@
-export default function FileInput( {htmlFor,label,id,}){
+export default function FileInput( {htmlFor,label,id,className}){
 
 return (
     <>  
