@@ -43,7 +43,7 @@ function App() {
 					<Route path="/news/detail/:id" element={<NewsDetail />} />
 					<Route path="/news/add" element={<NewsAdd />} />
 
-						{/* Workshop Routes */}
+					{/* Workshop Routes */}
 					<Route path="/workshop/list" element={<WorkShopList />} />
 					<Route path="/workshop/detail/:id" element={<WorkShopDetail />} />
 					<Route path="/workshop/add" element={<WorkShopAdd />} />

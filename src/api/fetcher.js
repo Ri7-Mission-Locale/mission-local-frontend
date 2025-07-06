@@ -6,7 +6,7 @@ const host = import.meta.env.VITE_API_URL;
 const api = axios.create({ baseURL: host, withCredentials: true });
 
 api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('access_token');
+    const token = sessionStorage.getItem('access_token');
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
 }, (error) => Promise.reject(error),
@@ -21,6 +21,9 @@ api.interceptors.response.use(async (resp) => {
             sessionStorage.setItem("access_token", newToken.data.token);
             lastRequest.headers.Authorization = `Bearer ${newToken.data.token}`;
             return api(lastRequest);
+        } else {
+
+            sessionStorage.clear()
         }
     }
     return resp;

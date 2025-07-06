@@ -11,14 +11,11 @@ export async function processRegister(data) {
 export async function processLogin(data) {
     try {
         const res = await api.post('/auth/login', data);
+        console.log(res);
+
         return res.data;
     } catch (e) {
-        console.error("Error during login process:", e);
-        if (e.response.data.error.error) {
-            return e.response.data.error.error;
-        }
-        return e;
-
+        throw e.response.data.error || e;
     }
 }
 
@@ -34,7 +31,7 @@ export async function processLogout() {
 
 // Process user disconnection from all devices
 export async function processForceLogout() {
-    const res = await  api.get("auth/force-logout");
+    const res = await api.get("auth/force-logout");
     if (res.status === 200) {
         localStorage.removeItem("access_token");
         return true

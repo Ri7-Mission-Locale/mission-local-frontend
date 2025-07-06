@@ -3,16 +3,16 @@ import { useForm } from "react-hook-form";
 import { loginValidator, signupFields } from "@forms/loginValidator.js";
 import Input from "@components/inputs/Input.jsx";
 import Button from "@components/Button.jsx";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TitleWithReturn from "@components/TitleWithReturn.jsx";
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { processLogin } from "../../api/impl/authentication";
 
 export default function LoginPage() {
     const [serverError, setServerError] = useState(null);
-
+    const navigate = useNavigate();
     const {
         register: login,
         handleSubmit,
@@ -22,29 +22,26 @@ export default function LoginPage() {
         resolver: yupResolver(loginValidator),
     });
 
+    const queryClient = useQueryClient();
     const mutation = useMutation({
-        mutationFn: (d) => {
-            console.log(d);
-
-            return processLogin(d);
-        },
+        mutationFn: processLogin,
         onSuccess: (data) => {
-            console.log(data);
-
             sessionStorage.setItem("access_token", data.token);
             sessionStorage.setItem("role", data.role);
+            queryClient.invalidateQueries(["profile"]);
             reset();
+            setServerError(null);
+            navigate("/");
         },
+
         onError: (error) => {
             console.log(error);
-
-            setServerError(error);
+            setServerError(error.error || "Erreur serveur");
         }
     });
 
     const onSubmit = async (data) => {
-        console.log(data);
-        mutation.mutate({ ...data });
+        mutation.mutate(data);
     }
 
     return (
