@@ -10,6 +10,8 @@ import NewsAdd from "@pages/news/NewsAdd.jsx";
 import LoginPage from "@pages/authentication/LoginPage.jsx";
 import RegisterPage from "@pages/authentication/RegisterPage.jsx";
 import HomePage from "@pages/home/HomePage.jsx";
+import WorkShopDetail from "./pages/workshop/WorkShopDetail";
+import WorkShopAdd from "./pages/workshop/WorkShopAdd";
 
 const client = new QueryClient();
 
@@ -43,8 +45,8 @@ function App() {
 
 						{/* Workshop Routes */}
 					<Route path="/workshop/list" element={<WorkShopList />} />
-					<Route path="/workshop/detail/:id" element={<NewsDetail />} />
-					<Route path="/workshop/add" element={<NewsAdd />} />
+					<Route path="/workshop/detail/:id" element={<WorkShopDetail />} />
+					<Route path="/workshop/add" element={<WorkShopAdd />} />
 				</Routes>
 			</BrowserRouter>
 		</QueryClientProvider>
