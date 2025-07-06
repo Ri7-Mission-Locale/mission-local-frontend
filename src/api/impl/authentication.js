@@ -11,8 +11,6 @@ export async function processRegister(data) {
 export async function processLogin(data) {
     try {
         const res = await api.post('/auth/login', data);
-        console.log(res);
-
         return res.data;
     } catch (e) {
         throw e.response.data.error || e;

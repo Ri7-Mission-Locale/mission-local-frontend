@@ -35,7 +35,6 @@ export default function LoginPage() {
         },
 
         onError: (error) => {
-            console.log(error);
             setServerError(error.error || "Erreur serveur");
         }
     });

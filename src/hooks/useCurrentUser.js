@@ -5,9 +5,10 @@ export default function useCurrentUser() {
     return useQuery({
         queryKey: ["profile"],
         queryFn: async () => {
+            if (sessionStorage.getItem("access_token") === null) {
+                return null;
+            }
             const { data } = await api.get("/profile");
-            console.log(data);
-
             return data;
         },
         staleTime: 1000 * 60 * 5,
