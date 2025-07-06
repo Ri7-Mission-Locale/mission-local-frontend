@@ -1,3 +1,4 @@
+import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router";
 
 export default function Toppbar({ onToggleNav }) {
@@ -7,7 +8,7 @@ export default function Toppbar({ onToggleNav }) {
   ];
 
   return (
-    <header className="flex items-center justify-between px-5">
+    <header className="flex items-center justify-between px-5 py-3">
 
       <button
         onClick={onToggleNav}
@@ -18,8 +19,8 @@ export default function Toppbar({ onToggleNav }) {
         <span className="bg-blue-400 w-full h-1 rounded-sm"></span>
       </button>
 
-      <Link href="/" draggable="false">
-        <img src="https://placehold.co/150x75" alt="IMAGE" draggable="false" />
+      <Link href="/" draggable="false" className="h-20">
+        <img src="/assets/images/logo-mission-locale.png" alt="IMAGE" draggable="false" className="h-full" />
       </Link>
 
       <nav className="md:flex gap-1 items-center hidden">
@@ -30,8 +31,8 @@ export default function Toppbar({ onToggleNav }) {
         ))}
       </nav>
 
-      <button className="md:hidden">
-        <img src="https://placehold.co/64x64" alt="Photo de profile" className="rounded-full" />
+      <button className="md:hidden text-blue-400 text-2xl">
+        <FiSearch />
       </button>
 
     </header>
