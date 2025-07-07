@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useEffect, useState } from "react";
 
 export default function NewsAdd() {
+  const [selectedFiles, setSelectedFiles] = useState([]);
   const navigate = useNavigate();
   const {
     register,
@@ -20,8 +21,8 @@ export default function NewsAdd() {
   const [tags, setTags] = useState([]);
 
   const onError = (errors) => {
-  console.log("Erreurs dans le formulaire :", errors);
-};
+    console.log("Erreurs dans le formulaire :", errors);
+  };
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -36,26 +37,22 @@ export default function NewsAdd() {
   }, []);
 
   const onSubmit = (data) => {
-    const formattedData = {
-      ...data,
-      tags: data.tags,
-    };
-    handlePost(formattedData);
+    // TODO TAG NOT PARSED IN TABLE
+    const formDataToSend = new FormData();
+    formDataToSend.append("data", JSON.stringify(data));
+    formDataToSend.append("register_file", selectedFiles[0] || undefined);
+    api.post(`news`, formDataToSend)
+      .then(() => {
+        toast.success("Actualité ajoutée !");
+        setTimeout(() => {
+          navigate("/news/list");
+        }, 1500);
+      })
+      .catch((err) => {
+        toast.error("Erreur lors de l'ajout !");
+      });
   };
 
-  //Ajoute la news
-  const handlePost = async (formData) => {
-    try {
-      await api.post(`news`, formData);
-      toast.success("Actualité ajoutée !");
-      setTimeout(() => {
-        navigate("/news/list");
-      }, 1500);
-    } catch (err) {
-      toast.error("Erreur lors de l'ajout !");
-      console.log("Erreur lors de l'ajout :", err);
-    }
-  };
 
   const inputList = newsInput.map((el) => (
     <div key={el.id} className="flex flex-col ">
@@ -77,7 +74,7 @@ export default function NewsAdd() {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit,onError)}
+      onSubmit={handleSubmit(onSubmit)}
       action=""
       className=" w-4/5 mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:w-[40%]"
     >
@@ -87,6 +84,7 @@ export default function NewsAdd() {
       <FileInput
         htmlFor={"imagePath"}
         label={"Choisir une image"}
+        onChange={e => setSelectedFiles(e.target.files)}
       />
 
       <label htmlFor="description">Contenu de l'actualité:</label>

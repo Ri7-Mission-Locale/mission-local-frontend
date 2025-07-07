@@ -9,7 +9,6 @@ export const workshopInput = [
     rules: { required: "Le titre est obligatoire" },
     classes: "col-start-1",
   },
-
   {
     label: "Date",
     type: "date",
@@ -20,7 +19,6 @@ export const workshopInput = [
     rules: { required: "La data est obligatoire" },
     classes: "col-start-1",
   },
-
   {
     label: "Nombre de places",
     type: "text",
@@ -32,13 +30,13 @@ export const workshopInput = [
     classes: "col-start-1",
   },
   {
-    label: "Durée",
-    type: "number",
-    for: "duration",
-    placeholder: "Entrez la durée de l'atelier",
-    id: "duration",
-    name: "duration",
-    rules: { required: "La durée de l'atelier est obligatoire" },
+    label: "Heure de début",
+    type: "time",
+    for: "time",
+    placeholder: "Entrez l'heure de début de l'atelier'",
+    id: "time",
+    name: "hoursStart",
+    rules: { required: "L'heure de début est obligatoire" },
     classes: "col-start-1",
   },
   {
@@ -51,14 +49,15 @@ export const workshopInput = [
     rules: { required: "La description est obligatoire" },
     classes: "col-start-1",
   },
-   {
-    label: "Heure de début",
+
+  {
+    label: "Durée",
     type: "time",
-    for: "time",
-    placeholder: "Entrez l'heure de début de l'atelier'",
-    id: "time",
-    name: "time",
-    rules: { required: "L'heure de début est obligatoire" },
+    for: "duration",
+    placeholder: "Entrez la durée de l'atelier",
+    id: "duration",
+    name: "duration",
+    rules: { required: "La durée de l'atelier est obligatoire" },
     classes: "col-start-1",
   },
 ];
