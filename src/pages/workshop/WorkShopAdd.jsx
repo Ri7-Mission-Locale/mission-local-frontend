@@ -32,9 +32,9 @@ export default function WorkShopAdd() {
   return (
     <form
       action=""
-      className=" w-4/5 mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2"
+      className=" mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2 max-w-200 w-full"
     >
-      <SignUpFormTitle label={"Ajouter un atelier"} />
+      <SignUpFormTitle label={"Ajouter un atelier"} className="md:col-span-2" />
       {listItems}
       <FileInput htmlFor={"img"} label={"Choisir une image"} />
       <Button

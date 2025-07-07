@@ -12,6 +12,7 @@ import RegisterPage from "@pages/authentication/RegisterPage.jsx";
 import HomePage from "@pages/home/HomePage.jsx";
 import WorkShopDetail from "./pages/workshop/WorkShopDetail";
 import WorkShopAdd from "./pages/workshop/WorkShopAdd";
+import Calendar from "./pages/calendar/Calendar";
 
 const client = new QueryClient();
 
@@ -47,6 +48,11 @@ function App() {
 					<Route path="/workshop/list" element={<WorkShopList />} />
 					<Route path="/workshop/detail/:id" element={<WorkShopDetail />} />
 					<Route path="/workshop/add" element={<WorkShopAdd />} />
+
+					{/* Calendar  Routes */}
+					<Route path="/calendar" element={<Calendar />} />
+
+
 				</Routes>
 			</BrowserRouter>
 		</QueryClientProvider>
