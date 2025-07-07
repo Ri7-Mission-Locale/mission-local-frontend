@@ -1,8 +1,27 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { carouselItems } from "../data/carouselTest";
+import { useEffect, useState } from "react";
+import api from "../api/fetcher";
 
 export default function NewsCarousel() {
+ const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const data = await api.get("news");
+        console.log(data);
+        
+        setNews(data.data)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchNews();
+  }, []);
+
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -21,10 +40,10 @@ export default function NewsCarousel() {
     },
   };
 
-  const newsTest = carouselItems.map((el) => {
+  const newsTest = news.map((el) => {
     return (
       <div>
-        <img className="m-auto rounded-3xl w-[430px] h-[285px] md:w-[100%] md:h-[532px] " src={el.image} alt="news picture" />{" "}
+        <img className="m-auto rounded-3xl w-[430px] h-[285px] md:w-[100%] md:h-[532px] " src={el.imagePath} alt="news picture" />{" "}
       </div>
     );
   });

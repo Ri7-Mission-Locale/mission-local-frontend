@@ -8,6 +8,8 @@ import Toppbar from "../../partials/Topbar";
 export default function HomePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  
+
   return (
     <>
       <Toppbar onToggleNav={() => setSidebarOpen((v) => !v)} />

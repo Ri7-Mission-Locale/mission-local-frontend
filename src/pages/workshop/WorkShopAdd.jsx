@@ -36,12 +36,11 @@ export default function WorkShopAdd() {
     >
       <SignUpFormTitle label={"Ajouter un atelier"} className="md:col-span-2" />
       {listItems}
-      <FileInput htmlFor={"img"} label={"Choisir une image"} />
+      <FileInput htmlFor={"img"} label={"Choisir une image"} className="md:col-span-2" />
       <Button
-        bgColor="bg-cyan-500"
-        color="text-white"
-        label="Ajouter un atelier"
-      />
+        className="bg-cyan-500 text-white md:col-span-2 "
+
+      >Ajouter un atelier</Button>
     </form>
   );
 }

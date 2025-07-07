@@ -51,4 +51,14 @@ export const workshopInput = [
     rules: { required: "La description est obligatoire" },
     classes: "col-start-1",
   },
+   {
+    label: "Heure de début",
+    type: "time",
+    for: "time",
+    placeholder: "Entrez l'heure de début de l'atelier'",
+    id: "time",
+    name: "time",
+    rules: { required: "L'heure de début est obligatoire" },
+    classes: "col-start-1",
+  },
 ];
