@@ -13,18 +13,14 @@ export default function Toppbar({ onToggleNav }) {
   const logout = async () => {
     try {
       await api.get("/auth/logout");
-    } catch (_) {
+    } catch (err) {
+      console.log(err);
 
     }
     sessionStorage.clear();
     queryClient.removeQueries(["profile"]);
     navigate("/")
   }
-
-  const items = [
-    { label: "Accueil", href: "/" },
-    { label: "Prendre rendez-vous", href: "/rdv" },
-  ];
 
   return (
     <header className="flex items-center justify-between px-5 py-3">

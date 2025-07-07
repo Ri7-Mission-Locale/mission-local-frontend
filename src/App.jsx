@@ -36,7 +36,7 @@ function App() {
 					/>
 
 					{/* User Routes */}
-					<Route path="/user/profil" element={<UserProfil />} />
+					<Route path="/profile" element={<UserProfil />} />
 
 					{/* News Routes */}
 					<Route path="/news/list" element={<NewsList />} />

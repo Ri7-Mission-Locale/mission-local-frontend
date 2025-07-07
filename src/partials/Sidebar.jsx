@@ -2,10 +2,10 @@ import { IoIosClose } from "react-icons/io";
 
 export default function Sidebar({ open, onToggleNav }) {
     return (
-        <aside className={"w-64 bg-gray-800 text-white h-full fixed top-0 left-0 z-50" + (open ? " block" : " hidden")}>
+        <aside className={"w-100 bg-gray-800 text-white h-full fixed top-0 left-0 z-50 transition-transform" + (open ? " translate-x-0" : " -translate-x-full")}>
             <div className="flex flex-col justify-between p-4">
                 <button onClick={onToggleNav} className="text-white">
-                    <IoIosClose className="text-3xl" />
+                    <IoIosClose className="text-6xl" />
                 </button>
                 <img src="/assets/images/logo-mission-locale.png" alt="IMAGE" draggable="false" className="h-full" />
             </div>
