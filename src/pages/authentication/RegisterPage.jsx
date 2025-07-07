@@ -12,6 +12,7 @@ import FileInput from "@components/inputs/FileInput.jsx";
 import Agenda from "@components/agenda/Agenda.jsx";
 import AgendaHours from "@components/agenda/AgendaHours.jsx";
 import api from "../../api/fetcher";
+import { toast } from "react-toastify";
 
 const defaultFormData = Object.fromEntries(
     registerFields.map((field) => [field.name, ""])
@@ -20,7 +21,6 @@ const defaultFormData = Object.fromEntries(
 export default function RegisterPage() {
     const navigate = useNavigate();
     const [step, setStep] = useState(0);
-    const [serverError, setServerError] = useState(null);
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
     const [hours, setHours] = useState([]);
@@ -40,29 +40,6 @@ export default function RegisterPage() {
         e.preventDefault();
         nextStep(formData);
     }
-
-    useEffect(() => {
-        if (!selectedDate) return;
-
-        api.get("/free-appointments", {
-            params: {
-                start: selectedDate.toISOString().split("T")[0],
-                end: new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).toISOString(),
-                duration: 60
-            }
-        }).then((response) => {
-            //console.log(selectedDate);
-
-            const grouped = response.data.data.reduce((acc, slot) => {
-                if (!acc[slot.date]) acc[slot.date] = [];
-                acc[slot.date].push(slot.hour);
-                return acc;
-            }, {});
-            setHours(grouped[selectedDate.toISOString().split('T')[0]] || []);
-            //console.log(grouped);
-        })
-    }, [selectedDate])
-
 
     const nextStep = async () => {
         const validator = registerValidator[step];
@@ -97,30 +74,66 @@ export default function RegisterPage() {
 
     const submit = async (data) => {
         let sendedDate = null;
+
         if (selectedDate && selectedHour) {
             const [hours, minutes] = selectedHour.split(":");
             sendedDate = new Date(selectedDate);
             sendedDate.setHours(Number(hours), Number(minutes), 0, 0);
         }
-        if (sendedDate) data.date = sendedDate.toISOString();
+
+        if (sendedDate) {
+            data.date = sendedDate.toISOString();
+        }
+
         const formDataToSend = new FormData();
 
-        formDataToSend.append("data", JSON.stringify(data));
-        formDataToSend.append("register_file", selectedFiles[0] || undefined);
+        for (const key in data) {
+            if (data[key] !== undefined && data[key] !== null) {
+                formDataToSend.append(key, data[key]);
+            }
+        }
 
-        console.log(formDataToSend);
+        if (selectedFiles[0]) {
+            formDataToSend.append("register_file", selectedFiles[0]);
+        }
 
-        api.post("/auth/register", formDataToSend)
-            .then(() => {
-                setServerError(null);
-                setFormData(defaultFormData);
-                setFormErrors({});
-                navigate("/login");
-            })
-            .catch((err) => {
-                setServerError(err.response.data.message || "Une erreur est survenue lors de l'inscription.");
+        try {
+            await api.post("/auth/register", formDataToSend, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
             });
-    }
+
+            toast.success("Vous etes inscrit !");
+            setFormData(defaultFormData);
+            setFormErrors({});
+            navigate("/login");
+        } catch (err) {
+            toast.error(err.response?.data?.message || "Une erreur est survenue lors de l'inscription.");
+        }
+    };
+
+    useEffect(() => {
+        if (!selectedDate) return;
+
+        api.get("/free-appointments", {
+            params: {
+                start: selectedDate.toISOString().split("T")[0],
+                end: new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).toISOString(),
+                duration: 60
+            }
+        }).then((response) => {
+            //console.log(selectedDate);
+
+            const grouped = response.data.data.reduce((acc, slot) => {
+                if (!acc[slot.date]) acc[slot.date] = [];
+                acc[slot.date].push(slot.hour);
+                return acc;
+            }, {});
+            setHours(grouped[selectedDate.toISOString().split('T')[0]] || []);
+            //console.log(grouped);
+        })
+    }, [selectedDate])
 
     return (
         <main className={"h-dvh flex justify-center items-center md:p-3 bg-cover bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=3871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]"}>
@@ -204,7 +217,6 @@ export default function RegisterPage() {
 
                     </div>
                     <div className="flex flex-col gap-3 px-5">
-                        {serverError && <p className={"text-red-500"}>{serverError}</p>}
                         <Button className="bg-cyan-500 text-white">Suivant</Button>
                         <NavLink to={"/login"} label="S'inscrire"
                             className={`w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 bg-orange-100 text-black text-center`}>Déjà

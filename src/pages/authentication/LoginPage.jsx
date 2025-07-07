@@ -6,12 +6,11 @@ import Button from "@components/Button.jsx";
 import { NavLink, useNavigate } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TitleWithReturn from "@components/TitleWithReturn.jsx";
-import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { processLogin } from "../../api/impl/authentication";
+import { toast } from "react-toastify";
 
 export default function LoginPage() {
-    const [serverError, setServerError] = useState(null);
     const navigate = useNavigate();
     const {
         register: login,
@@ -30,12 +29,12 @@ export default function LoginPage() {
             sessionStorage.setItem("role", data.role);
             queryClient.invalidateQueries(["profile"]);
             reset();
-            setServerError(null);
+            toast.success("Connexion réussie !");
             navigate("/");
         },
 
         onError: (error) => {
-            setServerError(error.error || "Erreur serveur");
+            toast.error(error.error || "Erreur serveur");
         }
     });
 
@@ -57,7 +56,7 @@ export default function LoginPage() {
                         ))}
                     </div>
                     <div className="flex flex-col gap-3 p-3 md:p-8">
-                        {serverError && <p className={"text-red-500"}>{serverError}</p>}
+
                         <Button className="bg-cyan-500 text-white">Se connecter</Button>
                         <NavLink to={"/register"} label="S'inscrire"
                             className={`w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 bg-orange-100 text-black text-center`}>Pas

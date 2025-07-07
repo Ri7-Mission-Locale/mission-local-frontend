@@ -37,10 +37,18 @@ export default function NewsAdd() {
   }, []);
 
   const onSubmit = (data) => {
-    // TODO TAG NOT PARSED IN TABLE
     const formDataToSend = new FormData();
-    formDataToSend.append("data", JSON.stringify(data));
-    formDataToSend.append("register_file", selectedFiles[0] || undefined);
+
+    for (const key in data) {
+      if (data[key] !== undefined && data[key] !== null) {
+        formDataToSend.append(key, data[key]);
+      }
+    }
+
+    if (selectedFiles[0]) {
+      formDataToSend.append("register_file", selectedFiles[0]);
+    }
+
     api.post(`news`, formDataToSend)
       .then(() => {
         toast.success("Actualité ajoutée !");
