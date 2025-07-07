@@ -3,7 +3,6 @@ import Button from "@components/Button";
 import FileInput from "@components/inputs/FileInput.jsx";
 import SignUpFormTitle from "@components/SignUpFormTitle";
 import { newsInput } from "@data/newAddData.js";
-import { get } from "@api/fetcher";
 import Input from "@components/inputs/Input.jsx";
 import api from "@api/fetcher.js";
 import { useNavigate } from "react-router";
@@ -23,7 +22,7 @@ export default function NewsAdd() {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await get("tags"); // GET /tags
+        const response = await api.get("tags"); // GET /tags
         setTags(response);
       } catch (error) {
         console.error("Erreur lors du chargement des tags :", error);
@@ -35,7 +34,7 @@ export default function NewsAdd() {
   const onSubmit = (data) => {
     const formattedData = {
       ...data,
-      tags: data.tags, 
+      tags: data.tags,
     };
     handlePost(formattedData);
   };
@@ -96,28 +95,34 @@ export default function NewsAdd() {
         placeholder="Entrez le contenu de l'actualité"
       ></textarea>
 
-      <div>
-        <label className="block mb-2 font-semibold">Tags :</label>
-        <div className="flex flex-wrap gap-3">
-          {tags.map((tag) => (
-            <label key={tag.id} className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                value={tag.tag_name}
-                {...register("tags", {
-                  validate: (value) =>
-                    value?.length > 0 ||
-                    "Au moins un tag doit être sélectionné",
-                })}
-              />
-              {tag.tag_name}
-            </label>
-          ))}
+      {(tags && tags.length > 0) && (
+        <div>
+          <label className="block mb-2 font-semibold">Tags :</label>
+
+          <div className="flex flex-wrap gap-3">
+            {tags.map((tag) => (
+              <label key={tag.id} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  value={tag.tag_name}
+                  {...register("tags", {
+                    validate: (value) =>
+                      value?.length > 0 ||
+                      "Au moins un tag doit être sélectionné",
+                  })}
+                />
+                {tag.tag_name}
+              </label>
+            ))}
+          </div>
+
+
+          {errors.tags && (
+            <p className="text-red-500 text-sm">{errors.tags.message}</p>
+          )}
         </div>
-        {errors.tags && (
-          <p className="text-red-500 text-sm">{errors.tags.message}</p>
-        )}
-      </div>
+      )}
+
 
       {/*  Permet de simuler une image , à supprimer  */}
       <input
