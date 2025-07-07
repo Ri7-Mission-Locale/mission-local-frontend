@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import NewsCard from "@components/NewsCard";
 import api from "@api/fetcher";
-import TitleWithReturn from "../../components/TitleWithReturn";
 
 export default function NewsList() {
   const [news, setNews] = useState([]);
@@ -27,7 +26,7 @@ export default function NewsList() {
             key={i}
             tag={el.tag}
             title={el.title}
-            img={el.imagePath}
+            img={import.meta.env.VITE_API_URL + "/" + el.imagePath}
             description={el.description}
             id={el.news_id}
           />
