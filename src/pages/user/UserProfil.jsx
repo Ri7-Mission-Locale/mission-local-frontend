@@ -38,6 +38,7 @@ export default function UserProfil() {
 						className="rounded-full h-22 w-22"
 						src="https://www.utopix.com/fr/blog/wp-content/uploads/2024/04/Y2E4OTI3NzQtNmUyOC00YmU2LWE5ZjctODcxY2RlMzg2ZDIy_26dfc43e-31dd-463f-ad04-56f39a430691_profilhomme1-scaled.jpg"
 						alt=""
+
 					/>
 					<div className="border-2 border-purple-800 rounded-full w-full p-1">
 						<h3 className="text-xl font-bold bg-cyan-500 rounded-full w-full text-center py-2 px-5 ">

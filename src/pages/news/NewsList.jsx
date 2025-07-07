@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NewsCard from "@components/NewsCard";
 import api from "@api/fetcher";
+import TitleWithReturn from "../../components/TitleWithReturn";
 
 export default function NewsList() {
   const [news, setNews] = useState([]);
@@ -9,7 +10,7 @@ export default function NewsList() {
     const fetchNews = async () => {
       try {
         const data = await api.get("news");
-        setNews(data);
+        setNews(data.data)
       } catch (err) {
         console.log(err);
       }
