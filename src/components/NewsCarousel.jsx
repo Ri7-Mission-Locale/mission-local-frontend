@@ -24,36 +24,36 @@ export default function NewsCarousel() {
   const newsTest = carouselItems.map((el) => {
     return (
       <div>
-        <img className="m-auto rounded-2xl w-[430px] h-[285px] md:w-[100%] md:h-[532px] " src={el.image} alt="news picture" />{" "}
+        <img className="m-auto rounded-3xl w-[430px] h-[285px] md:w-[100%] md:h-[532px] " src={el.image} alt="news picture" />{" "}
       </div>
     );
   });
 
   return (
     <>
-     
-        <Carousel
-          swipeable={true}
-          draggable={false}
-          showDots={true}
-          responsive={responsive}
-          infinite={true}
-          autoPlaySpeed={10000}
-          autoPlay={true}
-          renderDotsOutside={false}
-          keyBoardControl={true}
-          customTransition="all .5"
-          transitionDuration={500}
-          containerClass="carousel-container"
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
-          className="md:w-[50%]   m-auto"
-          
-        >
-          {newsTest}
-        </Carousel>
- 
+
+      <Carousel
+        swipeable={true}
+        draggable={false}
+        showDots={true}
+        responsive={responsive}
+        infinite={true}
+        autoPlaySpeed={10000}
+        autoPlay={true}
+        renderDotsOutside={false}
+        keyBoardControl={true}
+        customTransition="all .5"
+        transitionDuration={500}
+        containerClass="carousel-container"
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-40-px"
+        className="md:w-full m-auto"
+        arrows={false}
+
+      >
+        {newsTest}
+      </Carousel>
+
     </>
   );
 }

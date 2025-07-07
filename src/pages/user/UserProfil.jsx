@@ -2,10 +2,12 @@ import Input from "@components/inputs/Input.jsx";
 import Button from "@components/Button.jsx";
 import FileInput from "@components/inputs/FileInput.jsx";
 import { useId, useState } from "react";
-import { userProfilData } from "@data/userProfilMockData.js";
+import useCurrentUser from "../../hooks/useCurrentUser";
 
 export default function UserProfil() {
-	const profil = userProfilData;
+	const { data: profil } = useCurrentUser();
+	console.log("Profil : ", profil);
+
 	const [isEditing, setIsEditing] = useState(false);
 	const dateInputId = useId();
 	const phoneInputId = useId();

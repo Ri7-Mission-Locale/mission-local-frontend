@@ -10,6 +10,8 @@ import NewsAdd from "@pages/news/NewsAdd.jsx";
 import LoginPage from "@pages/authentication/LoginPage.jsx";
 import RegisterPage from "@pages/authentication/RegisterPage.jsx";
 import HomePage from "@pages/home/HomePage.jsx";
+import WorkShopDetail from "./pages/workshop/WorkShopDetail";
+import WorkShopAdd from "./pages/workshop/WorkShopAdd";
 
 const client = new QueryClient();
 
@@ -34,17 +36,17 @@ function App() {
 					/>
 
 					{/* User Routes */}
-					<Route path="/user/profil" element={<UserProfil />} />
+					<Route path="/profile" element={<UserProfil />} />
 
 					{/* News Routes */}
 					<Route path="/news/list" element={<NewsList />} />
 					<Route path="/news/detail/:id" element={<NewsDetail />} />
 					<Route path="/news/add" element={<NewsAdd />} />
 
-						{/* Workshop Routes */}
+					{/* Workshop Routes */}
 					<Route path="/workshop/list" element={<WorkShopList />} />
-					<Route path="/workshop/detail/:id" element={<NewsDetail />} />
-					<Route path="/workshop/add" element={<NewsAdd />} />
+					<Route path="/workshop/detail/:id" element={<WorkShopDetail />} />
+					<Route path="/workshop/add" element={<WorkShopAdd />} />
 				</Routes>
 			</BrowserRouter>
 		</QueryClientProvider>

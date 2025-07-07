@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "@components/Button";
 import Tag from "@components/Tag";
-import { get, remove, patch } from "@api/fetcher";
+import api from "@api/fetcher";
 import { data, useNavigate, useParams } from "react-router";
 import Input from "@components/inputs/Input.jsx";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,9 +15,10 @@ export default function NewsDetail() {
   const [formData, setFormData] = useState({});
 
   //// Fetch la news par ID
+
 const fetchNews = async () => {
   try {
-    const data = await get(`news/${id}`);
+    const data = await api.get(`news/${id}`);
     setNews(data);
     setFormData({
       title: data.title,
@@ -38,7 +39,8 @@ const fetchNews = async () => {
   //// Supprime la news selectionné
   const handleDelete = async () => {
     try {
-      await remove(`news/${id}`);
+
+      await api.remove(`news/${id}`);
       toast.success("Actualité supprimée !");
       setTimeout(() => {
         navigate("/news/list");
@@ -50,9 +52,10 @@ const fetchNews = async () => {
   };
 
   //Modifie la news
+
 const handlePatch = async () => {
   try {
-    await patch(`news/${id}`, formData);
+    await api.patch(`news/${id}`, formData);
     toast.success("Actualité mise à jour !");
     fetchNews(); 
   } catch (err) {
@@ -60,7 +63,6 @@ const handlePatch = async () => {
     console.log("Erreur lors de la mise à jour :", err);
   }
 };
-
 
   //Passe en mode modification
   function handleClick() {

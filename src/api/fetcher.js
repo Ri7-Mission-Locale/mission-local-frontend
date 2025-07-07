@@ -1,82 +1,32 @@
+import axios from "axios";
+
 const host = import.meta.env.VITE_API_URL;
-let isRefreshing = false;
-let currentRefresh = null;
 
-export async function get(route, query = null) {
-    return await fetcher(route, "GET", null, query);
-}
-export async function post(route, body, query = null) {
-    return await fetcher(route, "POST", body, query);
-}
-export async function put(route, body, query = null) {
-    return await fetcher(route, "PUT", body, query);
-}
-export async function patch(route, body, query = null) {
-    return await fetcher(route, "PATCH", body, query);
-}
-export async function remove(route, body, query = null) {
-    return await fetcher(route, "DELETE", body, query);
-}
 
-async function fetcher(route, method = "GET", body = {}, query = null) {
-    const token = sessionStorage.getItem("access_token");
+const api = axios.create({ baseURL: host, withCredentials: true });
 
-    const queryParams = query ? `?${buildQuery(query)}` : "";
+api.interceptors.request.use((config) => {
+    const token = sessionStorage.getItem('access_token');
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+    return config;
+}, (error) => Promise.reject(error),
+);
 
-    const request = async () => {
-        const options = {
-            method,
-            credentials: "include",
-            headers: {
-                Authorization: token ? `Bearer ${token}` : "",
-                "Content-Type": "application/json",
-            },
-        };
-        if (method !== "GET") options.body = JSON.stringify(body);
-        return await fetch(`${host}/${route}${queryParams}`, options);
-    };
 
-    if (isRefreshing && currentRefresh) await currentRefresh;
-    let response = await request();
+api.interceptors.response.use(async (resp) => {
+    const lastRequest = resp.request;
+    if (resp.status === 401) {
+        const newToken = await axios.get(`${host}/auth/refresh`);
+        if (newToken.status === 200) {
+            sessionStorage.setItem("access_token", newToken.data.token);
+            lastRequest.headers.Authorization = `Bearer ${newToken.data.token}`;
+            return api(lastRequest);
+        } else {
 
-    if (response.status === 401 && token) {
-        if (!isRefreshing) {
-            isRefreshing = true;
-            currentRefresh = handleRefresh(token);
+            sessionStorage.clear()
         }
-        await currentRefresh;
-        isRefreshing = false;
-        currentRefresh = null;
-        response = await request();
     }
-    return await response.json();
-}
+    return resp;
+})
 
-function buildQuery(params) {
-    const filtered = params.filter(([, v]) => v != null && v !== "");
-    return new URLSearchParams(filtered).toString();
-}
-
-async function handleRefresh(token) {
-    try {
-        const res = await fetch(`${host}/auth/refresh`, {
-            method: "GET",
-            credentials: "include",
-            headers: {
-                Authorization: token ? `Bearer ${token}` : "",
-                "Content-Type": "application/json",
-            }
-        });
-        if (!res.ok) throw "Une erreur est survenue";
-
-        const data = await res.json();
-        if (!data || !data.token) throw new Error(res);
-        
-
-        sessionStorage.setItem("access_token", data.token);
-        return data;
-    } catch (err) {
-        console.error("Error during refresh session: ", err);
-        sessionStorage.removeItem("access_token");
-    }
-}
+export default api;

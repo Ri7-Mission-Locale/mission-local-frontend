@@ -5,13 +5,13 @@ import SignUpFormTitle from "@components/SignUpFormTitle";
 import { newsInput } from "@data/newAddData.js";
 import { get } from "@api/fetcher";
 import Input from "@components/inputs/Input.jsx";
-import { post } from "@api/fetcher.js";
+import api from "@api/fetcher.js";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import { useEffect, useState } from "react";
 
 export default function NewsAdd() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -43,11 +43,13 @@ export default function NewsAdd() {
   //Ajoute la news
   const handlePost = async (formData) => {
     try {
-      await post(`news`, formData);
+
+      await api.post(`news`, formData);
       toast.success("Actualité ajoutée !");
       setTimeout(() => {
         navigate("/news/list");
       }, 1500);
+
     } catch (err) {
       toast.error("Erreur lors de l'ajout !");
       console.log("Erreur lors de l'ajout :", err);
