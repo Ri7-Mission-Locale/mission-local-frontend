@@ -3,9 +3,12 @@ import Button from "@components/Button";
 import FileInput from "@components/inputs/FileInput.jsx";
 import SignUpFormTitle from "@components/SignUpFormTitle";
 import { newsInput } from "@data/newAddData.js";
+import { get } from "@api/fetcher";
 import Input from "@components/inputs/Input.jsx";
 import api from "@api/fetcher.js";
 import { useNavigate } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 export default function NewsAdd() {
   const navigate = useNavigate();
@@ -15,20 +18,40 @@ export default function NewsAdd() {
     handleSubmit,
   } = useForm();
 
-  //A la validation du formulaire , envoi les data du form et les datas de la prise de rdv
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const response = await get("tags"); // GET /tags
+        setTags(response);
+      } catch (error) {
+        console.error("Erreur lors du chargement des tags :", error);
+      }
+    };
+    fetchTags();
+  }, []);
+
   const onSubmit = (data) => {
-    handlePost(data);
+    const formattedData = {
+      ...data,
+      tags: data.tags, 
+    };
+    handlePost(formattedData);
   };
 
   //Ajoute la news
   const handlePost = async (formData) => {
     try {
-      await api.post(`news`, formData);
-      console.log(formData);
 
-      alert("Actualité ajoutée !");
-      navigate("/news/list");
+      await api.post(`news`, formData);
+      toast.success("Actualité ajoutée !");
+      setTimeout(() => {
+        navigate("/news/list");
+      }, 1500);
+
     } catch (err) {
+      toast.error("Erreur lors de l'ajout !");
       console.log("Erreur lors de l'ajout :", err);
     }
   };
@@ -73,6 +96,29 @@ export default function NewsAdd() {
         placeholder="Entrez le contenu de l'actualité"
       ></textarea>
 
+      <div>
+        <label className="block mb-2 font-semibold">Tags :</label>
+        <div className="flex flex-wrap gap-3">
+          {tags.map((tag) => (
+            <label key={tag.id} className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                value={tag.tag_name}
+                {...register("tags", {
+                  validate: (value) =>
+                    value?.length > 0 ||
+                    "Au moins un tag doit être sélectionné",
+                })}
+              />
+              {tag.tag_name}
+            </label>
+          ))}
+        </div>
+        {errors.tags && (
+          <p className="text-red-500 text-sm">{errors.tags.message}</p>
+        )}
+      </div>
+
       {/*  Permet de simuler une image , à supprimer  */}
       <input
         type="hidden"
@@ -81,10 +127,13 @@ export default function NewsAdd() {
       />
       {/*  Permet de simuler une image , à supprimer  */}
 
-
       <Button
         className="bg-cyan-500 text-white md:w-[40%] m-auto"
-        type={"submit"}>Ajouter une actualité</Button>
+        type={"submit"}
+      >
+        Ajouter une actualité
+      </Button>
+      <ToastContainer hideProgressBar={true} />
     </form>
   );
 }
