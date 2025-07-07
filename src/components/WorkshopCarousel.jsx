@@ -2,14 +2,33 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { workshopMock } from "../data/workshopMockData";
 import Button from "./Button";
+import { useEffect, useState } from "react";
+import api from "../api/fetcher";
 
 export default function WorkshopCarousel() {
+
+  const [workshop, setWorkshop] = useState([]);
+
+  useEffect(() => {
+    const fetchWorkshop = async () => {
+      try {
+        const data = await api.get("workshops");
+        console.log(data);
+        
+        setWorkshop(data.data)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchWorkshop();
+  }, []);
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 2,
+      items: 3,
       slidesToSlide: 1, // optional, default to 1.
-      partialVisibilityGutter: 100,
+     
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -25,12 +44,14 @@ export default function WorkshopCarousel() {
     },
   };
 
-  const workShopTest = workshopMock.map((el) => {
+  
+
+  const workShopTest = workshop.map((el) => {
     return (
       <article className="p-3 flex flex-col gap-3  ">
         <img
           className="m-auto rounded-t-2xl w-[430px] h-[285px] md:w-[400px] md:h-[200px] "
-          src={el.img}
+          src={import.meta.env.VITE_API_URL + "/" + el.imagePath}
           alt="workshop picture"
         />{" "}
         <h3 className="font-bold text-center">{el.title}</h3>

@@ -42,9 +42,9 @@ export default function NewsCarousel() {
 
   const newsCarrousel = news.map((el) => {
     return (
-   <div key={el.id} className="relative  rounded-3xl overflow-hidden m-auto max-w-600 max-h-100 w-full">
+<div key={el.id} className="relative rounded-3xl overflow-hidden m-auto max-w-600 max-h-100 w-full">
   <img
-    className="w-full h-full object-cover rounded-3xl"
+    className="w-full h-full object-contain rounded-3xl"
     src={el.imagePath}
     alt="news picture"
   />

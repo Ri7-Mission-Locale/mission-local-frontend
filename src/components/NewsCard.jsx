@@ -1,11 +1,9 @@
 import ButtonLink from "./ButtonLink";
 import Tag from "@components/Tag";
 
-export default function NewsCard({ title, img, tag, description , id }) {
+export default function NewsCard({ title, img, tag, description, id }) {
   return (
-    <article
-      className="rounded-xl w-4/5 m-auto border border-gray-300 flex flex-col gap-5 shadow-gray-400 shadow-md"
-    >
+    <article className="rounded-xl w-4/5 m-auto border border-gray-300 flex flex-col gap-5 shadow-gray-400 shadow-md">
       <div className="flex flex-col gap-2">
         <img className="rounded-t-xl pb-3" src={img} alt={title} />
         {Array.isArray(tag) && tag.length > 0 && (
@@ -28,8 +26,7 @@ export default function NewsCard({ title, img, tag, description , id }) {
           color="text-white"
           label="Plus d'infos"
           size="w-35"
-         to={`/news/detail/${id}`}
-
+          to={`/news/detail/${id}`}
         />
       </div>
     </article>

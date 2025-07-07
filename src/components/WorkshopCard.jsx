@@ -1,4 +1,5 @@
 import Button from "./Button";
+import ButtonLink from "./ButtonLink";
 import Tag from "./Tag";
 
 export default function WorkshopCard({
@@ -8,15 +9,16 @@ export default function WorkshopCard({
   size,
   description,
   key,
+  id
 }) {
   return (
     <>
       <article
         key={key}
-        className=" rounded-xl w-4/5 m-auto border border-gray-300 flex flex-col gap-5 shadow-gray-400 shadow-md"
+        className=" rounded-xl w-4/5 m-auto border border-gray-300 flex flex-col gap-6 shadow-gray-400 shadow-md md:max-w-150"
       >
-        <div className="flex flex-col gap-2">
-          <img className="rounded-t-xl" src={img} alt="" />
+        <div className="flex flex-col gap-4">
+          <img className="rounded-t-xl " src={img} alt="img workshop" />
           <label for="queue"></label>
           <progress
             id="queue"
@@ -26,7 +28,7 @@ export default function WorkshopCard({
             style={{ WebkitAppearance: "none", appearance: "none" }}
           ></progress>
           <div className="tags w-[80%] m-auto ">
-            {tag.map((t, index) => (
+            {tag?.map((t, index) => (
               <Tag key={index} text={t.tag_name} color={t.color} />
             ))}
           </div>
@@ -37,14 +39,15 @@ export default function WorkshopCard({
           <p>{description}</p>
         </div>
 
-        <div className="flex justify-end p-4 mt-auto">
-          <Button
-            bgColor="bg-cyan-500"
-            color="text-white"
-            label="Plus d'infos"
-            size="w-35"
-          />
-        </div>
+           <div className="flex justify-end p-4 mt-auto">
+                <ButtonLink
+                  bgColor="bg-cyan-500"
+                  color="text-white"
+                  label="Plus d'infos"
+                  size="w-35"
+                  to={`/workshop/detail/${id}`}
+                />
+              </div>
       </article>
     </>
   );
