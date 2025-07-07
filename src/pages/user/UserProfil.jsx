@@ -58,7 +58,7 @@ export default function UserProfil() {
 							className="bg-gray-100 rounded-full w-[85%] m-auto ps-2"
 							type="date"
 						>
-							{formData.birth_date}
+						Date de naissance :	{formData.birth_date}
 						</p>
 					)}
 
@@ -73,7 +73,7 @@ export default function UserProfil() {
 						/>
 					) : (
 						<p className="bg-gray-100 rounded-full w-[85%] m-auto ps-2">
-							{profil.phone}
+							Téléphone : {profil.phone}
 						</p>
 					)}
 				</div>

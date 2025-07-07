@@ -19,7 +19,8 @@ export default function NewsDetail() {
 const fetchNews = async () => {
   try {
     const data = await api.get(`news/${id}`);
-    setNews(data);
+    setNews(data.data);
+
     setFormData({
       title: data.title,
       description: data.description,
@@ -40,7 +41,7 @@ const fetchNews = async () => {
   const handleDelete = async () => {
     try {
 
-      await api.remove(`news/${id}`);
+      await api.delete(`news/${id}`);
       toast.success("Actualité supprimée !");
       setTimeout(() => {
         navigate("/news/list");
@@ -79,7 +80,7 @@ const handlePatch = async () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <article className=" rounded-xl w-4/5 m-auto  flex flex-col gap-5  pt-5 md:w-[50%]    ">
+      <article className=" rounded-xl w-4/5 m-auto  flex flex-col gap-5  pt-5 md:w-[50%] border   ">
         <div className="flex flex-col gap-2 w-[80%] m-auto ">
           {isEditing ? (
             <Input

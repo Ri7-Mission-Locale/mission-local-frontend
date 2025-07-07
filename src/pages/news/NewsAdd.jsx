@@ -19,11 +19,15 @@ export default function NewsAdd() {
 
   const [tags, setTags] = useState([]);
 
+  const onError = (errors) => {
+  console.log("Erreurs dans le formulaire :", errors);
+};
+
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await api.get("tags"); // GET /tags
-        setTags(response);
+        const response = await api.get("tags");
+        setTags(response.data);
       } catch (error) {
         console.error("Erreur lors du chargement des tags :", error);
       }
@@ -42,13 +46,11 @@ export default function NewsAdd() {
   //Ajoute la news
   const handlePost = async (formData) => {
     try {
-
       await api.post(`news`, formData);
       toast.success("Actualité ajoutée !");
       setTimeout(() => {
         navigate("/news/list");
       }, 1500);
-
     } catch (err) {
       toast.error("Erreur lors de l'ajout !");
       console.log("Erreur lors de l'ajout :", err);
@@ -75,14 +77,17 @@ export default function NewsAdd() {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit,onError)}
       action=""
       className=" w-4/5 mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:w-[40%]"
     >
       <SignUpFormTitle label={"Ajouter une actualité"} />
       {inputList}
 
-      <FileInput htmlFor={"imagePath"} label={"Choisir une image"} />
+      <FileInput
+        htmlFor={"imagePath"}
+        label={"Choisir une image"}
+      />
 
       <label htmlFor="description">Contenu de l'actualité:</label>
       <textarea
@@ -95,7 +100,15 @@ export default function NewsAdd() {
         placeholder="Entrez le contenu de l'actualité"
       ></textarea>
 
-      {(tags && tags.length > 0) && (
+      {/*  Permet de simuler une image , à supprimer  */}
+      <input
+        type="hidden"
+        value="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?cs=srgb&dl=pexels-fauxels-3183197.jpg&fm=jpg"
+        {...register("imagePath", { required: true })}
+      />
+      {/*  Permet de simuler une image , à supprimer  */}
+
+      {tags && tags.length > 0 && (
         <div>
           <label className="block mb-2 font-semibold">Tags :</label>
 
@@ -116,21 +129,11 @@ export default function NewsAdd() {
             ))}
           </div>
 
-
           {errors.tags && (
             <p className="text-red-500 text-sm">{errors.tags.message}</p>
           )}
         </div>
       )}
-
-
-      {/*  Permet de simuler une image , à supprimer  */}
-      <input
-        type="hidden"
-        value="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?cs=srgb&dl=pexels-fauxels-3183197.jpg&fm=jpg"
-        {...register("imagePath", { required: true })}
-      />
-      {/*  Permet de simuler une image , à supprimer  */}
 
       <Button
         className="bg-cyan-500 text-white md:w-[40%] m-auto"
