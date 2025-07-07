@@ -1,45 +1,60 @@
 import { Link } from "react-router";
 import AloneSection from "@partials/AloneSection.jsx";
 import { FiUser } from "react-icons/fi";
+import { IoNewspaperSharp } from "react-icons/io5";
+import { FaClipboardList, FaCalendarAlt } from "react-icons/fa";
+import DefaultLayout from "../../layouts/DefaultLayout";
 
 export default function AdminDashboardPage() {
   return (
-    <main>
-      <AloneSection className="flex justify-center items-center h-screen p-8">
-        <article className="flex flex-col gap-3 bg-white p-5 rounded-sm">
-          <h2 className="font-bold text-xl">Panel d'administration:</h2>
+    <DefaultLayout>
+      <main>
+        <AloneSection className="flex justify-center items-center h-screen p-8">
+          <article className="flex flex-col gap-3 bg-white p-5 rounded-sm">
+            <h2 className="font-bold text-xl">Panel d'administration:</h2>
 
-          <Link
-            to={"/admin/users"}
-            className="flex items-center gap-3 bg-blue-500 hover:bg-blue-700 w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white text-center"
-            color="text-white"
-            type="button"
-          >
-            <FiUser />
-            Utilisateurs
-          </Link>
-          <Link
-            to={"/news/add"}
-            className="flex items-center gap-3 bg-blue-500 hover:bg-blue-700 w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white text-center"
-            color="text-white"
-            type="button"
-          >
-            <FiUser />
-            Actualités
-          </Link>
-          <Link
-            to={"/workshop/add"}
-            className="flex items-center gap-3 bg-blue-500 hover:bg-blue-700 w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white text-center"
-            color="text-white"
-            type="button"
-          >
-            <FiUser />
-            Ateliers
-          </Link>
-          
-        </article>
-      </AloneSection>
-      <div className="absolute -z-10 backdrop-blur-xl top-0 bottom-0 left-0 right-0 bg-slate-700"></div>
-    </main>
+            <Link
+              to={"/admin/users"}
+              className="flex items-center gap-3 bg-blue-500 hover:bg-blue-700 w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white text-center"
+              color="text-white"
+              type="button"
+            >
+              <FiUser />
+              Utilisateurs
+            </Link>
+            <Link
+              to={"/news/add"}
+              className="flex items-center gap-3 bg-blue-500 hover:bg-blue-700 w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white text-center"
+              color="text-white"
+              type="button"
+            >
+              <IoNewspaperSharp />
+              Actualités
+            </Link>
+            <Link
+              to={"/workshop/add"}
+              className="flex items-center gap-3 bg-blue-500 hover:bg-blue-700 w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white text-center"
+              color="text-white"
+              type="button"
+            >
+              <FaClipboardList />
+              Ateliers
+            </Link>
+            <Link
+              to={"/calendar"}
+              className="flex items-center gap-3 bg-blue-500 hover:bg-blue-700 w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white text-center"
+              color="text-white"
+              type="button"
+            >
+              <FaCalendarAlt />
+              Callendrier
+            </Link>
+
+          </article>
+        </AloneSection>
+        <div className="absolute -z-10 backdrop-blur-xl top-0 bottom-0 left-0 right-0 bg-slate-700"></div>
+      </main>
+    </DefaultLayout>
+
   );
 }

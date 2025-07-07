@@ -1,17 +1,18 @@
 import WorkshopCard from "@components/WorkshopCard.jsx";
 import { useEffect, useState } from "react";
 import api from "../../api/fetcher";
+import DefaultLayout from "../../layouts/DefaultLayout";
 
 
 export default function WorkShopList() {
- const [workshop, setWorkshop] = useState([]);
+  const [workshop, setWorkshop] = useState([]);
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
         const data = await api.get("workshops");
         console.log(data);
-        
+
         setWorkshop(data.data)
       } catch (err) {
         console.log(err);
@@ -36,11 +37,11 @@ export default function WorkShopList() {
   ));
 
   return (
-    <>
+    <DefaultLayout>
       <section className=" flex flex-col gap-10" >
         <h2 className="mx-auto font-extrabold text-3xl">ATELIERS</h2>
         {listWorkshop}
       </section>
-    </>
+    </DefaultLayout>
   );
 }

@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "@api/fetcher.js";
 import useUserFilters from "@services/userFilter.js";
 import Loader from "../../components/miscs/Loader"
+import DefaultLayout from "../../layouts/DefaultLayout";
 
 
 export default function UserManagementPage() {
@@ -27,56 +28,59 @@ export default function UserManagementPage() {
     const handleOrderSelect = (e) => setFilter("order", e.target.value);
 
     return (
-        <main className="flex items-center justify-center p-5 h-screen">
-            <AloneSection className="min-w-xs p-5">
-                <TitleWithReturn link={"/admin"}>Utilisateurs</TitleWithReturn>
-                <div className="flex gap-2 items-center ">
-                    <Button className="bg-blue-400 w-fit text-white">Ajouter</Button>
-                    <SearchBar
-                        name="search"
-                        label="Recherche"
-                        className="w-full"
-                        onChange={handleSearch}
-                        value={filters.name}
-                    />
-                </div>
-                <div className="flex gap-2 items-center ">
-                    <select name="role" id="roles" onChange={handleRoleSelect} value={filters.role}>
-                        <option value="all">Tout</option>
-                        <option value="ADMIN">Admin</option>
-                        <option value="ADVISOR">Conseillé</option>
-                        <option value="USER">Utilisateur</option>
-                    </select>
-                    <select name="order" id="order" onChange={handleOrderSelect} value={filters.order}>
-                        <option value="asc">Ascendant</option>
-                        <option value="desc">Descendant</option>
-                    </select>
-                </div>
-                {isLoading ? (
-                    <Loader size={10} weight={5} />
-                ) : (
-                    <article className="flex flex-col gap-1 p-3 ">
-                        {users.map((user, i) => <SpanUser key={i} user={user} />)}
-                    </article>
-                )}
-                <div className="flex items-center gap-2 mt-4 mx-auto">
-                    <button
-                        onClick={() => setFilter("page", Math.max(1, filters.page - 1))}
-                        disabled={filters.page === 1}
-                        className="px-3 py-1 border rounded disabled:opacity-50"
-                    >
-                        Précédent
-                    </button>
-                    <span>Page {filters.page}</span>
-                    <button
-                        onClick={() => setFilter("page", filters.page + 1)}
-                        disabled={users.length < filters.limit}
-                        className="px-3 py-1 border rounded disabled:opacity-50"
-                    >
-                        Suivant
-                    </button>
-                </div>
-            </AloneSection>
-        </main>
+        <DefaultLayout>
+            <main className="flex items-center justify-center p-5 h-screen">
+                <AloneSection className="min-w-xs p-5">
+                    <TitleWithReturn link={"/admin"}>Utilisateurs</TitleWithReturn>
+                    <div className="flex gap-2 items-center ">
+                        <Button className="bg-blue-400 w-fit text-white">Ajouter</Button>
+                        <SearchBar
+                            name="search"
+                            label="Recherche"
+                            className="w-full"
+                            onChange={handleSearch}
+                            value={filters.name}
+                        />
+                    </div>
+                    <div className="flex gap-2 items-center ">
+                        <select name="role" id="roles" onChange={handleRoleSelect} value={filters.role}>
+                            <option value="all">Tout</option>
+                            <option value="ADMIN">Admin</option>
+                            <option value="ADVISOR">Conseillé</option>
+                            <option value="USER">Utilisateur</option>
+                        </select>
+                        <select name="order" id="order" onChange={handleOrderSelect} value={filters.order}>
+                            <option value="asc">Ascendant</option>
+                            <option value="desc">Descendant</option>
+                        </select>
+                    </div>
+                    {isLoading ? (
+                        <Loader size={10} weight={5} />
+                    ) : (
+                        <article className="flex flex-col gap-1 p-3 ">
+                            {users.map((user, i) => <SpanUser key={i} user={user} />)}
+                        </article>
+                    )}
+                    <div className="flex items-center gap-2 mt-4 mx-auto">
+                        <button
+                            onClick={() => setFilter("page", Math.max(1, filters.page - 1))}
+                            disabled={filters.page === 1}
+                            className="px-3 py-1 border rounded disabled:opacity-50"
+                        >
+                            Précédent
+                        </button>
+                        <span>Page {filters.page}</span>
+                        <button
+                            onClick={() => setFilter("page", filters.page + 1)}
+                            disabled={users.length < filters.limit}
+                            className="px-3 py-1 border rounded disabled:opacity-50"
+                        >
+                            Suivant
+                        </button>
+                    </div>
+                </AloneSection>
+            </main>
+        </DefaultLayout>
+
     );
 }

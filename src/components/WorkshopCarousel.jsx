@@ -12,7 +12,7 @@ export default function WorkshopCarousel() {
   useEffect(() => {
     const fetchWorkshop = async () => {
       try {
-        const data = await api.get("workshops");
+        const data = await api.get("/workshops");
         console.log(data);
         
         setWorkshop(data.data)
@@ -72,14 +72,12 @@ export default function WorkshopCarousel() {
         autoPlay={true}
         renderDotsOutside={false}
         keyBoardControl={true}
-        customTransition="all .5"
         transitionDuration={500}
         containerClass="carousel-container"
         removeArrowOnDeviceType={["tablet", "mobile"]}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
         className="md:w-[50%] m-auto"
-       partialVisbile={true}
       >
         {workShopTest}
       </Carousel>

@@ -32,7 +32,8 @@ export default function WorkShopDetail() {
   }, []);
 
   return (
-    <article className=" rounded-xl w-4/5 m-auto border border-gray-300 flex flex-col gap-5 shadow-gray-400 shadow-md pt-5">
+    <DefaultLayout>
+      <article className=" rounded-xl w-4/5 m-auto border border-gray-300 flex flex-col gap-5 shadow-gray-400 shadow-md pt-5">
       <div className="flex flex-col gap-2">
         <h2 className="font-bold text-4xl text-center">{workshop.title}</h2>
         <div className="w-[90%] m-auto max-w-md aspect-video">
@@ -82,5 +83,7 @@ export default function WorkShopDetail() {
         />
       </div>
     </article>
+    </DefaultLayout>
+    
   );
 }

@@ -8,6 +8,7 @@ import api from "../../api/fetcher";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import DefaultLayout from "../../layouts/DefaultLayout";
 
 export default function WorkShopAdd() {
   const navigate = useNavigate();
@@ -62,16 +63,19 @@ export default function WorkShopAdd() {
   ));
 
   return (
-    <form
-      onSubmit={handleSubmit(submit)}
-      className=" mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2 max-w-200 w-full"
-    >
-      <SignUpFormTitle label={"Ajouter un atelier"} className="md:col-span-2" />
-      {listItems}
-      <FileInput htmlFor={"imagePath"} label={"Choisir une image"} className="md:col-span-2" onChange={e => setSelectedFiles(e.target.files)} />
-      <Button
-        className="bg-cyan-500 text-white md:col-span-2 "
-      >Ajouter un atelier</Button>
-    </form>
+    <DefaultLayout>
+      <form
+        onSubmit={handleSubmit(submit)}
+        className=" mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2 max-w-200 w-full"
+      >
+        <SignUpFormTitle label={"Ajouter un atelier"} className="md:col-span-2" />
+        {listItems}
+        <FileInput htmlFor={"imagePath"} label={"Choisir une image"} className="md:col-span-2" onChange={e => setSelectedFiles(e.target.files)} />
+        <Button
+          className="bg-cyan-500 text-white md:col-span-2 "
+        >Ajouter un atelier</Button>
+      </form>
+    </DefaultLayout>
+
   );
 }

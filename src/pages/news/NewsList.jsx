@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NewsCard from "@components/NewsCard";
 import api from "@api/fetcher";
+import DefaultLayout from "../../layouts/DefaultLayout";
 
 export default function NewsList() {
   const [news, setNews] = useState([]);
@@ -18,7 +19,7 @@ export default function NewsList() {
   }, []);
 
   return (
-    <>
+    <DefaultLayout>
       <section className=" flex flex-col gap-10 md:w-[50%] m-auto">
         <h2 className="mx-auto font-extrabold text-3xl">Actualités</h2>
         {news?.map((el, i) => (
@@ -32,6 +33,6 @@ export default function NewsList() {
           />
         ))}
       </section>
-    </>
+    </DefaultLayout>
   );
 }

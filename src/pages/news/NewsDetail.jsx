@@ -5,6 +5,7 @@ import api from "@api/fetcher";
 import { data, useNavigate, useParams } from "react-router";
 import Input from "@components/inputs/Input.jsx";
 import { ToastContainer, toast } from "react-toastify";
+import DefaultLayout from "../../layouts/DefaultLayout";
 
 export default function NewsDetail() {
   const navigate = useNavigate();
@@ -79,7 +80,8 @@ const handlePatch = async () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <DefaultLayout>
+      <div className="flex items-center justify-center min-h-screen">
       <article className=" rounded-xl w-4/5 m-auto  flex flex-col gap-5  pt-5 md:w-[50%] border   ">
         <div className="flex flex-col gap-2 w-[80%] m-auto ">
           {isEditing ? (
@@ -150,5 +152,7 @@ const handlePatch = async () => {
         hideProgressBar={true} />
       </article>
     </div>
+    </DefaultLayout>
+    
   );
 }
