@@ -9,16 +9,19 @@ export default function WorkshopCarousel() {
       breakpoint: { max: 3000, min: 1024 },
       items: 2,
       slidesToSlide: 1, // optional, default to 1.
+      partialVisibilityGutter: 100,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      items: 1,
       slidesToSlide: 2, // optional, default to 1.
+      partialVisibilityGutter: 100,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2,
+      items: 1,
       slidesToSlide: 1, // optional, default to 1.
+      partialVisibilityGutter: 100,
     },
   };
 
@@ -26,12 +29,12 @@ export default function WorkshopCarousel() {
     return (
       <article className="p-3 flex flex-col gap-3  ">
         <img
-          className="m-auto rounded-2xl w-[430px] h-[285px] md:w-[800px] md:h-[400px] "
+          className="m-auto rounded-t-2xl w-[430px] h-[285px] md:w-[400px] md:h-[200px] "
           src={el.img}
           alt="workshop picture"
         />{" "}
         <h3 className="font-bold text-center">{el.title}</h3>
-        <Button className="bg-cyan-500 text-white ">Plus d'infos</Button>
+        <Button className="bg-cyan-500 text-white max-w-[430px] m-auto">Plus d'infos</Button>
       </article>
     );
   });
@@ -55,6 +58,7 @@ export default function WorkshopCarousel() {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
         className="md:w-[50%] m-auto"
+       partialVisbile={true}
       >
         {workShopTest}
       </Carousel>

@@ -1,6 +1,5 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { carouselItems } from "../data/carouselTest";
 import { useEffect, useState } from "react";
 import api from "../api/fetcher";
 
@@ -27,6 +26,7 @@ export default function NewsCarousel() {
       breakpoint: { max: 3000, min: 1024 },
       items: 1,
       slidesToSlide: 1, // optional, default to 1.
+      
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -40,11 +40,19 @@ export default function NewsCarousel() {
     },
   };
 
-  const newsTest = news.map((el) => {
+  const newsCarrousel = news.map((el) => {
     return (
-      <div>
-        <img className="m-auto rounded-3xl w-[430px] h-[285px] md:w-[100%] md:h-[532px] " src={el.imagePath} alt="news picture" />{" "}
-      </div>
+   <div key={el.id} className="relative  rounded-3xl overflow-hidden m-auto max-w-600 max-h-100 w-full">
+  <img
+    className="w-full h-full object-cover rounded-3xl"
+    src={el.imagePath}
+    alt="news picture"
+  />
+  <h3 className="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-3 rounded">
+    {el.title}
+  </h3>
+</div>
+
     );
   });
 
@@ -70,7 +78,7 @@ export default function NewsCarousel() {
         arrows={false}
 
       >
-        {newsTest}
+        {newsCarrousel}
       </Carousel>
 
     </>
