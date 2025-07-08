@@ -14,7 +14,7 @@ export default function WorkshopCarousel() {
       try {
         const data = await api.get("/workshops");
         console.log(data);
-        
+
         setWorkshop(data.data)
       } catch (err) {
         console.log(err);
@@ -28,29 +28,29 @@ export default function WorkshopCarousel() {
       breakpoint: { max: 3000, min: 1024 },
       items: 3,
       slidesToSlide: 1, // optional, default to 1.
-     
+
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 1,
+      items: 2,
       slidesToSlide: 2, // optional, default to 1.
       partialVisibilityGutter: 100,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
+      items: 2,
       slidesToSlide: 1, // optional, default to 1.
       partialVisibilityGutter: 100,
     },
   };
 
-  
+
 
   const workShopTest = workshop.map((el) => {
     return (
       <article className="p-3 flex flex-col gap-3  ">
         <img
-          className="m-auto rounded-t-2xl w-[430px] h-[285px] md:w-[400px] md:h-[200px] "
+          className="m-auto rounded-t-2xl w-[430px] h-[285px] md:w-[400px] md:h-[200px] object-cover"
           src={import.meta.env.VITE_API_URL + "/" + el.imagePath}
           alt="workshop picture"
         />{" "}
@@ -74,7 +74,7 @@ export default function WorkshopCarousel() {
         keyBoardControl={true}
         transitionDuration={500}
         containerClass="carousel-container"
-        removeArrowOnDeviceType={["tablet", "mobile"]}
+        removeArrowOnDeviceType={[]}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
         className="md:w-[50%] m-auto"

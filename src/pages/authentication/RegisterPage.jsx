@@ -99,11 +99,7 @@ export default function RegisterPage() {
         }
 
         try {
-            await api.post("/auth/register", formDataToSend, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
+            await api.post("/auth/register", formDataToSend);
 
             toast.success("Vous etes inscrit !");
             setFormData(defaultFormData);
@@ -193,7 +189,7 @@ export default function RegisterPage() {
                             </div>
 
                             <div className="flex flex-col gap-5 w-full p-3 md:p-8 justify-center items-center">
-                                <DownloadButton link={"http://127.0.0.1:3000/dossier_inscription.pdf"} />
+                                <DownloadButton link={"http://127.0.0.1:3000/public/dossier_inscription.pdf"} />
                                 {inputFileFields.map((el, i) => (
                                     <FileInput
                                         key={el.id}
