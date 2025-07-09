@@ -43,7 +43,7 @@ export default function UserProfil() {
 
 						/>
 						<div className="border-2 border-purple-800 rounded-full w-full p-1">
-							<h3 className="text-xl font-bold bg-cyan-500 rounded-full w-full text-center py-2 px-5 ">
+							<h3 className="text-xl font-bold bg-primary hover:brightness-115 rounded-full w-full text-center py-2 px-5 ">
 								{profil.first_name} {profil.last_name}
 							</h3>
 						</div>
@@ -84,7 +84,7 @@ export default function UserProfil() {
 						</div>
 
 						<Button
-							className="bg-cyan-500 text-white"
+							className="bg-primary hover:brightness-115 text-white"
 							type={"button"}
 							onClick={handleClick}
 						>

@@ -144,7 +144,7 @@ export default function NewsAdd() {
         )}
 
         <Button
-          className="bg-cyan-500 text-white md:w-[40%] m-auto"
+          className="bg-primary hover:brightness-115 text-white md:w-[40%] m-auto"
           type={"submit"}
         >
           Ajouter une actualité

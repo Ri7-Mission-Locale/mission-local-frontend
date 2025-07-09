@@ -18,7 +18,7 @@ export default function AgendaHours({ hours, date, onSelect, className }) {
                             name={date.toISOString()}
                             onChange={() => onSelect(value)}
                         />
-                        <span className="flex items-center bg-gray-300 text-white p-1 rounded-sm peer-checked:bg-blue-500 w-full select-none">
+                        <span className="flex items-center bg-gray-300 text-white p-1 rounded-sm peer-checked:bg-primary hover:brightness-115 w-full select-none">
                             {value}
                         </span>
                     </label>

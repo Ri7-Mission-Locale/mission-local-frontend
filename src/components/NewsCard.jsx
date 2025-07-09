@@ -22,7 +22,7 @@ export default function NewsCard({ title, img, tag, description, id }) {
 
       <div className="flex justify-end p-4 mt-auto">
         <ButtonLink
-          bgColor="bg-cyan-500"
+          bgColor="bg-primary hover:brightness-115"
           color="text-white"
           label="Plus d'infos"
           size="w-35"

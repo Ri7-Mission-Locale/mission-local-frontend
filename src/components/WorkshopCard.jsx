@@ -39,15 +39,15 @@ export default function WorkshopCard({
           <p>{description}</p>
         </div>
 
-           <div className="flex justify-end p-4 mt-auto">
-                <ButtonLink
-                  bgColor="bg-cyan-500"
-                  color="text-white"
-                  label="Plus d'infos"
-                  size="w-35"
-                  to={`/workshop/detail/${id}`}
-                />
-              </div>
+        <div className="flex justify-end p-4 mt-auto">
+          <ButtonLink
+            bgColor="bg-primary hover:brightness-115"
+            color="text-white"
+            label="Plus d'infos"
+            size="w-35"
+            to={`/workshop/detail/${id}`}
+          />
+        </div>
       </article>
     </>
   );

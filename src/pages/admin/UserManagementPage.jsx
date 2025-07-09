@@ -33,7 +33,7 @@ export default function UserManagementPage() {
                 <AloneSection className="min-w-xs p-5">
                     <TitleWithReturn link={"/admin"}>Utilisateurs</TitleWithReturn>
                     <div className="flex gap-2 items-center ">
-                        <Button className="bg-blue-400 w-fit text-white">Ajouter</Button>
+                        <Button className="bg-primary hover:brightness-115 w-fit text-white">Ajouter</Button>
                         <SearchBar
                             name="search"
                             label="Recherche"

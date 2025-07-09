@@ -59,7 +59,7 @@ export default function LoginPage() {
                         </div>
                         <div className="flex flex-col gap-3 p-3 md:p-8">
 
-                            <Button className="bg-cyan-500 text-white">Se connecter</Button>
+                            <Button className="bg-primary hover:brightness-115 text-white">Se connecter</Button>
                             <NavLink to={"/register"} label="S'inscrire"
                                 className={`w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 bg-orange-100 text-black text-center`}>Pas
                                 encore inscrit ?</NavLink>

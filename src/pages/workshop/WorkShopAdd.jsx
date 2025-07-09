@@ -72,7 +72,7 @@ export default function WorkShopAdd() {
         {listItems}
         <FileInput htmlFor={"imagePath"} label={"Choisir une image"} className="md:col-span-2" onChange={e => setSelectedFiles(e.target.files)} />
         <Button
-          className="bg-cyan-500 text-white md:col-span-2 "
+          className="bg-primary hover:brightness-115 text-white md:col-span-2 "
         >Ajouter un atelier</Button>
       </form>
     </DefaultLayout>

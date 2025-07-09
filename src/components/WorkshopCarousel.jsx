@@ -55,7 +55,7 @@ export default function WorkshopCarousel() {
           alt="workshop picture"
         />{" "}
         <h3 className="font-bold text-center">{el.title}</h3>
-        <Button className="bg-cyan-500 text-white max-w-[430px] m-auto">Plus d'infos</Button>
+        <Button className="bg-primary hover:brightness-115 text-white max-w-[430px] m-auto">Plus d'infos</Button>
       </article>
     );
   });
@@ -77,7 +77,7 @@ export default function WorkshopCarousel() {
         removeArrowOnDeviceType={[]}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
-        className="md:w-[50%] m-auto"
+        className="m-auto max-w-[1040px]"
       >
         {workShopTest}
       </Carousel>

@@ -139,7 +139,7 @@ export default function NewsDetail() {
           <div className="m-auto flex gap-10 pb-5">
             <Button
               className={
-                isEditing ? "bg-green-500 text-white" : "bg-orange-500 text-white"
+                isEditing ? "bg-green-500 text-white" : "bg-warn text-white"
               }
               onClick={handleClick}
             >

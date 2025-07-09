@@ -80,7 +80,7 @@ export default function WorkShopDetail() {
 
         <div className="flex justify-center p-4 mt-auto">
           <Button
-            bgColor="bg-cyan-500"
+            bgColor="bg-primary hover:brightness-115"
             color="text-white"
             label="S'inscrire"
             size="w-35"

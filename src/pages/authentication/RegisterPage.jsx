@@ -106,6 +106,8 @@ export default function RegisterPage() {
             setFormErrors({});
             navigate("/login");
         } catch (err) {
+            console.log(err);
+
             toast.error(err.response?.data?.message || "Une erreur est survenue lors de l'inscription.");
         }
     };
@@ -215,7 +217,7 @@ export default function RegisterPage() {
 
                         </div>
                         <div className="flex flex-col gap-3 px-5">
-                            <Button className="bg-cyan-500 text-white">Suivant</Button>
+                            <Button className="bg-primary hover:brightness-115 text-white">Suivant</Button>
                             <NavLink to={"/login"} label="S'inscrire"
                                 className={`w-[100%] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 bg-orange-100 text-black text-center`}>Déjà
                                 inscrit ?</NavLink>
