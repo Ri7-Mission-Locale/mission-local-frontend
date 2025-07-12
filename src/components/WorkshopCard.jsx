@@ -19,7 +19,7 @@ export default function WorkshopCard({
       >
         <div className="flex flex-col gap-4">
           <img className="rounded-t-xl " src={img} alt="img workshop" />
-          <label for="queue"></label>
+          <label htmlFor="queue"></label>
           <progress
             id="queue"
             value="50"

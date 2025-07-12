@@ -21,7 +21,7 @@ export default function NewsList() {
   return (
     <DefaultLayout>
       <section className=" flex flex-col gap-10 md:w-[50%] m-auto">
-        <h2 className="mx-auto font-extrabold text-3xl">Actualités</h2>
+        <h2 className="mx-auto font-extrabold text-3xl mt-10">Actualités</h2>
         {news?.map((el, i) => (
           <NewsCard
             key={i}
