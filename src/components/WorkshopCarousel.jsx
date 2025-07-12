@@ -68,8 +68,7 @@ export default function WorkshopCarousel() {
         showDots={false}
         responsive={responsive}
         infinite={true}
-        autoPlaySpeed={10000}
-        autoPlay={true}
+        autoPlay={false}
         renderDotsOutside={false}
         keyBoardControl={true}
         transitionDuration={500}

@@ -12,7 +12,7 @@ export default function DefaultLayout({ children }) {
             <Sidebar open={sidebarOpen} onToggleNav={() => setSidebarOpen((v) => !v)} />
             {children}
 
-            <ToastContainer />
+            <ToastContainer  />
         </>
     )
 }

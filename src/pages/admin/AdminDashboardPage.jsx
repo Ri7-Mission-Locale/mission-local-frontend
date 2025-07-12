@@ -10,8 +10,8 @@ export default function AdminDashboardPage() {
     <DefaultLayout>
       <main>
         <AloneSection className="flex justify-center items-center h-screen p-8">
-          <article className="flex flex-col gap-3 bg-white p-5 rounded-sm">
-            <h2 className="font-bold text-xl">Panel d'administration:</h2>
+          <article className="grid  grid-cols-1 md:grid-cols-2 gap-3 h-1/3 w-full bg-white p-5 rounded-sm">
+            <h2 className="md:col-span-2 font-bold text-xl">Panel d'administration:</h2>
 
             <Link
               to={"/admin/users"}
@@ -19,7 +19,7 @@ export default function AdminDashboardPage() {
               color="text-white"
               type="button"
             >
-              <FiUser />
+              <FiUser className="md:text-3xl" />
               Utilisateurs
             </Link>
             <Link
@@ -28,7 +28,7 @@ export default function AdminDashboardPage() {
               color="text-white"
               type="button"
             >
-              <IoNewspaperSharp />
+              <IoNewspaperSharp className="md:text-3xl" />
               Actualités
             </Link>
             <Link
@@ -37,7 +37,7 @@ export default function AdminDashboardPage() {
               color="text-white"
               type="button"
             >
-              <FaClipboardList />
+              <FaClipboardList className="md:text-3xl" />
               Ateliers
             </Link>
             <Link
@@ -46,7 +46,7 @@ export default function AdminDashboardPage() {
               color="text-white"
               type="button"
             >
-              <FaCalendarAlt />
+              <FaCalendarAlt className="md:text-3xl" />
               Callendrier
             </Link>
 

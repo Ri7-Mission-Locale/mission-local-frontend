@@ -13,6 +13,7 @@ import HomePage from "@pages/home/HomePage.jsx";
 import WorkShopDetail from "./pages/workshop/WorkShopDetail";
 import WorkShopAdd from "./pages/workshop/WorkShopAdd";
 import Calendar from "./pages/calendar/Calendar";
+import ProtectedRoute from "./layouts/ProtectedRoute";
 
 const client = new QueryClient();
 
@@ -30,6 +31,7 @@ function App() {
 
 
 					{/* Admin Routes */}
+					{/*<ProtectedRoute> */}
 					<Route path="/admin" element={<AdminDashboardPage />} />
 					<Route
 						path="/admin/users"
@@ -38,21 +40,23 @@ function App() {
 
 					{/* User Routes */}
 					<Route path="/profile" element={<UserProfil />} />
+					<Route path="/news/add" element={<NewsAdd />} />
+					<Route path="/workshop/add" element={<WorkShopAdd />} />
+					<Route path="/calendar" element={<Calendar />} />
+					{/*</ ProtectedRoute>/*}
+
 
 					{/* News Routes */}
 					<Route path="/news/list" element={<NewsList />} />
 					<Route path="/news/detail/:id" element={<NewsDetail />} />
-					<Route path="/news/add" element={<NewsAdd />} />
+
 
 					{/* Workshop Routes */}
 					<Route path="/workshop/list" element={<WorkShopList />} />
 					<Route path="/workshop/detail/:id" element={<WorkShopDetail />} />
-					<Route path="/workshop/add" element={<WorkShopAdd />} />
+
 
 					{/* Calendar  Routes */}
-					<Route path="/calendar" element={<Calendar />} />
-
-
 				</Routes>
 			</BrowserRouter>
 		</QueryClientProvider>
