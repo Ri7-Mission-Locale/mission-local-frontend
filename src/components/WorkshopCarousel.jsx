@@ -1,6 +1,5 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { workshopMock } from "../data/workshopMockData";
 import Button from "./Button";
 import { useEffect, useState } from "react";
 import api from "../api/fetcher";
