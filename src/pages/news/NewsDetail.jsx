@@ -4,7 +4,7 @@ import Tag from "@components/Tag";
 import api from "@api/fetcher";
 import { data, useNavigate, useParams } from "react-router";
 import Input from "@components/inputs/Input.jsx";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import DefaultLayout from "../../layouts/DefaultLayout";
 
 export default function NewsDetail() {
@@ -150,8 +150,6 @@ export default function NewsDetail() {
               Supprimer
             </Button>
           </div>
-          <ToastContainer
-            hideProgressBar={true} />
         </article>
       </div>
     </DefaultLayout>

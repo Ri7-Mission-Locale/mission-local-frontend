@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 import useCurrentUser from "../hooks/useCurrentUser";
 import api from "../api/fetcher";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export default function Toppbar({ onToggleNav }) {
   const queryClient = useQueryClient();
@@ -12,7 +13,9 @@ export default function Toppbar({ onToggleNav }) {
 
   const logout = async () => {
     try {
-      await api.get("/auth/logout");
+      await api.get("/auth/logout").then(() => {
+        toast.success("Vous etes déconnecté !");
+      });
     } catch (err) {
       console.log(err);
 
@@ -27,11 +30,11 @@ export default function Toppbar({ onToggleNav }) {
       <div className="w-full flex items-center justify-start">
         <button
           onClick={onToggleNav}
-          className="flex flex-col justify-around h-7 w-7"
+          className="group flex flex-col justify-around h-7 w-7"
         >
-          <span className="bg-primary hover:brightness-115 w-full h-1 rounded-sm"></span>
-          <span className="bg-primary hover:brightness-115 w-full h-1 rounded-sm"></span>
-          <span className="bg-primary hover:brightness-115 w-full h-1 rounded-sm"></span>
+          <span className="bg-primary group-hover:brightness-115 w-full h-1 rounded-sm"></span>
+          <span className="bg-primary group-hover:brightness-115 w-full h-1 rounded-sm"></span>
+          <span className="bg-primary group-hover:brightness-115 w-full h-1 rounded-sm"></span>
         </button>
       </div>
       <div className="w-full flex items-center justify-center">

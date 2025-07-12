@@ -26,16 +26,21 @@ export default function LoginPage() {
     const mutation = useMutation({
         mutationFn: processLogin,
         onSuccess: (data) => {
+
             sessionStorage.setItem("access_token", data.token);
             sessionStorage.setItem("role", data.role);
             queryClient.invalidateQueries(["profile"]);
             reset();
-            toast.success("Connexion réussie !");
+
+            setTimeout(() => {
+                toast.success("Connexion réussie !");
+            }, 500)
             navigate("/");
+
         },
 
         onError: (error) => {
-            toast.error(error.error || "Erreur serveur");
+            toast.error(error.response.data.error.error || "Erreur serveur");
         }
     });
 

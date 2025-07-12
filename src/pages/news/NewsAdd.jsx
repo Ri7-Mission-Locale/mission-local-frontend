@@ -6,7 +6,7 @@ import { newsInput } from "@data/newAddData.js";
 import Input from "@components/inputs/Input.jsx";
 import api from "@api/fetcher.js";
 import { useNavigate } from "react-router";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import DefaultLayout from "../../layouts/DefaultLayout";
 
@@ -149,7 +149,6 @@ export default function NewsAdd() {
         >
           Ajouter une actualité
         </Button>
-        <ToastContainer hideProgressBar={true} />
       </form>
     </DefaultLayout>
 

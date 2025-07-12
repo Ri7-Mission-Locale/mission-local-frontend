@@ -4,8 +4,6 @@ import useCurrentUser from "../hooks/useCurrentUser";
 
 export default function Sidebar({ open, onToggleNav }) {
     const { data: user } = useCurrentUser();
-    console.log(user);
-
 
     return (
         <aside className={"w-100 bg-primary text-white h-screen fixed top-0 left-0 z-2000 transition-transform" + (open ? " translate-x-0" : " -translate-x-full")}>

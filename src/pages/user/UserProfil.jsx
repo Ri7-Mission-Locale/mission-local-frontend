@@ -5,10 +5,11 @@ import { useId, useState } from "react";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import AloneSection from "@partials/AloneSection.jsx";
 import DefaultLayout from "../../layouts/DefaultLayout";
+import api from "../../api/fetcher";
 
 export default function UserProfil() {
 	const { data: profil } = useCurrentUser();
-	console.log("Profil : ", profil);
+
 
 	const [isEditing, setIsEditing] = useState(false);
 	const dateInputId = useId();
@@ -25,7 +26,7 @@ export default function UserProfil() {
 
 	function handleClick() {
 		if (isEditing) {
-			console.log("Data : ", formData);
+			api.patch("/profile", formData)
 		}
 		setIsEditing(!isEditing);
 	}

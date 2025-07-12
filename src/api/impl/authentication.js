@@ -3,7 +3,6 @@ import api from "../fetcher.js";
 
 // Process user creating account
 export async function processRegister(data) {
-    // TODO data validation
     return !!await api.post("auth/register", data);
 }
 
@@ -13,7 +12,7 @@ export async function processLogin(data) {
         const res = await api.post('/auth/login', data);
         return res.data;
     } catch (e) {
-        throw e.response.data.error || e;
+        throw e;
     }
 }
 
