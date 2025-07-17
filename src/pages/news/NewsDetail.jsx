@@ -6,8 +6,10 @@ import { data, useNavigate, useParams } from "react-router";
 import Input from "@components/inputs/Input.jsx";
 import { toast } from "react-toastify";
 import DefaultLayout from "../../layouts/DefaultLayout";
+import useCurrentUser from "../../hooks/useCurrentUser";
 
 export default function NewsDetail() {
+  const { data } = useCurrentUser()
   const navigate = useNavigate();
   const { id } = useParams();
   const [news, setNews] = useState([]);
@@ -136,20 +138,23 @@ export default function NewsDetail() {
             Rédigé le {news.createdAt?.split("T")[0]}{" "}
           </p>
 
-          <div className="m-auto flex gap-10 pb-5">
-            <Button
-              className={
-                isEditing ? "bg-green-500 text-white" : "bg-warn text-white"
-              }
-              onClick={handleClick}
-            >
-              {isEditing ? "Valider" : "Modifier"}
-            </Button>
+          {data && data.role === "ADMIN" && (
+            <div className="m-auto flex gap-10 pb-5">
+              <Button
+                className={
+                  isEditing ? "bg-green-500 text-white" : "bg-warn text-white"
+                }
+                onClick={handleClick}
+              >
+                {isEditing ? "Valider" : "Modifier"}
+              </Button>
 
-            <Button className={"bg-red-500 text-white"} onClick={handleDelete}>
-              Supprimer
-            </Button>
-          </div>
+              <Button className={"bg-red-500 text-white"} onClick={handleDelete}>
+                Supprimer
+              </Button>
+            </div>
+          )}
+
         </article>
       </div>
     </DefaultLayout>
