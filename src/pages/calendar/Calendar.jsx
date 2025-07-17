@@ -11,7 +11,6 @@ export default function Calendar() {
     console.log(arg);
   }
 
-
   useEffect(() => {
     const fetchEvent = async () => {
       try {
@@ -36,7 +35,6 @@ export default function Calendar() {
           weekends={false}
           events={events}
           datesSet={handleDateSet}
-
         />
       </AloneSection>
     </DefaultLayout>

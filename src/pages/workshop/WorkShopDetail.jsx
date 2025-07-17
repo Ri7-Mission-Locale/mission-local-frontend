@@ -14,10 +14,7 @@ export default function WorkShopDetail() {
   const fetchWorkshop = async () => {
     try {
       const data = await api.get(`workshops/detail/${id}`);
-      console.log(data);
-
       setWorkshop(data.data);
-
       setFormData({
         title: data.title,
         description: data.description,

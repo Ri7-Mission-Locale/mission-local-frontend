@@ -86,7 +86,7 @@ export default function NewsAdd() {
       <form
         onSubmit={handleSubmit(onSubmit)}
         action=""
-        className=" w-4/5 mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:w-[40%]"
+        className=" w-4/5 mt-30 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 max-w-150"
       >
         <SignUpFormTitle label={"Ajouter une actualité"} />
         {inputList}
@@ -144,7 +144,7 @@ export default function NewsAdd() {
         )}
 
         <Button
-          className="bg-primary hover:brightness-115 text-white md:w-[40%] m-auto"
+          className="bg-primary hover:brightness-115 text-white"
           type={"submit"}
         >
           Ajouter une actualité

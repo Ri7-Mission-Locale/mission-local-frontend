@@ -66,7 +66,7 @@ export default function WorkShopAdd() {
     <DefaultLayout>
       <form
         onSubmit={handleSubmit(submit)}
-        className=" mt-10 mx-auto  border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2 max-w-200 w-full"
+        className=" mt-30 mx-auto border border-gray-300 p-8 rounded-lg flex flex-col gap-5 md:grid md:grid-cols-2 max-w-150 w-full"
       >
         <SignUpFormTitle label={"Ajouter un atelier"} className="md:col-span-2" />
         {listItems}
