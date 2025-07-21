@@ -47,7 +47,7 @@ export default function AdminDashboardPage() {
               type="button"
             >
               <FaCalendarAlt className="md:text-3xl" />
-              Callendrier
+              Calendrier
             </Link>
 
           </article>
