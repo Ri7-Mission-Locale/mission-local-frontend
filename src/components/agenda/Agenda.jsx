@@ -22,7 +22,7 @@ export default function Agenda({ onSelect, selectedDate }) {
 	}
 
 	return (
-		<div className="bg-gray-200 rounded-md w-fit h-fit mx-auto relative z-20">
+		<div className="rounded-md w-fit h-fit mx-auto relative z-20">
 			<AgendaSelector date={now} onDateChange={(date) => setCurrentMonth(date)} />
 			<AgendaDays slice />
 			<div className="grid grid-cols-7 p-1 gap-1">
