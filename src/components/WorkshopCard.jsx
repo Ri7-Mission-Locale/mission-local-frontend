@@ -1,0 +1,54 @@
+import Button from "./Button";
+import ButtonLink from "./ButtonLink";
+import Tag from "./Tag";
+
+export default function WorkshopCard({
+  title,
+  img,
+  tag,
+  size,
+  description,
+  key,
+  id
+}) {
+  return (
+    <>
+      <article
+        key={key}
+        className=" rounded-xl w-4/5 m-auto border border-gray-300 flex flex-col gap-6 shadow-gray-400 shadow-md md:max-w-150"
+      >
+        <div className="flex flex-col gap-4">
+          <img className="rounded-t-xl " src={img} alt="img workshop" />
+          <label htmlFor="queue"></label>
+          <progress
+            id="queue"
+            value="50"
+            max="100"
+            className="w-[80%] h-3 rounded-full m-auto overflow-hidden  "
+            style={{ WebkitAppearance: "none", appearance: "none" }}
+          ></progress>
+          <div className="tags w-[80%] m-auto ">
+            {tag?.map((t, index) => (
+              <Tag key={index} text={t.tag_name} color={t.color} />
+            ))}
+          </div>
+        </div>
+
+        <div className="w-[80%] m-auto">
+          <h2 className="font-bold text-2xl">{title}</h2>
+          <p>{description}</p>
+        </div>
+
+        <div className="flex justify-end p-4 mt-auto">
+          <ButtonLink
+            bgColor="bg-primary hover:brightness-115"
+            color="text-white"
+            label="Plus d'infos"
+            size="w-35"
+            to={`/workshop/detail/${id}`}
+          />
+        </div>
+      </article>
+    </>
+  );
+}

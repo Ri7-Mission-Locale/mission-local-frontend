@@ -1,11 +1,30 @@
 @import "tailwindcss";
 
+@theme {
+  --font-inter: "Inter", "sans-serif", "system-ui";
+  --color-primary: #1E99D5;
+  --color-secondary: #8CC63E;
+  --color-terciary: #DC2D67;
+  --color-warn: #F7941E;
+  --color-danger: #9F1F62;
+
+}
 
 @layer navbar {
-    .bg-nav {
-        background-image: url('../ressources/navbar/background.svg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center bottom;
-    }
+  .bg-nav {
+    background-image: url('../ressources/navbar/background.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+  }
+}
+
+/* Workhops queue bar  */
+::-webkit-progress-bar {
+  background-color: rgba(128, 128, 128, 0.432);
+}
+
+progress::-webkit-progress-value {
+  background-color: #000000cb;
+  border-radius: 9999px;
 }
