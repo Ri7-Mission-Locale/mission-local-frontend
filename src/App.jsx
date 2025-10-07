@@ -10,10 +10,9 @@ import NewsAdd from "@pages/news/NewsAdd.jsx";
 import LoginPage from "@pages/authentication/LoginPage.jsx";
 import RegisterPage from "@pages/authentication/RegisterPage.jsx";
 import HomePage from "@pages/home/HomePage.jsx";
-import WorkShopDetail from "./pages/workshop/WorkShopDetail";
-import WorkShopAdd from "./pages/workshop/WorkShopAdd";
-import Calendar from "./pages/calendar/Calendar";
-import ProtectedRoute from "./layouts/ProtectedRoute";
+import WorkShopDetail from "@pages/workshop/WorkShopDetail";
+import WorkShopAdd from "@pages/workshop/WorkShopAdd";
+import Calendar from "@pages/calendar/Calendar";
 
 const client = new QueryClient();
 
